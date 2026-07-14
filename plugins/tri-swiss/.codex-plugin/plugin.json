@@ -1,0 +1,21 @@
+{
+  "name": "tri-swiss",
+  "version": "1.1.0",
+  "description": "A governed red and turquoise Swiss visual system with exact Tailwind tokens and structural component rules.",
+  "author": {
+    "name": "Lux Solari"
+  },
+  "repository": "https://github.com/luxsolari/tri-swiss",
+  "license": "CC-BY-SA-4.0",
+  "keywords": ["design-system", "swiss", "tailwind", "red", "turquoise"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Tri Swiss",
+    "shortDescription": "Apply the Tri-Swiss visual system to an interface.",
+    "longDescription": "Exact theme tokens plus red/turquoise governance, structural blocks, and component guidance.",
+    "developerName": "Lux Solari",
+    "category": "Design",
+    "capabilities": ["design tokens", "accent governance", "component guidance"],
+    "defaultPrompt": "Apply the Tri-Swiss system to this interface."
+  }
+}
