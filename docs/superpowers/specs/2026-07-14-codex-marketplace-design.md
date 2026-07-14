@@ -33,6 +33,7 @@ lux-solari-codex-plugins/
 │   └── <plugin-name>/
 │       ├── .codex-plugin/plugin.json
 │       ├── skills/
+│       ├── hooks/                   # only when lifecycle behavior is required
 │       ├── references/
 │       ├── scripts/                 # only when required
 │       └── assets/                  # only when required
@@ -61,7 +62,7 @@ skills, references, and portable scripts will carry the product behavior.
 
 | Plugin | Codex package behavior | Intentional adaptation |
 | --- | --- | --- |
-| `three-axes-framework` | Applies Mastery, Consequence, and Intent calibration; supports project/global profile guidance and mode signals. | Claude's `SessionStart` hook is not represented. The framework uses an explicit Codex skill and must not claim invisible always-on activation. |
+| `three-axes-framework` | Applies Mastery, Consequence, and Intent calibration; supports project/global profile guidance and mode signals. | Port its lifecycle injection through a Codex-native `SessionStart` hook and a Codex-specific wrapper. The hook will target `startup`, `clear`, and `compact`; resuming retains the already-injected context and must not duplicate it. |
 | `sage-instructor` | Delivers discovery-first programming instruction, curricula, milestones, and progress guidance. | Claude `AskUserQuestion` interactions become normal Codex conversational prompts. |
 | `whiting` | Provides distinct release-discipline initialization and repository-inspection workflows, with portable release guidance/scripts where applicable. | Claude command routing becomes skills and starter prompts. |
 | `lux-swiss` | Supplies the Lux Swiss visual rules, Tailwind theme, and component/chart guidance. | The styling guidance is host-independent; only invocation changes. |
@@ -74,6 +75,13 @@ Each package has a focused `SKILL.md` that identifies when Codex should use it,
 the user-visible workflow, safeguards, and links to only the references it
 needs. Larger reusable material is kept in `references/` rather than
 duplicated in manifests.
+
+`three-axes-framework` includes `hooks/hooks-codex.json` and a portable
+`session-start-codex` wrapper. Its manifest registers that hook file explicitly
+through `"hooks": "./hooks/hooks-codex.json"`, preventing ambiguous fallback
+discovery. The wrapper derives its own plugin root, resolves the appropriate
+Three Axes profile layer, and emits Codex's `SessionStart` additional-context
+payload. A fixture test verifies the emitted JSON and injection content.
 
 `whiting` and `hannah` may contain scripts only when a direct shell operation
 is a necessary part of their documented behavior. Such scripts must be
@@ -99,11 +107,13 @@ Before handoff:
 
 1. Validate every plugin with Codex's plugin validator.
 2. Parse and inspect the marketplace JSON and every plugin manifest.
-3. Confirm each marketplace entry resolves to an existing local package.
-4. Confirm every declared skills or asset path exists.
-5. Confirm the README represents all six packages and all documented
+3. Exercise the Three Axes SessionStart hook against profile fixtures and
+   verify its Codex additional-context payload.
+4. Confirm each marketplace entry resolves to an existing local package.
+5. Confirm every declared skills, hook, or asset path exists.
+6. Confirm the README represents all six packages and all documented
    compatibility differences accurately.
-6. Review the worktree to ensure the existing Claude marketplace remains
+7. Review the worktree to ensure the existing Claude marketplace remains
    untouched.
 
 Success means a user can add the new repository as a Codex marketplace, see
@@ -112,9 +122,11 @@ and skills accurately communicate supported Codex behavior.
 
 ## Risks and decisions
 
-The primary risk is overstating platform parity. The packages will state
-capability differences explicitly, particularly for automatic session hooks
-and host-specific interaction controls. The secondary risk is drift from the
-upstream Claude plugins; their public source repositories remain the behavioral
-reference during the initial port, while this marketplace independently owns
-Codex packaging and release versions.
+The primary risk is overstating platform parity. The Three Axes hook is a
+supported Codex-native port, but its command, matcher, and JSON output contract
+must be Codex-specific; copying the Claude hook verbatim would use the wrong
+plugin-root variable and lifecycle behavior. Other host-specific interaction
+controls will remain explicitly documented. The secondary risk is drift from
+the upstream Claude plugins; their public source repositories remain the
+behavioral reference during the initial port, while this marketplace
+independently owns Codex packaging and release versions.
