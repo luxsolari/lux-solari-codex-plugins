@@ -1,0 +1,23 @@
+{
+  "name": "three-axes-framework",
+  "version": "1.2.1",
+  "description": "Governs how AI assists developers by calibrating behavior across Mastery, Consequence, and Intent.",
+  "author": {
+    "name": "Lux Solari",
+    "email": "luxsolari@outlook.com",
+    "url": "https://github.com/luxsolari"
+  },
+  "repository": "https://github.com/luxsolari/three-axes-framework",
+  "license": "MIT",
+  "keywords": ["ai-assisted-development", "comprehension-debt", "developer-philosophy", "learning", "code-quality"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Three Axes Framework",
+    "shortDescription": "Calibrate AI assistance across mastery, consequence, and intent.",
+    "longDescription": "A persistent behavioral framework with project, global, and session profile guidance.",
+    "developerName": "Lux Solari",
+    "category": "Productivity",
+    "capabilities": ["behavior calibration", "session context", "profile management"],
+    "defaultPrompt": "Set up the Three Axes Framework for this project."
+  }
+}
