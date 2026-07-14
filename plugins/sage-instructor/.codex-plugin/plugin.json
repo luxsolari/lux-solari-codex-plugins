@@ -1,0 +1,23 @@
+{
+  "name": "sage-instructor",
+  "version": "1.7.2",
+  "description": "Adaptive programming instructor with discovery-first teaching, curricula, and persistent progress tracking.",
+  "author": {
+    "name": "Lux Solari",
+    "email": "luxsolari@outlook.com",
+    "url": "https://github.com/luxsolari"
+  },
+  "repository": "https://github.com/luxsolari/sage-instructor",
+  "license": "MIT",
+  "keywords": ["instructor", "learning", "teaching", "curriculum", "three-axes-framework", "programming-education"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Sage Instructor",
+    "shortDescription": "Learn programming through adaptive, discovery-first instruction.",
+    "longDescription": "Structured curricula, lesson verification, review queues, and persistent multi-track progress.",
+    "developerName": "Lux Solari",
+    "category": "Productivity",
+    "capabilities": ["adaptive curricula", "progress tracking", "lesson verification", "multi-track learning"],
+    "defaultPrompt": "Start a Sage learning track."
+  }
+}
