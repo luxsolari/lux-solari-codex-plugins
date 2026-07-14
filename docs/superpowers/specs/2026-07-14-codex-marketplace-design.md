@@ -62,7 +62,7 @@ skills, references, and portable scripts will carry the product behavior.
 
 | Plugin | Codex package behavior | Intentional adaptation |
 | --- | --- | --- |
-| `three-axes-framework` | Applies Mastery, Consequence, and Intent calibration; supports project/global profile guidance and mode signals. | Port its lifecycle injection through a Codex-native `SessionStart` hook and a Codex-specific wrapper. The hook will target `startup`, `clear`, and `compact`; resuming retains the already-injected context and must not duplicate it. |
+| `three-axes-framework` | Applies Mastery, Consequence, and Intent calibration; supports project/global profile guidance and mode signals. | Port its lifecycle injection through a Codex-native `SessionStart` hook and a Codex-specific wrapper. It will target `startup`, `resume`, `clear`, and `compact`, matching the published framework; only `startup` clears the ephemeral session profile. |
 | `sage-instructor` | Delivers discovery-first programming instruction, curricula, milestones, and progress guidance. | Claude `AskUserQuestion` interactions become normal Codex conversational prompts. |
 | `whiting` | Provides distinct release-discipline initialization and repository-inspection workflows, with portable release guidance/scripts where applicable. | Claude command routing becomes skills and starter prompts. |
 | `lux-swiss` | Supplies the Lux Swiss visual rules, Tailwind theme, and component/chart guidance. | The styling guidance is host-independent; only invocation changes. |
