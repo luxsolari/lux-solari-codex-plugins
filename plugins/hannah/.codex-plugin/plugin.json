@@ -1,0 +1,23 @@
+{
+  "name": "hannah",
+  "version": "0.10.6",
+  "description": "F1 strategy engineer for your LLM garage: analyses a repository and hardware to recommend local models.",
+  "author": {
+    "name": "Lux Solari",
+    "email": "laxeayanami@gmail.com"
+  },
+  "homepage": "https://github.com/luxsolari/hannah",
+  "repository": "https://github.com/luxsolari/hannah",
+  "license": "MIT",
+  "keywords": ["llm", "ollama", "models", "hardware", "repo-analysis", "mlx", "local-inference"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Hannah",
+    "shortDescription": "Recommend local LLMs from repository and hardware analysis.",
+    "longDescription": "A self-contained Python engine for local model strategy, ranking, benchmarks, and Ollama discovery.",
+    "developerName": "Lux Solari",
+    "category": "Productivity",
+    "capabilities": ["repository analysis", "hardware detection", "model recommendations", "Ollama strategy"],
+    "defaultPrompt": "Analyse this repository with Hannah and recommend local LLM models."
+  }
+}
