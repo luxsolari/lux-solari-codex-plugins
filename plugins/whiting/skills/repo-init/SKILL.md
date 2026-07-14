@@ -30,12 +30,12 @@ repo, a LICENSE, a README, and a Keep a Changelog `CHANGELOG.md`.
 
 ## What to install
 
-Render each missing file from `${PLUGIN_ROOT}/templates/` using the
+Render each missing file from `<plugin root>/templates/` using the
 bundled renderer:
 
 ```
-python3 ${PLUGIN_ROOT}/scripts/render_template.py \
-  ${PLUGIN_ROOT}/templates/CHANGELOG.md.tmpl > CHANGELOG.md
+python3 <plugin root>/scripts/render_template.py \
+  <plugin root>/templates/CHANGELOG.md.tmpl > CHANGELOG.md
 ```
 
 | Missing file | Template | Placeholders |
@@ -51,13 +51,13 @@ HTTPS GitHub URL; if there is no remote yet, ask the user for it. Set `LICENSE_N
 just `MIT`; for any other license do not hand-escape — run the id
 through the helper so the badge label is always correct:
 
-    LICENSE_NAME=$(python3 ${PLUGIN_ROOT}/scripts/shields_escape.py "Apache-2.0")  # -> Apache--2.0
+    LICENSE_NAME=$(python3 <plugin root>/scripts/shields_escape.py "Apache-2.0")  # -> Apache--2.0
 
 Then render:
 
 ```
-python3 ${PLUGIN_ROOT}/scripts/render_template.py \
-  ${PLUGIN_ROOT}/templates/README.md.tmpl \
+python3 <plugin root>/scripts/render_template.py \
+  <plugin root>/templates/README.md.tmpl \
   PROJECT_NAME="my-project" DESCRIPTION="What it does, one line." \
   REPO_SLUG="owner/my-project" LICENSE_NAME="MIT" > README.md
 ```

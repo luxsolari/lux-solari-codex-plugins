@@ -46,7 +46,7 @@ since the last tag, so version bumps aren't guessed by hand.
 Copy these files, unmodified unless step 3 above required a tag-scheme
 tweak — applied consistently across all three:
 
-| Source (`${PLUGIN_ROOT}/...`) | Destination |
+| Source (`<plugin root>/...`) | Destination |
 | --- | --- |
 | `scripts/extract_changelog.py` | `scripts/extract_changelog.py` |
 | `scripts/suggest_version_bump.py` | `scripts/suggest_version_bump.py` |

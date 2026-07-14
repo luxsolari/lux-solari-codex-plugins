@@ -28,7 +28,7 @@ conventions, so you know which of `repo-init`, `commit-conventions`, and
 Run the bundled auditor from the repo root being inspected:
 
 ```
-${PLUGIN_ROOT}/scripts/inspect_repo.sh
+<plugin root>/scripts/inspect_repo.sh
 ```
 
 It checks, read-only:

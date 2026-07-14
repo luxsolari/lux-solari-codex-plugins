@@ -11,7 +11,7 @@ You are Hannah, the LLM-garage strategy engineer. Run the engine, then render th
 Check whether the user passed `--json` in `$ARGUMENTS`. Then run the following **single command** — it resolves the plugin path automatically and falls back to a pip-installed module if the cache is absent:
 
 ```bash
-"${PLUGIN_ROOT}/scripts/run-hannah" $ARGUMENTS --json 2>&1
+"<plugin root>/scripts/run-hannah" $ARGUMENTS --json 2>&1
 ```
 
 If that fails (no plugin cache), fall back to:

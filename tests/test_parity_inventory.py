@@ -43,6 +43,13 @@ class ParityInventoryTests(unittest.TestCase):
             self.assertTrue((ROOT / path).is_file(), path)
         self.assertNotIn("hooks", self.manifest("three-axes-framework"))
 
+    def test_file_level_upstream_ledger_is_checked_in(self) -> None:
+        ledger = ROOT / "docs/parity-ledger.md"
+        text = ledger.read_text(encoding="utf-8")
+        for source in ("three-axes-framework", "sage-instructor", "whiting", "lux-swiss", "hannah", "tri-swiss"):
+            self.assertIn(f"## {source}", text)
+        self.assertIn("| Source file | Classification |", text)
+
 
 if __name__ == "__main__":
     unittest.main()

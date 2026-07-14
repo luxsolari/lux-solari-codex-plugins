@@ -25,6 +25,7 @@ class HostPortabilityTests(unittest.TestCase):
         for path in active_files:
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("CLAUDE_PLUGIN_ROOT", text, path)
+            self.assertNotIn("${PLUGIN_ROOT}", text, path)
             self.assertNotIn("AskUserQuestion", text, path)
         self.assertNotIn("~/.claude/three-axes-session.json", active_files[-2].read_text(encoding="utf-8"))
 

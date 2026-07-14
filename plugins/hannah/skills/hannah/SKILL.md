@@ -30,7 +30,7 @@ Run the installed package through its portable wrapper; it derives its own
 plugin root and sets `PYTHONPATH` correctly:
 
 ```bash
-${PLUGIN_ROOT}/scripts/run-hannah <path> [flags]
+<plugin root>/scripts/run-hannah <path> [flags]
 ```
 
 `<path>` defaults to `.` (the current repo). Requires Python ≥ 3.11.
