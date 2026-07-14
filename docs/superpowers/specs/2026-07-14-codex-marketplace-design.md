@@ -63,7 +63,7 @@ skills, references, and portable scripts will carry the product behavior.
 | Plugin | Codex package behavior | Intentional adaptation |
 | --- | --- | --- |
 | `three-axes-framework` | Applies Mastery, Consequence, and Intent calibration; supports project/global profile guidance and mode signals. | Port its lifecycle injection through a Codex-native `SessionStart` hook and a Codex-specific wrapper. It will target `startup`, `resume`, `clear`, and `compact`, matching the published framework; only `startup` clears the ephemeral session profile. |
-| `sage-instructor` | Delivers discovery-first programming instruction, curricula, milestones, and progress guidance. | Claude `AskUserQuestion` interactions become normal Codex conversational prompts. |
+| `sage-instructor` | Delivers discovery-first programming instruction, curricula, milestones, and progress guidance. | Claude `AskUserQuestion` interactions become normal Codex conversational prompts; its complete Three Axes calibration contract is bundled so it works both alongside and without a separately installed Three Axes package. |
 | `whiting` | Provides distinct release-discipline initialization and repository-inspection workflows, with portable release guidance/scripts where applicable. | Claude command routing becomes skills and starter prompts. |
 | `lux-swiss` | Supplies the Lux Swiss visual rules, Tailwind theme, and component/chart guidance. | The styling guidance is host-independent; only invocation changes. |
 | `hannah` | Analyzes the repository and local machine context to recommend local LLM models and runtimes. | Codex-native read-only inspection replaces Claude-specific invocation. |
@@ -76,12 +76,14 @@ the user-visible workflow, safeguards, and links to only the references it
 needs. Larger reusable material is kept in `references/` rather than
 duplicated in manifests.
 
-`three-axes-framework` includes `hooks/hooks-codex.json` and a portable
-`session-start-codex` wrapper. Its manifest registers that hook file explicitly
-through `"hooks": "./hooks/hooks-codex.json"`, preventing ambiguous fallback
-discovery. The wrapper derives its own plugin root, resolves the appropriate
-Three Axes profile layer, and emits Codex's `SessionStart` additional-context
-payload. A fixture test verifies the emitted JSON and injection content.
+`three-axes-framework` includes the canonical auto-discovered
+`hooks/hooks.json` and a portable `session-start-codex` wrapper. Its manifest
+does not include a `hooks` field: Codex discovers the canonical file while the
+supported manifest validator remains authoritative. The wrapper derives its
+own plugin root, resolves the appropriate Three Axes profile layer, and emits
+Codex's `SessionStart` additional-context payload for all four lifecycle
+matchers. Fixture and disposable-install tests verify the emitted JSON,
+injection content, and startup-only session clearing.
 
 `whiting` and `hannah` may contain scripts only when a direct shell operation
 is a necessary part of their documented behavior. Such scripts must be
@@ -90,16 +92,18 @@ their reusable theme artifacts as plain reference assets.
 
 ## Metadata and user experience
 
-All manifests use Lux Solari as publisher, retain MIT licensing and upstream
-source/homepage links, and expose concise Codex-specific starter prompts.
+All manifests use Lux Solari as publisher, retain their upstream license scope
+(MIT for four packages and dual MIT/X11 plus CC-BY-SA-4.0 for the Swiss design
+systems), source/homepage links, and concise Codex-specific starter prompts.
 Categories are `Productivity` for the framework, instruction, release, and
 local-model packages; `Design` for the two Swiss systems. Marketplace order
 matches the existing Claude catalog.
 
 The README explains installation through a Codex marketplace, lists the six
 packages, calls out the Three Axes activation difference, and provides local
-validation instructions. It avoids claiming that unimplemented hooks or
-Claude slash commands work in Codex.
+validation instructions. It maps every Claude command to an available Codex
+skill route and names each host adapter rather than claiming unsupported host
+features.
 
 ## Validation and acceptance criteria
 
@@ -113,7 +117,11 @@ Before handoff:
 5. Confirm every declared skills, hook, or asset path exists.
 6. Confirm the README represents all six packages and all documented
    compatibility differences accurately.
-7. Review the worktree to ensure the existing Claude marketplace remains
+7. Verify the complete source-to-target inventory, including legal artifacts,
+   command routes, and source-repository-only release material classification.
+8. Perform disposable-install smoke tests for Three Axes lifecycle injection,
+   Sage with and without Three Axes, and Hannah's module and console CLIs.
+9. Review the worktree to ensure the existing Claude marketplace remains
    untouched.
 
 Success means a user can add the new repository as a Codex marketplace, see

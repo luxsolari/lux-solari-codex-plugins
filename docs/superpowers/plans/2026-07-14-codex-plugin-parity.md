@@ -17,14 +17,15 @@
 - Keep Three Axes lifecycle parity: inject on `startup`, `resume`, `clear`, and `compact`; clear only the session override on `startup`.
 - Preserve all learner data and Three Axes project files as user/project state, never inside an installed plugin directory.
 - Never replace an existing project file, hook path, release workflow, GitHub setting, or learner profile without the confirmation rules already defined by the source skills.
-- Every manifest, declared skill path, hook path, script path, and marketplace path must exist and pass validation before handoff.
+- Every manifest, declared skill path, hook path, script path, and marketplace path must exist and pass validation before handoff. Validate manifest shape with `validate_plugin.py`; validate hook discovery and execution with a real disposable Codex profile, because generic manifest validation intentionally does not model hook configuration.
+- Treat the following as explicit host translations, not omissions: Claude command files become documented Codex skill routes; Claude hook-manifest pointers become Codex's canonical auto-discovered `hooks/hooks.json`; and Sage's Claude package dependency becomes a self-contained instructional contract plus optional cooperation with an installed Three Axes package (Codex's verified plugin manifest contract has no package-dependency field).
 
 ## Source-of-Truth Ledger
 
 | Plugin | Source revision | Runtime material to preserve |
 | --- | --- | --- |
 | Three Axes | `04346e064ffac6a3026002601571185603fc651c` | framework skill; six commands; profile library/tests; session injector/hook |
-| Sage | `fe94cc3a38a733aa80bf4c92aa616a199429a3d0` | instructor skill; 21 command routes; curricula/template/references; schema validator and ten scenarios |
+| Sage | `fe94cc3a38a733aa80bf4c92aa616a199429a3d0` | instructor skill; 20 command routes; curricula/template/references; schema validator and ten scenarios |
 | Whiting | `31c545d117f99908a2256c5b0f79d64b1fe038c8` | four skills; auditor; release/version/template utilities; hooks; release workflow template; tests |
 | Lux Swiss | `c255468eec1e8a81ae4cd00d74fec2a26d4293c1` | complete skill; exact Tailwind theme; component catalogue; house-mark rules |
 | Hannah | `21c19d03cb6611f9d36e678e37a28817df3fe49c` | full `hannah` Python package; CLI; strategy skill; tests |
@@ -38,23 +39,26 @@
 plugins/
   three-axes-framework/
     .codex-plugin/plugin.json
+    LICENSE
     skills/three-axes-framework/SKILL.md
     references/commands.md
-    hooks/hooks-codex.json
+    hooks/hooks.json
     hooks/inject-framework-codex.mjs
     hooks/lib/profile.mjs
     tests/profile.test.mjs
     tests/session-start.test.mjs
   sage-instructor/
     .codex-plugin/plugin.json
+    LICENSE
     skills/sage-instructor/SKILL.md
     skills/sage-instructor/curricula/{TEMPLATE,python-basics,rust-cli}.md
-    skills/sage-instructor/references/{philosophy,learner-profile-template,commands}.md
+    skills/sage-instructor/references/{philosophy,learner-profile-template,commands,three-axes-contract}.md
     skills/sage-instructor/references/.three-axes-upstream-snapshot.md
     scripts/check_framework_drift.py
     tests/{check_progress_schema.py,fixtures,scenarios,run_scenario_prompt.md,test_check_progress_schema.py}
   whiting/
     .codex-plugin/plugin.json
+    LICENSE
     skills/{repo-init,commit-conventions,inspect,semver-release}/SKILL.md
     scripts/{inspect_repo.sh,extract_changelog.py,render_template.py,shields_escape.py,suggest_version_bump.py,run_tests.sh}
     scripts/hooks/{commit-msg,pre-push}
@@ -66,6 +70,8 @@ plugins/
     {LICENSE,LICENSE-DESIGN}
   hannah/
     .codex-plugin/plugin.json
+    LICENSE
+    README.md
     skills/hannah/{SKILL.md,references/strategy.md}
     hannah/{__init__,__main__,cli}.py and analyzer/catalog/hardware/models/reporter modules
     pyproject.toml
@@ -150,9 +156,10 @@ git commit -m "feat: add Codex marketplace foundation"
 
 **Files:**
 - Create: `plugins/three-axes-framework/.codex-plugin/plugin.json`
+- Create: `plugins/three-axes-framework/LICENSE`
 - Create: `plugins/three-axes-framework/skills/three-axes-framework/SKILL.md`
 - Create: `plugins/three-axes-framework/references/commands.md`
-- Create: `plugins/three-axes-framework/hooks/hooks-codex.json`
+- Create: `plugins/three-axes-framework/hooks/hooks.json`
 - Create: `plugins/three-axes-framework/hooks/inject-framework-codex.mjs`
 - Create: `plugins/three-axes-framework/hooks/lib/profile.mjs`
 - Create: `plugins/three-axes-framework/tests/profile.test.mjs`
@@ -183,9 +190,9 @@ Expected: FAIL because the profile library and Codex hook are absent.
 
 - [ ] **Step 3: Transfer the framework material and make only host-specific substitutions**
 
-Copy the published framework body, all six principles, axis tables, presets, and command rules verbatim into the skill/reference. Port the profile helper and preserve `.three-axes.json` as the project file. Use `~/.codex/three-axes-profile.json` and `~/.codex/three-axes-session.json` as Codex-owned global/session paths; when the Codex global file is absent, read the legacy `~/.claude/three-axes-profile.json` once as a migration fallback.
+Copy the published framework body, all six principles, axis tables, presets, command rules, and MIT `LICENSE` verbatim into the package. Port the profile helper and preserve `.three-axes.json` as the project file. Use `~/.codex/three-axes-profile.json` and `~/.codex/three-axes-session.json` as Codex-owned global/session paths; when the Codex global file is absent, read the legacy `~/.claude/three-axes-profile.json` once as a migration fallback.
 
-Register `hooks/hooks-codex.json` explicitly in the manifest with all four matchers. The wrapper must derive its root from its own path, clear the session file only for `startup`, read the full skill body, resolve the cascade, and write the Codex `hookSpecificOutput.additionalContext` JSON. Keep `suppressOutput: true` so normal sessions are not polluted.
+Create the canonical auto-discovered `hooks/hooks.json` with all four matchers; deliberately omit a `hooks` key from `plugin.json`. This is the Codex-compatible form that both activates hooks and keeps the generic package validator authoritative for the supported manifest schema. The wrapper must derive its root from its own path, clear the session file only for `startup`, read the full skill body, resolve the cascade, and write the Codex `hookSpecificOutput.additionalContext` JSON. Keep `suppressOutput: true` so normal sessions are not polluted.
 
 Map every original slash command to explicit skill-route phrases and default prompts; retain usage errors, all five preset values, merge-before-write behavior, source labels, profile setup questions, and the four conversational signal durations.
 
@@ -195,10 +202,13 @@ Run: `node --test plugins/three-axes-framework/tests/*.test.mjs`
 
 Expected: PASS with lifecycle and cascade tests proving profile parity.
 
-- [ ] **Step 5: Validate the package and commit**
+- [ ] **Step 5: Validate the package, hook discovery, and commit**
 
 ```bash
 python3 /Users/luxsolari/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/three-axes-framework
+# In a disposable CODEX_HOME: add the local marketplace, install Three Axes,
+# and invoke each SessionStart matcher. Assert its additionalContext is present
+# and that only startup removes the session override.
 git add plugins/three-axes-framework tests/test_marketplace.py
 git commit -m "feat: port Three Axes framework lifecycle"
 ```
@@ -207,11 +217,12 @@ git commit -m "feat: port Three Axes framework lifecycle"
 
 **Files:**
 - Create: `plugins/sage-instructor/.codex-plugin/plugin.json`
+- Create: `plugins/sage-instructor/LICENSE`
 - Create: `plugins/sage-instructor/skills/sage-instructor/SKILL.md`
 - Create: `plugins/sage-instructor/skills/sage-instructor/curricula/TEMPLATE.md`
 - Create: `plugins/sage-instructor/skills/sage-instructor/curricula/python-basics.md`
 - Create: `plugins/sage-instructor/skills/sage-instructor/curricula/rust-cli.md`
-- Create: `plugins/sage-instructor/skills/sage-instructor/references/{philosophy.md,learner-profile-template.md,commands.md}`
+- Create: `plugins/sage-instructor/skills/sage-instructor/references/{philosophy.md,learner-profile-template.md,commands.md,three-axes-contract.md}`
 - Create: `plugins/sage-instructor/skills/sage-instructor/references/.three-axes-upstream-snapshot.md`
 - Create: `plugins/sage-instructor/scripts/{check_framework_drift.py,check_progress_schema.py}`
 - Create: `plugins/sage-instructor/tests/fixtures/`, `plugins/sage-instructor/tests/scenarios/`, `plugins/sage-instructor/tests/test_check_progress_schema.py`
@@ -220,6 +231,7 @@ git commit -m "feat: port Three Axes framework lifecycle"
 - Consumes: project-root `.sage-profile.md`, `.sage-progress.json`, and curricula files.
 - Produces: the documented progress schema with `active_track`, independent `tracks`, confidence/review/streak fields, and all source-compatible defaults for omitted legacy fields.
 - Produces: all 20 Sage routes: start, next, lesson, challenge, checkpoint, progress, drill, review, hint, explain, stuck, recap, status, help, reset, phase, tracks, switch, new-track, and exercise.
+- Produces: equivalent three-axis calibration whether or not the separately installed `three-axes-framework` package is present; when it is present, Sage explicitly cooperates with its active profile rather than creating conflicting state.
 
 - [ ] **Step 1: Write failing schema and route-coverage tests**
 
@@ -243,9 +255,9 @@ Expected: FAIL because the validator, fixtures, and command reference are absent
 
 - [ ] **Step 3: Transfer all instructional behavior**
 
-Copy the source skill, curricula, profile template, philosophy, `.three-axes-upstream-snapshot.md`, `scripts/check_framework_drift.py`, `tests/check_progress_schema.py`, valid/invalid fixtures, scenario runner prompt, and all ten scenario documents. Retain the source snapshot path relationship so `check_framework_drift.py` can detect source-framework drift and update the snapshot only after an explicit reconciliation. Translate Claude's `AskUserQuestion` calls to Codex/ChatGPT structured user-input prompts while retaining every choice, confirmation point, and one-question-at-a-time rule.
+Copy the source skill, curricula, profile template, philosophy, `.three-axes-upstream-snapshot.md`, `scripts/check_framework_drift.py`, `tests/check_progress_schema.py`, valid/invalid fixtures, scenario runner prompt, all ten scenario documents, and MIT `LICENSE`. Retain the source snapshot path relationship so `check_framework_drift.py` can detect source-framework drift and update the snapshot only after an explicit reconciliation. Translate Claude's `AskUserQuestion` calls to Codex/ChatGPT structured user-input prompts while retaining every choice, confirmation point, and one-question-at-a-time rule.
 
-Create `references/commands.md` from every source command file and make the skill route both the original slash-like forms and plain-language equivalents. Preserve the seven-step lesson flow, verifying exercises by their curriculum `verify` command, toolchain-vs-learner failure distinction, progressive hints, confidence/review updates, axis recalibration, multi-track state isolation, full and active-only reset confirmations, custom-track grounding research, source recording, and all track-completion behavior.
+Create `references/commands.md` from every source command file and make the skill route both the original slash-like forms and plain-language equivalents. Create `references/three-axes-contract.md`: it must carry the complete calibration semantics Sage needs, locate and respect the Three Axes project/global/session state when that package is installed, and perform the same calibration locally when it is not. This replaces only the upstream marketplace auto-install mechanism; no instructional or state-machine behavior may depend on an undeclared host capability. Preserve the seven-step lesson flow, verifying exercises by their curriculum `verify` command, toolchain-vs-learner failure distinction, progressive hints, confidence/review updates, axis recalibration, multi-track state isolation, full and active-only reset confirmations, custom-track grounding research, source recording, and all track-completion behavior.
 
 - [ ] **Step 4: Run the tests to verify they pass**
 
@@ -265,6 +277,7 @@ git commit -m "feat: port Sage instructor workflows"
 
 **Files:**
 - Create: `plugins/whiting/.codex-plugin/plugin.json`
+- Create: `plugins/whiting/LICENSE`
 - Create: `plugins/whiting/skills/{repo-init,commit-conventions,inspect,semver-release}/SKILL.md`
 - Create: `plugins/whiting/scripts/{inspect_repo.sh,extract_changelog.py,render_template.py,shields_escape.py,suggest_version_bump.py,run_tests.sh}`
 - Create: `plugins/whiting/scripts/hooks/{commit-msg,pre-push}`
@@ -287,7 +300,7 @@ Expected: FAIL because the scripts, templates, and hooks are absent.
 
 - [ ] **Step 3: Transfer every operational artifact and route**
 
-Copy the four skills, six utility scripts, two executable hooks, five templates, and release workflow verbatim. Store the workflow as `templates/release.yml` and have the release skill install it at `.github/workflows/release.yml` exactly as the source does.
+Copy the four skills, six utility scripts, two executable hooks, five templates, release workflow, and MIT `LICENSE` verbatim. Store the workflow as `templates/release.yml` and have the release skill install it at `.github/workflows/release.yml` exactly as the source does.
 
 Keep every safety check: read-only inspect behavior; existing-file confirmation; existing hook-path confirmation; existing release-workflow stop; explicit confirmation before tags/pushes; tag-scheme consistency; best-effort GitHub metadata/branch-protection checks; branch-and-PR discipline. Preserve the source test commands and executable modes.
 
@@ -410,6 +423,8 @@ git commit -m "feat: port Tri-Swiss design system"
 
 **Files:**
 - Create: `plugins/hannah/.codex-plugin/plugin.json`
+- Create: `plugins/hannah/LICENSE`
+- Create: `plugins/hannah/README.md`
 - Create: `plugins/hannah/skills/hannah/SKILL.md`
 - Create: `plugins/hannah/skills/hannah/references/strategy.md`
 - Create: `plugins/hannah/pyproject.toml`
@@ -437,6 +452,8 @@ def test_no_color_and_version_contracts_are_available():
     assert run_hannah("--version").startswith("hannah ")
 ```
 
+Add an isolated-install assertion that `python3 -m pip install --no-deps .` exposes the published `hannah` console-script entry point and that `hannah --version` matches the module invocation.
+
 - [ ] **Step 2: Run the tests to verify they fail**
 
 Run: `cd plugins/hannah && python3 -m unittest discover -s tests -v`
@@ -445,7 +462,7 @@ Expected: FAIL because the Python package and CLI are absent.
 
 - [ ] **Step 3: Transfer the engine, not a simplified prompt**
 
-Copy `pyproject.toml`, `hannah/__init__.py`, `__main__.py`, `cli.py`, every analyzer/catalog/hardware/models/reporters module, the strategy skill, command rendering rules, and the source smoke test. Add an executable `scripts/run-hannah` that derives the package root and invokes `PYTHONPATH=<plugin-root> python3 -m hannah "$@"`, so the installed skill has the same self-contained engine discovery as the published command. Retain zero runtime dependencies and Python 3.11 floor.
+Copy `pyproject.toml`, `README.md`, MIT `LICENSE`, `hannah/__init__.py`, `__main__.py`, `cli.py`, every analyzer/catalog/hardware/models/reporters module, the strategy skill, command rendering rules, and the source smoke test. Keep the README next to `pyproject.toml`, as its published build metadata declares it as the project readme. Add an executable `scripts/run-hannah` that derives the package root and invokes `PYTHONPATH=<plugin-root> python3 -m hannah "$@"`, so the installed skill has the same self-contained engine discovery as the published command. Retain zero runtime dependencies and Python 3.11 floor.
 
 Preserve repository language/framework/entry-point/token/complexity analysis; macOS/Linux/Windows/WSL hardware detection; hardware overrides; the candidate registry/scoring and benchmark weights; pulled Ollama model detection through REST and CLI; optional Ollama library discovery; optional benchmark cache/enrichment; console and JSON output; platform-specific Ollama race notes; and exact P1/P2/P3 pull/strategy guidance. The skill invokes this local engine and renders its complete output rather than replacing it with model-memory recommendations.
 
@@ -480,11 +497,11 @@ git commit -m "feat: port Hannah strategy engine"
 
 ```python
 REQUIRED = {
-    "three-axes-framework": ["skills/three-axes-framework/SKILL.md", "references/commands.md", "hooks/hooks-codex.json", "hooks/inject-framework-codex.mjs", "hooks/lib/profile.mjs"],
-    "sage-instructor": ["skills/sage-instructor/SKILL.md", "skills/sage-instructor/curricula/TEMPLATE.md", "skills/sage-instructor/curricula/python-basics.md", "skills/sage-instructor/curricula/rust-cli.md", "skills/sage-instructor/references/.three-axes-upstream-snapshot.md", "scripts/check_framework_drift.py", "tests/check_progress_schema.py", "tests/run_scenario_prompt.md"],
-    "whiting": ["scripts/inspect_repo.sh", "scripts/extract_changelog.py", "scripts/suggest_version_bump.py", "scripts/render_template.py", "scripts/shields_escape.py", "scripts/hooks/commit-msg", "scripts/hooks/pre-push", "templates/release.yml"],
+    "three-axes-framework": ["LICENSE", "skills/three-axes-framework/SKILL.md", "references/commands.md", "hooks/hooks.json", "hooks/inject-framework-codex.mjs", "hooks/lib/profile.mjs"],
+    "sage-instructor": ["LICENSE", "skills/sage-instructor/SKILL.md", "skills/sage-instructor/curricula/TEMPLATE.md", "skills/sage-instructor/curricula/python-basics.md", "skills/sage-instructor/curricula/rust-cli.md", "skills/sage-instructor/references/.three-axes-upstream-snapshot.md", "skills/sage-instructor/references/three-axes-contract.md", "scripts/check_framework_drift.py", "tests/check_progress_schema.py", "tests/run_scenario_prompt.md"],
+    "whiting": ["LICENSE", "scripts/inspect_repo.sh", "scripts/extract_changelog.py", "scripts/suggest_version_bump.py", "scripts/render_template.py", "scripts/shields_escape.py", "scripts/hooks/commit-msg", "scripts/hooks/pre-push", "templates/release.yml"],
     "lux-swiss": ["skills/lux-swiss/SKILL.md", "skills/lux-swiss/assets/theme.css", "skills/lux-swiss/references/components.md", "skills/lux-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
-    "hannah": ["pyproject.toml", "scripts/run-hannah", "hannah/cli.py", "hannah/analyzers/repo.py", "hannah/catalog/benchmarks.py", "hannah/catalog/ollama.py", "hannah/hardware/detect.py", "hannah/models/registry.py", "hannah/reporters/console.py", "hannah/reporters/json.py", "hannah/reporters/notes.py"],
+    "hannah": ["LICENSE", "README.md", "pyproject.toml", "scripts/run-hannah", "hannah/cli.py", "hannah/analyzers/repo.py", "hannah/catalog/benchmarks.py", "hannah/catalog/ollama.py", "hannah/hardware/detect.py", "hannah/models/registry.py", "hannah/reporters/console.py", "hannah/reporters/json.py", "hannah/reporters/notes.py"],
     "tri-swiss": ["skills/tri-swiss/SKILL.md", "skills/tri-swiss/assets/theme.css", "skills/tri-swiss/references/components.md", "skills/tri-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
 }
 
@@ -498,6 +515,8 @@ def test_manifests_preserve_source_versions_and_licenses():
     assert manifest("lux-swiss")["license"] == "CC-BY-SA-4.0"
 ```
 
+Add explicit host-adapter assertions: Three Axes has `hooks/hooks.json` and no unsupported manifest `hooks` key; every Codex route is mapped from its source command; Sage has all 20 routes and a complete `three-axes-contract.md`; and the Hannah package's console-script metadata names `hannah.cli:main`.
+
 - [ ] **Step 2: Run the test to verify it fails**
 
 Run: `python3 -m unittest tests/test_parity_inventory.py -v`
@@ -506,7 +525,7 @@ Expected: FAIL until each manifest and source artifact has been completed.
 
 - [ ] **Step 3: Populate all manifests and documentation**
 
-Set each manifest name/version/description/author/source links/license/keywords/skills/interface fields from its published source. Keep the target repository as the Codex package repository and list the originating Claude repository and source revision in `docs/parity-inventory.md`. That inventory must map every item in `REQUIRED`, every Three Axes command/preset/signal, every one of Sage's 20 routes, Whiting's four skills, and Hannah's six CLI switches to its Codex target. It must also classify each remaining tracked source artifact as one of: translated manifest, copied runtime, copied verification, consolidated CI, or source-repository-only documentation/release packaging; no tracked source file may remain unclassified. Declare the Three Axes hook path only in its manifest. Include no empty `hooks` object in any package that has no hook file.
+Set each manifest name/version/description/author/source links/license/keywords/skills/interface fields from its published source. Keep the target repository as the Codex package repository and list the originating Claude repository and source revision in `docs/parity-inventory.md`. That inventory must map every item in `REQUIRED`, every Three Axes command/preset/signal, every one of Sage's 20 routes, Whiting's four skills, and Hannah's six CLI switches to its Codex target. It must include a host-adapter table accounting for the three explicit translations in the Global Constraints, including the test that proves each substitute preserves behavior. It must also classify each remaining tracked source artifact as one of: translated manifest, copied runtime, copied verification, consolidated CI, or source-repository-only documentation/release packaging; no tracked source file may remain unclassified. Declare Three Axes' hook configuration only through its canonical `hooks/hooks.json`; keep all plugin manifests free of unsupported `hooks` or package-`dependencies` keys.
 
 Update the README with per-plugin capability lists and exact local validation commands. It must state the Three Axes Codex state paths and legacy-read migration, Sage's persistent project files, Whiting's confirmation boundaries, Hannah's optional network modes, and the CC-BY-SA terms for the Swiss packages.
 
@@ -548,4 +567,4 @@ git commit -m "feat: complete Codex plugin parity marketplace"
 codex plugin marketplace add .
 ```
 
-Expected: Codex recognizes the marketplace and exposes all six packages in catalog order. Install Three Axes in a disposable test profile and verify a `SessionStart` invocation emits the framework and resolved profile before declaring the migration complete.
+Expected: Codex recognizes the marketplace and exposes all six packages in catalog order. In a disposable test profile, install Three Axes and verify all four `SessionStart` invocations emit the framework and resolved profile, with startup as the only event that removes the session override. Install Sage both with and without Three Axes and verify the complete instructor calibration contract works in both states, then install Hannah with `pip --no-deps` and verify both its console-script and module CLIs before declaring the migration complete.
