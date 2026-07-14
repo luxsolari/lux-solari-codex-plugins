@@ -26,21 +26,12 @@ grounded in measured repo complexity and real VRAM/RAM limits — no guessing.
 The engine is a zero-dependency, pure-stdlib Python package named `hannah`
 (`python3 -m hannah`). Invoke it and read its output — do not reimplement it.
 
-Resolve how to call it, in this order:
+Run the installed package through its portable wrapper; it derives its own
+plugin root and sets `PYTHONPATH` correctly:
 
-1. **Installed on PATH/PYTHONPATH** (pip-installed or already importable):
-   ```bash
-   python3 -m hannah <path> [flags]
-   ```
-2. **Running inside a Claude Code plugin** — the package ships at the plugin root:
-   ```bash
-   PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m hannah <path> [flags]
-   ```
-3. **From a checkout of this repo** — point PYTHONPATH at the repo root (the
-   directory that contains the `hannah/` package):
-   ```bash
-   PYTHONPATH="$HANNAH_REPO" python3 -m hannah <path> [flags]
-   ```
+```bash
+${PLUGIN_ROOT}/scripts/run-hannah <path> [flags]
+```
 
 `<path>` defaults to `.` (the current repo). Requires Python ≥ 3.11.
 

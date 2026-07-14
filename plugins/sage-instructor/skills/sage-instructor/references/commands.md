@@ -1,6 +1,7 @@
 # Sage Codex routes
 
-The original command files are retained in `source-commands/`. In Codex, use
+The original command files are retained in `source-commands/` as an upstream
+audit record only; do not execute their Claude-specific paths. In Codex, use
 these explicit routes with the same state transitions and safeguards:
 
 `sage start` · `sage next` · `sage lesson` · `sage challenge` · `sage checkpoint` ·

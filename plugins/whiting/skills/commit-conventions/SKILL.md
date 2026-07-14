@@ -35,7 +35,7 @@ contributors and AI agents working in the repo.
 
 1. Copy the hook scripts, unmodified, and make them executable:
 
-   | Source (`$CLAUDE_PLUGIN_ROOT/...`) | Destination |
+   | Source (`${PLUGIN_ROOT}/...`) | Destination |
    | --- | --- |
    | `scripts/hooks/commit-msg` | `scripts/hooks/commit-msg` |
    | `scripts/hooks/pre-push` | `scripts/hooks/pre-push` |
@@ -64,12 +64,12 @@ contributors and AI agents working in the repo.
    to run this same command once after cloning — `core.hooksPath` is a
    local, unversioned config, not something git syncs automatically.
 
-4. Render `AGENTS.md` from `$CLAUDE_PLUGIN_ROOT/templates/AGENTS.md.tmpl`,
+4. Render `AGENTS.md` from `${PLUGIN_ROOT}/templates/AGENTS.md.tmpl`,
    substituting the resolved default branch:
 
    ```
-   python3 $CLAUDE_PLUGIN_ROOT/scripts/render_template.py \
-     $CLAUDE_PLUGIN_ROOT/templates/AGENTS.md.tmpl \
+   python3 ${PLUGIN_ROOT}/scripts/render_template.py \
+     ${PLUGIN_ROOT}/templates/AGENTS.md.tmpl \
      DEFAULT_BRANCH="main" > AGENTS.md
    ```
 
