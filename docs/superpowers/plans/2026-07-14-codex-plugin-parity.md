@@ -12,7 +12,7 @@
 
 - Port against the source revisions recorded below; do not summarize, selectively recreate, or silently omit a source runtime file.
 - Preserve published plugin names and source versions: Three Axes `1.2.1`, Sage `1.7.2`, Whiting `0.2.0`, Lux Swiss `2.3.0`, Hannah `0.10.6`, Tri-Swiss `1.1.0`.
-- Preserve upstream licenses: MIT for Three Axes, Sage, Whiting, and Hannah; CC-BY-SA-4.0 plus `LICENSE-DESIGN` for Lux Swiss and Tri-Swiss.
+- Preserve upstream licenses: MIT for Three Axes, Sage, Whiting, and Hannah; dual MIT/X11 (`LICENSE`) plus CC-BY-SA-4.0 (`LICENSE-DESIGN`) for Lux Swiss and Tri-Swiss, with the design-system material under CC-BY-SA-4.0.
 - Keep all packages offline-capable except Hannah's explicitly optional live benchmark/library enrichment and Sage's explicitly conditional current-docs research.
 - Keep Three Axes lifecycle parity: inject on `startup`, `resume`, `clear`, and `compact`; clear only the session override on `startup`.
 - Preserve all learner data and Three Axes project files as user/project state, never inside an installed plugin directory.
@@ -34,6 +34,7 @@
 
 ```text
 .agents/plugins/marketplace.json
+.github/workflows/ci.yml
 plugins/
   three-axes-framework/
     .codex-plugin/plugin.json
@@ -49,6 +50,7 @@ plugins/
     skills/sage-instructor/SKILL.md
     skills/sage-instructor/curricula/{TEMPLATE,python-basics,rust-cli}.md
     skills/sage-instructor/references/{philosophy,learner-profile-template,commands}.md
+    skills/sage-instructor/references/.three-axes-upstream-snapshot.md
     scripts/check_framework_drift.py
     tests/{check_progress_schema.py,fixtures,scenarios,run_scenario_prompt.md,test_check_progress_schema.py}
   whiting/
@@ -61,17 +63,18 @@ plugins/
   lux-swiss/
     .codex-plugin/plugin.json
     skills/lux-swiss/{SKILL.md,assets/theme.css,references/components.md,references/HOUSE-MARK.md}
-    LICENSE-DESIGN
+    {LICENSE,LICENSE-DESIGN}
   hannah/
     .codex-plugin/plugin.json
     skills/hannah/{SKILL.md,references/strategy.md}
     hannah/{__init__,__main__,cli}.py and analyzer/catalog/hardware/models/reporter modules
     pyproject.toml
+    scripts/run-hannah
     tests/test_smoke.py
   tri-swiss/
     .codex-plugin/plugin.json
     skills/tri-swiss/{SKILL.md,assets/theme.css,references/components.md,references/HOUSE-MARK.md}
-    LICENSE-DESIGN
+    {LICENSE,LICENSE-DESIGN}
 README.md
 LICENSE
 tests/test_marketplace.py
@@ -82,10 +85,10 @@ tests/test_marketplace.py
 | Package | Must work after port |
 | --- | --- |
 | Three Axes | six behavioral principles; three-layer profile cascade; defaults/source labels; five presets; granular set; setup/status/overview routes; four conversational signals; all four session events; profile validation and malformed-file resilience |
-| Sage | onboarding; profile/track persistence; three-axis calibration; two bundled curricula; custom curriculum generation with conditional current-docs research; all 21 navigation/progress/mode/interaction/track/meta routes; seven-step lesson; verification gate; hint escalation/streaks; confidence/review queue; track completion/switch/reset; schema and scenario coverage |
+| Sage | onboarding; profile/track persistence; three-axis calibration; two bundled curricula; custom curriculum generation with conditional current-docs research; all 20 navigation/progress/mode/interaction/track/meta routes; seven-step lesson; verification gate; hint escalation/streaks; confidence/review queue; track completion/switch/reset; schema and scenario coverage |
 | Whiting | repo bootstrap; conventional-commit and no-direct-push hooks; AGENTS/CLAUDE rules; read-only compliance audit; changelog release workflow; release backfill; semver classification; all templates/utilities/tests |
 | Lux Swiss | all house-mark rules, exact tokens/fonts/Tailwind mappings, component catalogue, interaction/hover rules, chart policy, image/icon rules, implementation checklist |
-| Hannah | CLI arguments, repository scan/complexity/framework detection, hardware detection and overrides, Ollama pulled-model/library scan, optional benchmark enrichment/cache, ranked candidates, console/JSON reports, platform race notes, strategy report/pull commands |
+| Hannah | positional path plus `--json`, `--track`, `--gpu`, `--ram`, `--no-color`, and `--version` CLI options; repository scan/complexity/framework detection; hardware detection and overrides; Ollama pulled-model/library scan; benchmark enrichment/cache; ranked candidates; console/JSON reports; platform race notes; strategy report/pull commands |
 | Tri-Swiss | all house-mark rules, exact tokens/fonts/Tailwind mappings, component catalogue, red/turquoise governance, structural blocks, interaction/hover rules, chart policy, image/icon rules, implementation checklist |
 
 ---
@@ -94,6 +97,7 @@ tests/test_marketplace.py
 
 **Files:**
 - Create: `.agents/plugins/marketplace.json`
+- Create: `.github/workflows/ci.yml`
 - Create: `tests/test_marketplace.py`
 - Create: `README.md`
 - Create: `LICENSE`
@@ -127,7 +131,7 @@ Expected: FAIL because `.agents/plugins/marketplace.json` and package manifests 
 
 - [ ] **Step 3: Create the catalog and root documentation**
 
-Create the ordered local marketplace entries with `AVAILABLE` / `ON_INSTALL` policy and categories `Productivity` (Three Axes, Sage, Whiting, Hannah) and `Design` (Lux Swiss, Tri-Swiss). Write the README with the six package descriptions, local marketplace installation, the source ledger, and an explicit compatibility statement: every listed runtime capability is ported; only Claude-branded invocation wording is translated to Codex skill routing.
+Create the ordered local marketplace entries with `AVAILABLE` / `ON_INSTALL` policy and categories `Productivity` (Three Axes, Sage, Whiting, Hannah) and `Design` (Lux Swiss, Tri-Swiss). Write the README with the six package descriptions, local marketplace installation, the source ledger, and an explicit compatibility statement: every listed runtime capability is ported; only Claude-branded invocation wording is translated to Codex skill routing. Add one CI workflow that runs the complete validation matrix defined in Task 8 on Ubuntu with Node 20 and Python 3.11.
 
 - [ ] **Step 4: Run the test to verify it passes**
 
@@ -138,7 +142,7 @@ Expected: the catalog-order assertion passes; the manifest assertion will remain
 - [ ] **Step 5: Commit**
 
 ```bash
-git add .agents/plugins/marketplace.json tests/test_marketplace.py README.md LICENSE .gitignore
+git add .agents/plugins/marketplace.json .github/workflows/ci.yml tests/test_marketplace.py README.md LICENSE .gitignore
 git commit -m "feat: add Codex marketplace foundation"
 ```
 
@@ -208,13 +212,14 @@ git commit -m "feat: port Three Axes framework lifecycle"
 - Create: `plugins/sage-instructor/skills/sage-instructor/curricula/python-basics.md`
 - Create: `plugins/sage-instructor/skills/sage-instructor/curricula/rust-cli.md`
 - Create: `plugins/sage-instructor/skills/sage-instructor/references/{philosophy.md,learner-profile-template.md,commands.md}`
+- Create: `plugins/sage-instructor/skills/sage-instructor/references/.three-axes-upstream-snapshot.md`
 - Create: `plugins/sage-instructor/scripts/{check_framework_drift.py,check_progress_schema.py}`
 - Create: `plugins/sage-instructor/tests/fixtures/`, `plugins/sage-instructor/tests/scenarios/`, `plugins/sage-instructor/tests/test_check_progress_schema.py`
 
 **Interfaces:**
 - Consumes: project-root `.sage-profile.md`, `.sage-progress.json`, and curricula files.
 - Produces: the documented progress schema with `active_track`, independent `tracks`, confidence/review/streak fields, and all source-compatible defaults for omitted legacy fields.
-- Produces: all 21 Sage routes: start, next, lesson, challenge, checkpoint, progress, drill, review, hint, explain, stuck, recap, status, help, reset, phase, tracks, switch, new-track, and exercise.
+- Produces: all 20 Sage routes: start, next, lesson, challenge, checkpoint, progress, drill, review, hint, explain, stuck, recap, status, help, reset, phase, tracks, switch, new-track, and exercise.
 
 - [ ] **Step 1: Write failing schema and route-coverage tests**
 
@@ -226,8 +231,8 @@ def test_invalid_review_queue_is_rejected():
     errors = check_progress(FIXTURES / "invalid-review-due-dangling/.sage-progress.json")
     assert any("review_due" in error for error in errors)
 
-def test_command_reference_contains_all_twenty_one_routes():
-    assert set(ROUTES) == {"start", "next", "lesson", "challenge", "checkpoint", "progress", "drill", "review", "hint", "explain", "stuck", "recap", "status", "help", "reset", "phase", "tracks", "switch", "new-track", "exercise", "sage"}
+def test_command_reference_contains_all_twenty_routes():
+    assert set(ROUTES) == {"start", "next", "lesson", "challenge", "checkpoint", "progress", "drill", "review", "hint", "explain", "stuck", "recap", "status", "help", "reset", "phase", "tracks", "switch", "new-track", "exercise"}
 ```
 
 - [ ] **Step 2: Run the tests to verify they fail**
@@ -238,7 +243,7 @@ Expected: FAIL because the validator, fixtures, and command reference are absent
 
 - [ ] **Step 3: Transfer all instructional behavior**
 
-Copy the source skill, curricula, profile template, philosophy, `scripts/check_framework_drift.py`, `tests/check_progress_schema.py`, valid/invalid fixtures, scenario runner prompt, and all ten scenario documents. Translate Claude's `AskUserQuestion` calls to Codex/ChatGPT structured user-input prompts while retaining every choice, confirmation point, and one-question-at-a-time rule.
+Copy the source skill, curricula, profile template, philosophy, `.three-axes-upstream-snapshot.md`, `scripts/check_framework_drift.py`, `tests/check_progress_schema.py`, valid/invalid fixtures, scenario runner prompt, and all ten scenario documents. Retain the source snapshot path relationship so `check_framework_drift.py` can detect source-framework drift and update the snapshot only after an explicit reconciliation. Translate Claude's `AskUserQuestion` calls to Codex/ChatGPT structured user-input prompts while retaining every choice, confirmation point, and one-question-at-a-time rule.
 
 Create `references/commands.md` from every source command file and make the skill route both the original slash-like forms and plain-language equivalents. Preserve the seven-step lesson flow, verifying exercises by their curriculum `verify` command, toolchain-vs-learner failure distinction, progressive hints, confidence/review updates, axis recalibration, multi-track state isolation, full and active-only reset confirmations, custom-track grounding research, source recording, and all track-completion behavior.
 
@@ -307,6 +312,7 @@ git commit -m "feat: port Whiting release discipline"
 - Create: `plugins/lux-swiss/skills/lux-swiss/SKILL.md`
 - Create: `plugins/lux-swiss/skills/lux-swiss/assets/theme.css`
 - Create: `plugins/lux-swiss/skills/lux-swiss/references/{components.md,HOUSE-MARK.md}`
+- Create: `plugins/lux-swiss/LICENSE`
 - Create: `plugins/lux-swiss/LICENSE-DESIGN`
 - Create: `plugins/lux-swiss/tests/test_theme_contract.py`
 
@@ -332,7 +338,7 @@ Expected: FAIL because the exact theme is absent.
 
 - [ ] **Step 3: Transfer the complete design-system runtime**
 
-Copy the published `SKILL.md`, `assets/theme.css`, `references/components.md`, `HOUSE-MARK.md`, and `LICENSE-DESIGN` byte-for-byte. Use `CC-BY-SA-4.0` in the manifest, retain Space Mono/Space Grotesk and governed Geist/Jost variants, hard borders, no shadows, two-color-plus-red governance, hand-rolled SVG default, Observable Plot exception, component patterns, image treatment, and every implementation checklist rule.
+Copy the published `SKILL.md`, `assets/theme.css`, `references/components.md`, `HOUSE-MARK.md`, `LICENSE`, and `LICENSE-DESIGN` byte-for-byte. Use `CC-BY-SA-4.0` in the manifest for the installed design-system content and retain the separate MIT/X11 code/tooling license file. Retain Space Mono/Space Grotesk and governed Geist/Jost variants, hard borders, no shadows, two-color-plus-red governance, hand-rolled SVG default, Observable Plot exception, component patterns, image treatment, and every implementation checklist rule.
 
 - [ ] **Step 4: Run the test to verify it passes**
 
@@ -355,6 +361,7 @@ git commit -m "feat: port Lux Swiss design system"
 - Create: `plugins/tri-swiss/skills/tri-swiss/SKILL.md`
 - Create: `plugins/tri-swiss/skills/tri-swiss/assets/theme.css`
 - Create: `plugins/tri-swiss/skills/tri-swiss/references/{components.md,HOUSE-MARK.md}`
+- Create: `plugins/tri-swiss/LICENSE`
 - Create: `plugins/tri-swiss/LICENSE-DESIGN`
 - Create: `plugins/tri-swiss/tests/test_theme_contract.py`
 
@@ -383,7 +390,7 @@ Expected: FAIL because the theme and component catalogue are absent.
 
 - [ ] **Step 3: Transfer the complete design-system runtime**
 
-Copy the published `SKILL.md`, `assets/theme.css`, `references/components.md`, `HOUSE-MARK.md`, and `LICENSE-DESIGN` byte-for-byte. Preserve all baseline Swiss rules and the Tri-Swiss-only red/turquoise restrictions, tri-part stripe exception, turquoise second-series/chart guidance, sidebar/hero/closing-band options, Geist/Jost governance, and hover hierarchy.
+Copy the published `SKILL.md`, `assets/theme.css`, `references/components.md`, `HOUSE-MARK.md`, `LICENSE`, and `LICENSE-DESIGN` byte-for-byte. Preserve the dual-license scope and all baseline Swiss rules and the Tri-Swiss-only red/turquoise restrictions, tri-part stripe exception, turquoise second-series/chart guidance, sidebar/hero/closing-band options, Geist/Jost governance, and hover hierarchy.
 
 - [ ] **Step 4: Run the test to verify it passes**
 
@@ -406,23 +413,28 @@ git commit -m "feat: port Tri-Swiss design system"
 - Create: `plugins/hannah/skills/hannah/SKILL.md`
 - Create: `plugins/hannah/skills/hannah/references/strategy.md`
 - Create: `plugins/hannah/pyproject.toml`
+- Create: `plugins/hannah/scripts/run-hannah`
 - Create: `plugins/hannah/hannah/` copied from the source package
 - Create: `plugins/hannah/tests/test_smoke.py`
 
 **Interfaces:**
-- Produces: `python3 -m hannah --path <repo> --json` with `--gpu`, `--ram`, `--track`, `--scan`, and `--no-benchmarks` parity.
+- Produces: `python3 -m hannah [path]` with exact `--json`, `--track`, `--gpu`, `--ram`, `--no-color`, and `--version` parity.
 - Produces: ranked `recommendations`, detected `discoveries`, repository profile, hardware spec, and race notes in console and JSON forms.
 
 - [ ] **Step 1: Copy the smoke test and add CLI-contract assertions**
 
 ```python
 def test_json_report_contains_full_strategy_contract():
-    report = run_hannah("--path", str(FIXTURE_REPO), "--json", "--no-benchmarks")
+    report = run_hannah(str(FIXTURE_REPO), "--json")
     assert {"repo", "hardware", "recommendations", "discoveries", "race_notes"} <= report.keys()
 
 def test_hardware_overrides_are_respected():
-    report = run_hannah("--path", str(FIXTURE_REPO), "--json", "--gpu", "vram=16gb", "--ram", "ram=32gb", "--no-benchmarks")
+    report = run_hannah(str(FIXTURE_REPO), "--json", "--gpu", "vram=16gb", "--ram", "32gb")
     assert report["hardware"]["gpu_vram_gb"] == 16
+
+def test_no_color_and_version_contracts_are_available():
+    assert "\x1b" not in run_hannah("--no-color")
+    assert run_hannah("--version").startswith("hannah ")
 ```
 
 - [ ] **Step 2: Run the tests to verify they fail**
@@ -433,7 +445,7 @@ Expected: FAIL because the Python package and CLI are absent.
 
 - [ ] **Step 3: Transfer the engine, not a simplified prompt**
 
-Copy `pyproject.toml`, `hannah/__init__.py`, `__main__.py`, `cli.py`, every analyzer/catalog/hardware/models/reporters module, the strategy skill, command rendering rules, and the source smoke test. Retain zero runtime dependencies and Python 3.11 floor.
+Copy `pyproject.toml`, `hannah/__init__.py`, `__main__.py`, `cli.py`, every analyzer/catalog/hardware/models/reporters module, the strategy skill, command rendering rules, and the source smoke test. Add an executable `scripts/run-hannah` that derives the package root and invokes `PYTHONPATH=<plugin-root> python3 -m hannah "$@"`, so the installed skill has the same self-contained engine discovery as the published command. Retain zero runtime dependencies and Python 3.11 floor.
 
 Preserve repository language/framework/entry-point/token/complexity analysis; macOS/Linux/Windows/WSL hardware detection; hardware overrides; the candidate registry/scoring and benchmark weights; pulled Ollama model detection through REST and CLI; optional Ollama library discovery; optional benchmark cache/enrichment; console and JSON output; platform-specific Ollama race notes; and exact P1/P2/P3 pull/strategy guidance. The skill invokes this local engine and renders its complete output rather than replacing it with model-memory recommendations.
 
@@ -469,11 +481,11 @@ git commit -m "feat: port Hannah strategy engine"
 ```python
 REQUIRED = {
     "three-axes-framework": ["skills/three-axes-framework/SKILL.md", "references/commands.md", "hooks/hooks-codex.json", "hooks/inject-framework-codex.mjs", "hooks/lib/profile.mjs"],
-    "sage-instructor": ["skills/sage-instructor/SKILL.md", "skills/sage-instructor/curricula/TEMPLATE.md", "skills/sage-instructor/curricula/python-basics.md", "skills/sage-instructor/curricula/rust-cli.md", "scripts/check_framework_drift.py", "tests/check_progress_schema.py", "tests/run_scenario_prompt.md"],
+    "sage-instructor": ["skills/sage-instructor/SKILL.md", "skills/sage-instructor/curricula/TEMPLATE.md", "skills/sage-instructor/curricula/python-basics.md", "skills/sage-instructor/curricula/rust-cli.md", "skills/sage-instructor/references/.three-axes-upstream-snapshot.md", "scripts/check_framework_drift.py", "tests/check_progress_schema.py", "tests/run_scenario_prompt.md"],
     "whiting": ["scripts/inspect_repo.sh", "scripts/extract_changelog.py", "scripts/suggest_version_bump.py", "scripts/render_template.py", "scripts/shields_escape.py", "scripts/hooks/commit-msg", "scripts/hooks/pre-push", "templates/release.yml"],
-    "lux-swiss": ["skills/lux-swiss/SKILL.md", "skills/lux-swiss/assets/theme.css", "skills/lux-swiss/references/components.md", "skills/lux-swiss/references/HOUSE-MARK.md", "LICENSE-DESIGN"],
-    "hannah": ["pyproject.toml", "hannah/cli.py", "hannah/analyzers/repo.py", "hannah/catalog/benchmarks.py", "hannah/catalog/ollama.py", "hannah/hardware/detect.py", "hannah/models/registry.py", "hannah/reporters/console.py", "hannah/reporters/json.py", "hannah/reporters/notes.py"],
-    "tri-swiss": ["skills/tri-swiss/SKILL.md", "skills/tri-swiss/assets/theme.css", "skills/tri-swiss/references/components.md", "skills/tri-swiss/references/HOUSE-MARK.md", "LICENSE-DESIGN"],
+    "lux-swiss": ["skills/lux-swiss/SKILL.md", "skills/lux-swiss/assets/theme.css", "skills/lux-swiss/references/components.md", "skills/lux-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
+    "hannah": ["pyproject.toml", "scripts/run-hannah", "hannah/cli.py", "hannah/analyzers/repo.py", "hannah/catalog/benchmarks.py", "hannah/catalog/ollama.py", "hannah/hardware/detect.py", "hannah/models/registry.py", "hannah/reporters/console.py", "hannah/reporters/json.py", "hannah/reporters/notes.py"],
+    "tri-swiss": ["skills/tri-swiss/SKILL.md", "skills/tri-swiss/assets/theme.css", "skills/tri-swiss/references/components.md", "skills/tri-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
 }
 
 def test_every_source_runtime_artifact_has_a_target():
@@ -494,7 +506,7 @@ Expected: FAIL until each manifest and source artifact has been completed.
 
 - [ ] **Step 3: Populate all manifests and documentation**
 
-Set each manifest name/version/description/author/source links/license/keywords/skills/interface fields from its published source. Keep the target repository as the Codex package repository and list the originating Claude repository and source revision in `docs/parity-inventory.md`. That inventory must map every item in `REQUIRED`, every Three Axes command/preset/signal, every one of Sage's 21 routes, Whiting's four skills, and Hannah's five CLI switches to its Codex target. Declare the Three Axes hook path only in its manifest. Include no empty `hooks` object in any package that has no hook file.
+Set each manifest name/version/description/author/source links/license/keywords/skills/interface fields from its published source. Keep the target repository as the Codex package repository and list the originating Claude repository and source revision in `docs/parity-inventory.md`. That inventory must map every item in `REQUIRED`, every Three Axes command/preset/signal, every one of Sage's 20 routes, Whiting's four skills, and Hannah's six CLI switches to its Codex target. It must also classify each remaining tracked source artifact as one of: translated manifest, copied runtime, copied verification, consolidated CI, or source-repository-only documentation/release packaging; no tracked source file may remain unclassified. Declare the Three Axes hook path only in its manifest. Include no empty `hooks` object in any package that has no hook file.
 
 Update the README with per-plugin capability lists and exact local validation commands. It must state the Three Axes Codex state paths and legacy-read migration, Sage's persistent project files, Whiting's confirmation boundaries, Hannah's optional network modes, and the CC-BY-SA terms for the Swiss packages.
 
