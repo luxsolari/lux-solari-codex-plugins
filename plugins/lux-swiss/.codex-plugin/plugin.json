@@ -1,0 +1,21 @@
+{
+  "name": "lux-swiss",
+  "version": "2.3.0",
+  "description": "A governed Swiss visual system with exact Tailwind tokens, component rules, and house-mark guidance.",
+  "author": {
+    "name": "Lux Solari"
+  },
+  "repository": "https://github.com/luxsolari/lux-swiss",
+  "license": "CC-BY-SA-4.0",
+  "keywords": ["design-system", "swiss", "tailwind", "typography", "ui"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Lux Swiss",
+    "shortDescription": "Apply the Lux Swiss visual system to an interface.",
+    "longDescription": "Exact theme tokens and governed component, typography, image, icon, and chart guidance.",
+    "developerName": "Lux Solari",
+    "category": "Design",
+    "capabilities": ["design tokens", "component guidance", "visual governance"],
+    "defaultPrompt": "Apply the Lux Swiss system to this interface."
+  }
+}
