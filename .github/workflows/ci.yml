@@ -1,0 +1,31 @@
+name: Validate marketplace
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run parity validation
+        run: |
+          python3 -m unittest tests/test_marketplace.py tests/test_parity_inventory.py -v
+          node --test plugins/three-axes-framework/tests/*.test.mjs
+          python3 -m unittest plugins/sage-instructor/tests/test_check_progress_schema.py -v
+          sh plugins/whiting/scripts/run_tests.sh
+          python3 -m unittest plugins/lux-swiss/tests/test_theme_contract.py -v
+          (cd plugins/hannah && python3 -m unittest discover -s tests -v)
+          python3 -m unittest plugins/tri-swiss/tests/test_theme_contract.py -v
+          for plugin in plugins/*; do
+            python3 /Users/luxsolari/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py "$plugin"
+          done
+          python3 -m json.tool .agents/plugins/marketplace.json >/dev/null
+          git diff --check
