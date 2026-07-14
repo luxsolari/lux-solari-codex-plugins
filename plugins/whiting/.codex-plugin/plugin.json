@@ -1,0 +1,23 @@
+{
+  "name": "whiting",
+  "version": "0.2.0",
+  "description": "Bootstraps repository release discipline: Conventional Commits, semver versioning, changelogs, releases, and audits.",
+  "author": {
+    "name": "Lux Solari",
+    "email": "luxsolari@outlook.com"
+  },
+  "homepage": "https://github.com/luxsolari/whiting",
+  "repository": "https://github.com/luxsolari/whiting",
+  "license": "MIT",
+  "keywords": ["github-releases", "changelog", "conventional-commits", "semver", "repo-init", "git-hooks"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Whiting",
+    "shortDescription": "Bootstrap and audit repository release discipline.",
+    "longDescription": "Portable release tooling, templates, Git hooks, and read-only compliance inspection.",
+    "developerName": "Lux Solari",
+    "category": "Productivity",
+    "capabilities": ["release automation", "repository audit", "commit validation", "semver planning"],
+    "defaultPrompt": "Inspect this repository's release discipline with Whiting."
+  }
+}
