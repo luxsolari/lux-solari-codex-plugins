@@ -13,7 +13,10 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `CONTRIBUTING.md` | source-repository-only documentation/release packaging |
 | `LICENSE` | copied runtime |
 | `README.md` | source-repository-only documentation/release packaging |
+| `commands/three-axes-audit.md` | translated manifest or Codex route |
 | `commands/three-axes-framework.md` | translated manifest or Codex route |
+| `commands/three-axes-handoff.md` | translated manifest or Codex route |
+| `commands/three-axes-log.md` | translated manifest or Codex route |
 | `commands/three-axes-mode.md` | translated manifest or Codex route |
 | `commands/three-axes-set.md` | translated manifest or Codex route |
 | `commands/three-axes-setup.md` | translated manifest or Codex route |
@@ -26,6 +29,7 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `hooks/lib/__tests__/profile.test.mjs` | copied runtime |
 | `hooks/lib/profile.mjs` | copied runtime |
 | `skills/three-axes-framework/SKILL.md` | copied runtime |
+| `tests/plugin-structure.test.mjs` | copied verification |
 
 ## sage-instructor
 

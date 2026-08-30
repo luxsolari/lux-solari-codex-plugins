@@ -13,6 +13,12 @@ requirements from the corresponding source file.
 | `/three-axes-status` | `three-axes status` | Resolve defaults → global → project → session, reporting every source label. |
 | `/three-axes-mode <preset>` | `three-axes mode <preset>` | Replace `~/.codex/three-axes-session.json` with the selected full preset. |
 | `/three-axes-set <axis>=<value> [--project|--global]` | `three-axes set <axis>=<value> [--project|--global]` | Use `.three-axes.json`, `~/.codex/three-axes-profile.json`, or `~/.codex/three-axes-session.json`. |
+| `/three-axes-audit [what went wrong]` | `three-axes audit [what went wrong]` | No persistent state. Emit no new code and no apology loop; name the violated Integrity Rule by ID with the offending output quoted, give a mechanical cause, propose a correction, rate the session CLEAN/DEGRADED/COMPROMISED, then stop. |
+| `/three-axes-handoff [output-path]` | `three-axes handoff [output-path]` | Write to the given path, or print the document when no path is supplied. Never write to an unrequested location. |
+| `/three-axes-log [note]` | `three-axes log [note]` | Append to `BITACORA.md` at the repository root, newest first; compact past ~40 entries without dropping a decision or a recorded failure. |
+
+The thirteen Integrity Rules (IR-01 … IR-13) in the skill apply to every route and
+are cited by ID; the `three-axes audit` route is their recovery path.
 
 Presets remain `learning`, `output`, `production`, `explore`, and `balanced`.
 The task-scoped signals remain “walk me through this,” “let me try this,”
