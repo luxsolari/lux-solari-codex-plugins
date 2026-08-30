@@ -40,7 +40,8 @@ since the last tag, so version bumps aren't guessed by hand.
    or `pyproject.toml`, compare its
    version to `git describe --tags --abbrev=0`. A mismatch means an
    earlier release skipped step 4 below; say so and offer to correct it
-   before cutting anything new.
+   before cutting anything new. In a plugin repo, step 6 re-validates the
+   manifest after the release commit.
 4. **Check the tag scheme**: `git tag -l` should show tags like `v0.1.0`.
    If tags use a different prefix or omit `v`, this skill's workflow's
    `on.push.tags` glob, `scripts/extract_changelog.py`, and
@@ -99,10 +100,38 @@ already exists), and needs no secrets beyond the default `GITHUB_TOKEN`
    version number gets written by hand — it copies the number the bump
    suggester derived, never a guess.
 5. Commit both: `git commit -m "chore(release): vX.Y.Z"`.
-6. Land the commit per this repo's normal rules (branch + PR if
+6. **Plugin repos**: re-validate the manifest *after* the release commit,
+   with whatever validator the marketplace repo provides — for this
+   marketplace that is:
+
+   ```
+   python3 scripts/validate_plugin.py plugins/<name>
+   ```
+
+   It rejects a `version` that isn't strict semver, among other manifest
+   problems, and exits 1 with the reason:
+
+   ```
+   Plugin validation failed:
+   - plugin.json field `version` must be strict semver
+   ```
+
+   Unlike Claude Code's marketplace format, a Codex `marketplace.json`
+   entry carries no `version` — it resolves the plugin by path and reads
+   `.codex-plugin/plugin.json`. So there is no second copy of the number
+   to disagree with the manifest, and no pair to cross-check: the
+   manifest is the single source, and step 4 is what keeps it level with
+   the tag. Amend the release commit if validation fails rather than
+   tagging over it.
+
+   (On a host that also has Claude Code installed, `claude plugin tag
+   --dry-run <path>` performs the equivalent check for a
+   `.claude-plugin` plugin, including the marketplace-entry comparison
+   that format does have.)
+7. Land the commit per this repo's normal rules (branch + PR if
    `commit-conventions` is installed — don't push the release commit
    straight to the default branch either).
-7. After the release commit reaches the default branch, tag it and push
+8. After the release commit reaches the default branch, tag it and push
    the tag: `git tag vX.Y.Z && git push origin vX.Y.Z`. This triggers the
    installed workflow, which publishes the GitHub Release.
 
