@@ -29,6 +29,29 @@ class HostPortabilityTests(unittest.TestCase):
             self.assertNotIn("AskUserQuestion", text, path)
         self.assertNotIn("~/.claude/three-axes-session.json", active_files[-2].read_text(encoding="utf-8"))
 
+    def test_skill_source_tables_point_at_files_the_plugin_ships(self) -> None:
+        """A `Source (<plugin root>/...)` column must name a file that exists.
+
+        The destination column is a path in the *target* repo, so only the
+        first column is checked.
+        """
+        for skill in sorted((ROOT / "plugins/whiting/skills").glob("*/SKILL.md")):
+            in_source_table = False
+            for line in skill.read_text(encoding="utf-8").splitlines():
+                if line.startswith("|"):
+                    first = line.split("|")[1].strip()
+                    if "Source" in first and "<plugin root>" in first:
+                        in_source_table = True
+                        continue
+                    if in_source_table and first.startswith("`"):
+                        source = first.strip("`")
+                        self.assertTrue(
+                            (ROOT / "plugins/whiting" / source).is_file(),
+                            f"{skill}: source `{source}` is not shipped by the plugin",
+                        )
+                elif in_source_table:
+                    in_source_table = False
+
 
 if __name__ == "__main__":
     unittest.main()
