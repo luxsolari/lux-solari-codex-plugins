@@ -16,7 +16,7 @@ class ParityInventoryTests(unittest.TestCase):
 
     def test_versions_and_licenses_match_the_published_catalog(self) -> None:
         expected = {
-            "three-axes-framework": ("1.2.1", "MIT"),
+            "three-axes-framework": ("1.3.0", "MIT"),
             "sage-instructor": ("1.7.2", "MIT"),
             "whiting": ("0.2.0", "MIT"),
             "lux-swiss": ("2.3.0", "CC-BY-SA-4.0"),
