@@ -1,6 +1,6 @@
 {
   "name": "whiting",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Bootstraps repository release discipline: Conventional Commits, semver versioning, changelogs, releases, and audits.",
   "author": {
     "name": "Lux Solari",
