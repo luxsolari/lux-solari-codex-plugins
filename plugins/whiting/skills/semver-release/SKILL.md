@@ -56,7 +56,7 @@ tweak — applied consistently across all three:
 | --- | --- |
 | `scripts/extract_changelog.py` | `scripts/extract_changelog.py` |
 | `scripts/suggest_version_bump.py` | `scripts/suggest_version_bump.py` |
-| `.github/workflows/release.yml` | `.github/workflows/release.yml` |
+| `templates/release.yml` | `.github/workflows/release.yml` |
 
 `extract_changelog.py` takes a version (`v0.7.3` or `0.7.3`) and prints
 the matching `## [X.Y.Z]` section of `CHANGELOG.md`, stripping the
