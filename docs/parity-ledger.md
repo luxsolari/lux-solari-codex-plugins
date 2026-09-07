@@ -102,7 +102,7 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `.github/workflows/release.yml` | consolidated CI or source release packaging |
 | `.gitignore` | source-repository-only documentation/release packaging |
 | `AGENTS.md` | source-repository-only documentation/release packaging |
-| `BITACORA.md` | source-repository-only documentation/release packaging |
+| `JOURNAL.md` | source-repository-only documentation/release packaging |
 | `CHANGELOG.md` | source-repository-only documentation/release packaging |
 | `CLAUDE.md` | source-repository-only documentation/release packaging |
 | `LICENSE` | copied runtime |
@@ -126,7 +126,7 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `skills/repo-init/SKILL.md` | copied runtime |
 | `skills/semver-release/SKILL.md` | copied runtime |
 | `templates/AGENTS.md.tmpl` | copied runtime |
-| `templates/BITACORA.md.tmpl` | copied runtime |
+| `templates/JOURNAL.md.tmpl` | copied runtime |
 | `templates/CHANGELOG.md.tmpl` | copied runtime |
 | `templates/CLAUDE.md.tmpl` | copied runtime |
 | `templates/LICENSE-MIT.tmpl` | copied runtime |
