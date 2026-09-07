@@ -8,6 +8,30 @@
           {
             "type": "command",
             "command": "node \"${PLUGIN_ROOT}/hooks/inject-framework-codex.mjs\"",
+            "timeout": 10,
+            "additionalContextLimit": 6000
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${PLUGIN_ROOT}/hooks/require-profile.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${PLUGIN_ROOT}/hooks/require-profile.mjs\"",
             "timeout": 10
           }
         ]

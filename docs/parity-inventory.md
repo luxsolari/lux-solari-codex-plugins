@@ -11,7 +11,7 @@ source-maintenance automation).
 
 | Package | Copied/translated runtime coverage | Host adapter |
 | --- | --- | --- |
-| Three Axes | framework skill, six command artifacts, profiles, tests, MIT license | Canonical `hooks/hooks.json` runs the native `SessionStart` wrapper for startup, resume, clear, and compact. |
+| Three Axes | framework skill, nine command artifacts, profiles, tests, MIT license | Canonical `hooks/hooks.json` runs the native `SessionStart` wrapper for startup, resume, clear, and compact; prompt/tool hooks enforce guided persistent-profile setup. |
 | Sage | instructor, 20 command artifacts, curricula, profile/schema checks, fixtures, ten scenarios, MIT license | Codex routes and structured prompts; bundled Three Axes contract works with or without that installed package. |
 | Whiting | four skills, all scripts/hooks/templates (agent rule files, work log, merge and manifest-version helpers), release workflow, tests, MIT license | Skill routes replace command discovery; operational scripts are unchanged beyond reading `.codex-plugin/plugin.json` for the manifest-version check; the release-time plugin check uses this repo's `validate_plugin.py` rather than the Claude CLI. |
 | Lux Swiss | skill, exact theme, component catalogue, house mark, dual licenses | Invocation only; visual material is host-independent. |

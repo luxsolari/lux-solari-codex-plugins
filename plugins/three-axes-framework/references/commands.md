@@ -20,6 +20,13 @@ requirements from the corresponding source file.
 The thirteen Integrity Rules (IR-01 … IR-13) in the skill apply to every route and
 are cited by ID; the `three-axes audit` route is their recovery path.
 
+When the first-run hook reports setup is required, its onboarding flow takes
+precedence: ask for global/project scope and all three values, then use the
+literal profile-writer command from the hook. Other tool calls are denied until
+the profile exists and validates. Runtime paths honor `CODEX_HOME` (default
+`~/.codex`); a valid legacy Claude global profile counts only when the Codex
+global file is absent. Session presets do not satisfy this gate.
+
 Presets remain `learning`, `output`, `production`, `explore`, and `balanced`.
 The task-scoped signals remain “walk me through this,” “let me try this,”
 “just do it,” and “what are the tradeoffs?” Their source-defined durations and

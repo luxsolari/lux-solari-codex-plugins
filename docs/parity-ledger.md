@@ -24,12 +24,16 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `commands/three-axes.md` | translated manifest or Codex route |
 | `docs/superpowers/plans/2026-03-19-three-axes-v1.1.0.md` | source-repository-only documentation/release packaging |
 | `docs/superpowers/specs/2026-03-19-three-axes-commands-design.md` | source-repository-only documentation/release packaging |
+| `hooks/configure-profile.mjs` | copied runtime |
 | `hooks/hooks.json` | copied runtime |
 | `hooks/inject-framework.mjs` | copied runtime |
 | `hooks/lib/__tests__/profile.test.mjs` | copied runtime |
 | `hooks/lib/profile.mjs` | copied runtime |
+| `hooks/lib/setup.mjs` | copied runtime |
+| `hooks/require-profile.mjs` | copied runtime |
 | `skills/three-axes-framework/SKILL.md` | copied runtime |
 | `tests/plugin-structure.test.mjs` | copied verification |
+| `tests/setup-gate.test.mjs` | copied verification |
 
 ## sage-instructor
 

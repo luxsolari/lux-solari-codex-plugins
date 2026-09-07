@@ -24,6 +24,19 @@ codex plugin marketplace add .
 Always-active AI development philosophy calibrated across Mastery, Consequence,
 and Intent to prevent comprehension debt. Includes Codex `SessionStart`
 lifecycle context and profile state at global, project, and session scope.
+If no valid persistent user or project profile exists, it guides setup in chat
+and denies project tool calls until the user chooses a scope and axis values and
+the profile is saved. Question tools and the dedicated setup writer remain
+available. A partial persistent profile is sufficient; an empty, malformed, or
+invalid profile and session-only settings are not. Codex paths honor `CODEX_HOME`,
+with the existing legacy Claude global fallback when the Codex global is absent.
+For the native option picker in Codex CLI Default mode, builds exposing the
+`default_mode_request_user_input` feature can enable it at launch with
+`codex --enable default_mode_request_user_input`. The plugin cannot enable host
+features itself. If the question tool is unavailable, setup asks one question
+at a time in chat.
+Hooks must be enabled and trusted; tool enforcement covers the paths the host
+exposes to `PreToolUse`, not hosted tools outside that hook lifecycle.
 
 ```sh
 codex plugin add three-axes-framework@lux-solari-codex

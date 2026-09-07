@@ -5,20 +5,25 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   globalProfilePath,
+  hasPersistentProfile,
   legacyGlobalProfilePath,
   projectProfilePath,
   resolveProfile,
   sessionProfilePath,
 } from './lib/profile.mjs';
+import { setupContext } from './lib/setup.mjs';
 
 const pluginRoot = dirname(dirname(fileURLToPath(import.meta.url)));
+
+let cwd = process.cwd();
 
 async function readEvent() {
   try {
     const chunks = [];
     for await (const chunk of process.stdin) chunks.push(chunk);
     const payload = JSON.parse(Buffer.concat(chunks).toString('utf8'));
-    return payload.session_event ?? payload.trigger ?? payload.event ?? 'startup';
+    cwd = payload.cwd || cwd;
+    return payload.source ?? payload.session_event ?? payload.trigger ?? payload.event ?? 'startup';
   } catch {
     return 'startup';
   }
@@ -41,14 +46,16 @@ try {
 
 const codexGlobalPath = globalProfilePath();
 const globalPath = existsSync(codexGlobalPath) ? codexGlobalPath : legacyGlobalProfilePath();
-const { values, sources } = resolveProfile(globalPath, projectProfilePath(), sessionPath);
+const { values, sources } = resolveProfile(globalPath, projectProfilePath(cwd), sessionPath);
 const axisContext = Object.entries(values)
   .map(([axis, value]) => `  ${axis}: ${value} (${sources[axis]})`)
   .join('\n');
-const additionalContext = `${frameworkBody}\n\n## Active Profile\n\n${axisContext}`;
+const configured = hasPersistentProfile(cwd);
+const additionalContext = `${frameworkBody}\n\n## Active Profile\n\n${axisContext}${configured ? '' : `\n\n${setupContext(cwd)}`}`;
 
 process.stdout.write(`${JSON.stringify({
   suppressOutput: true,
+  ...(!configured && { systemMessage: 'Three Axes setup required before project work.' }),
   hookSpecificOutput: {
     hookEventName: 'SessionStart',
     additionalContext,
