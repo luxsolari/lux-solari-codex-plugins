@@ -19,7 +19,7 @@ jobs:
         run: python3 -m pip install PyYAML
       - name: Run parity validation
         run: |
-          python3 -m unittest tests/test_marketplace.py tests/test_parity_inventory.py tests/test_host_portability.py -v
+          python3 -m unittest tests/test_marketplace.py tests/test_parity_inventory.py tests/test_host_portability.py tests/test_plugin_changelogs.py -v
           node --test plugins/three-axes-framework/tests/*.test.mjs
           python3 -m unittest plugins/sage-instructor/tests/test_check_progress_schema.py -v
           sh plugins/whiting/scripts/run_tests.sh
