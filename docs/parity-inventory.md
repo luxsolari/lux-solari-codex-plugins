@@ -17,6 +17,7 @@ source-maintenance automation).
 | Lux Swiss | skill, exact theme, component catalogue, house mark, dual licenses | Invocation only; visual material is host-independent. |
 | Hannah | full Python package, pyproject, CLI, strategy material, smoke tests, README, MIT license | Local `run-hannah` invokes the package without third-party dependencies. |
 | Tri-Swiss | skill, exact theme, component catalogue, house mark, dual licenses | Invocation only; visual material is host-independent. |
+| Lux Visual Systems | native Codex skill, canonical master, 13 supporting visual boards, format rules, reference governance, dual licenses | Direct image generation; subject references and current-turn corrections take priority over the packaged visual system. |
 
 The only package-system translation is Sage's Claude marketplace dependency:
 Codex manifests have no package-dependency field, so Sage carries the complete

@@ -297,3 +297,23 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `skills/tri-swiss/SKILL.md` | copied runtime |
 | `skills/tri-swiss/assets/theme.css` | copied runtime |
 | `skills/tri-swiss/references/components.md` | copied runtime |
+
+## lux-visual-systems
+
+This package is authored for Codex rather than translated from an upstream
+Claude package. The ledger records its shipped runtime and verification surface.
+
+| Source file | Classification |
+| --- | --- |
+| `.codex-plugin/plugin.json` | authored Codex manifest |
+| `CHANGELOG.md` | source-repository-only documentation/release packaging |
+| `LICENSE` | authored runtime license |
+| `LICENSE-DESIGN` | authored design license |
+| `NOTICE.md` | authored third-party notice |
+| `skills/lux-visual-systems/SKILL.md` | authored Codex runtime |
+| `skills/lux-visual-systems/agents/openai.yaml` | authored Codex interface metadata |
+| `skills/lux-visual-systems/references/visual-system.md` | authored Codex runtime |
+| `skills/lux-visual-systems/references/formats.md` | authored Codex runtime |
+| `skills/lux-visual-systems/references/reference-assets.md` | authored Codex runtime |
+| `skills/lux-visual-systems/assets/*.png` | authored and reference visual runtime |
+| `tests/test_visual_system_contract.py` | authored verification |

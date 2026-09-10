@@ -1,0 +1,27 @@
+{
+  "name": "lux-visual-systems",
+  "version": "1.0.0",
+  "description": "Art-direct and generate imagery through Lux Solari's Swiss editorial, anime, analogue, and technical visual system.",
+  "author": {
+    "name": "Lux Solari"
+  },
+  "repository": "https://github.com/luxsolari/lux-solari-codex-plugins",
+  "license": "CC-BY-SA-4.0",
+  "keywords": ["art-direction", "image-generation", "swiss", "anime", "analogue", "editorial"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Lux Solari Visual Systems Director",
+    "shortDescription": "Direct images through the Lux Solari visual system.",
+    "longDescription": "A governed image-making system for character art, sticker sheets, character sheets, editorial graphics, photography, technical visuals, and full illustrations.",
+    "developerName": "Lux Solari",
+    "category": "Design",
+    "capabilities": ["art direction", "image generation", "reference governance", "visual iteration"],
+    "brandColor": "#D62828",
+    "screenshots": [
+      "skills/lux-visual-systems/assets/00_VISUAL_SYSTEM_MASTER.png",
+      "skills/lux-visual-systems/assets/12_REFERENCE_CHARACTER_EDITORIAL_A.png",
+      "skills/lux-visual-systems/assets/16_REFERENCE_PHOTOGRAPHY_EDITORIAL.png"
+    ],
+    "defaultPrompt": "Create a Lux Solari visual from this subject."
+  }
+}
