@@ -12,6 +12,8 @@
   `lux-solari-codex-local`; the existing published marketplace was not replaced.
 - Public upload remains open because the packaged boards include third-party
   characters and marks whose redistribution rights are not established.
+- Published branch `feat/lux-visual-systems` and opened PR #5 against `main`;
+  both GitHub validation runs passed.
 - Kept `lux-swiss` and `tri-swiss` separate because they govern interface
   systems, while this package governs image art direction.
 - Relevant files: `plugins/lux-visual-systems/`,
