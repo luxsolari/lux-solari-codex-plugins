@@ -317,3 +317,28 @@ Claude package. The ledger records its shipped runtime and verification surface.
 | `skills/lux-visual-systems/references/reference-assets.md` | authored Codex runtime |
 | `skills/lux-visual-systems/assets/*.png` | authored and reference visual runtime |
 | `tests/test_visual_system_contract.py` | authored verification |
+
+## anime-identity-designer
+
+| Source file | Classification |
+| --- | --- |
+| Original GPT Builder instructions | preserved source and translated Codex skill |
+| Original GPT Builder configuration | preserved source and translated manifest/interface |
+| 13 Knowledge PNG files | copied runtime visual grounding |
+| `skills/anime-identity-designer/SKILL.md` | translated Codex runtime |
+| `skills/anime-identity-designer/references/*.md` | preserved or consolidated runtime grounding |
+| `tests/test_anime_identity_contract.py` | copied verification contract |
+| `LICENSE`, `LICENSE-DESIGN`, `NOTICE.md` | runtime licensing and rights boundary |
+
+## machine-pilgrim
+
+| Source file | Classification |
+| --- | --- |
+| Original GPT Builder instructions | preserved source and translated Codex skill |
+| Original GPT Builder configuration | preserved source and translated manifest/interface |
+| `conversations-with-the-machine-01.md` | copied runtime source text |
+| 18 Knowledge PNG files | copied runtime visual grounding |
+| `skills/machine-pilgrim/SKILL.md` | translated Codex runtime |
+| `skills/machine-pilgrim/references/*.md` | preserved or consolidated runtime grounding |
+| `tests/test_machine_pilgrim_contract.py` | copied verification contract |
+| `LICENSE`, `LICENSE-DESIGN`, `NOTICE.md` | runtime licensing and rights boundary |

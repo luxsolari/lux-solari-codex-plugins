@@ -23,6 +23,8 @@ class ParityInventoryTests(unittest.TestCase):
             "hannah": ("0.10.6", "MIT"),
             "tri-swiss": ("1.1.0", "CC-BY-SA-4.0"),
             "lux-visual-systems": ("1.0.0", "CC-BY-SA-4.0"),
+            "anime-identity-designer": ("1.0.0", "CC-BY-SA-4.0"),
+            "machine-pilgrim": ("1.0.0", "CC-BY-SA-4.0"),
         }
         for name, (version, license_name) in expected.items():
             manifest = self.manifest(name)
@@ -39,6 +41,8 @@ class ParityInventoryTests(unittest.TestCase):
             "plugins/hannah/scripts/run-hannah",
             "plugins/tri-swiss/skills/tri-swiss/references/HOUSE-MARK.md",
             "plugins/lux-visual-systems/skills/lux-visual-systems/assets/00_VISUAL_SYSTEM_MASTER.png",
+            "plugins/anime-identity-designer/skills/anime-identity-designer/references/original-master-prompt.md",
+            "plugins/machine-pilgrim/skills/machine-pilgrim/references/conversations-with-the-machine-01.md",
             "docs/parity-inventory.md",
         ]
         for path in required:
@@ -56,6 +60,8 @@ class ParityInventoryTests(unittest.TestCase):
             "hannah",
             "tri-swiss",
             "lux-visual-systems",
+            "anime-identity-designer",
+            "machine-pilgrim",
         ):
             self.assertIn(f"## {source}", text)
         self.assertIn("| Source file | Classification |", text)

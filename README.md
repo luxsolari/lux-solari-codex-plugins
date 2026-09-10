@@ -118,6 +118,26 @@ direct image-generation and iteration workflows.
 codex plugin add lux-visual-systems@lux-solari-codex
 ```
 
+### anime-identity-designer
+
+Creates recognizable anime portraits, character branding boards, expression
+sheets, costume explorations, and production-ready character bibles from real
+people. Includes all 13 visual references and the original GPT configuration.
+
+```sh
+codex plugin add anime-identity-designer@lux-solari-codex
+```
+
+### machine-pilgrim
+
+Creates finished *Descent into the Machine* artworks, illustrated-book pages,
+and cinematic sequences grounded in the original canon, source text, and all
+18 visual references.
+
+```sh
+codex plugin add machine-pilgrim@lux-solari-codex
+```
+
 ## Codex compatibility
 
 The marketplace preserves the published source versions and runtime behavior

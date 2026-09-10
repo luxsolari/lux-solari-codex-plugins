@@ -1,5 +1,37 @@
 # Journal
 
+## 2026-09-10 - Signed PR history
+
+- Re-signed every commit in PR #5 with the configured SSH signing key after
+  finding two earlier unsigned commits in the branch history.
+- Confirmed the global Git default already enforces `commit.gpgsign=true` with
+  SSH signing, so future commits across repositories are signed by default.
+- Re-ran the repository suite after the history rewrite and verified every PR
+  commit locally before updating the remote branch with lease protection.
+
+## 2026-09-10 - Custom GPT visual plugin migration
+
+- Added independent 1.0.0 plugins for `anime-identity-designer` and
+  `machine-pilgrim` to the existing `feat/lux-visual-systems` PR branch so the
+  three migrations land together without competing marketplace edits.
+- Preserved the original GPT instructions and configuration records, all 13
+  Anime Identity Designer PNG references, all 18 Machine Pilgrim PNG
+  references, and the original Machine Pilgrim source document.
+- Verified all 31 PNGs and the source document byte-for-byte against the
+  downloaded GPT knowledge bundles. Both new skills, `lux-visual-systems`, all
+  nine marketplace plugins, all three visual contract suites, and the 12-test
+  repository suite pass locally; `git diff --check` is clean.
+- Added explicit subject-or-scene versus visual-system precedence, direct image
+  generation behavior, asset inventories, redistribution notices, continuous
+  integration coverage, and marketplace parity records.
+- The earlier redistribution hold is resolved by the owner's explicit direction
+  to preserve and publish these owned GPT knowledge bundles. The notices still
+  make clear that depicted third-party marks, characters, and likenesses are not
+  relicensed by the plugin packages.
+- Relevant files: `plugins/anime-identity-designer/`,
+  `plugins/machine-pilgrim/`, `.agents/plugins/marketplace.json`,
+  `.github/workflows/ci.yml`, `README.md`, and `docs/parity-ledger.md`.
+
 ## 2026-09-10 - Lux Solari Visual Systems Director 1.0.0
 
 - Added the native `lux-visual-systems` Codex plugin and marketplace entry.

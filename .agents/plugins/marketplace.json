@@ -87,6 +87,18 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Design"
+    },
+    {
+      "name": "anime-identity-designer",
+      "source": {"source": "local", "path": "./plugins/anime-identity-designer"},
+      "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+      "category": "Design"
+    },
+    {
+      "name": "machine-pilgrim",
+      "source": {"source": "local", "path": "./plugins/machine-pilgrim"},
+      "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+      "category": "Design"
     }
   ]
 }
