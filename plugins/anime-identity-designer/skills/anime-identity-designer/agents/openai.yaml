@@ -1,0 +1,5 @@
+interface:
+  display_name: "Anime Identity Designer"
+  short_description: "Create recognizable anime character identity systems"
+  brand_color: "#EF7D5A"
+  default_prompt: "Use $anime-identity-designer to turn this person into a production-ready anime character concept."

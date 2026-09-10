@@ -21,6 +21,7 @@ class HostPortabilityTests(unittest.TestCase):
             ROOT / "plugins/whiting/skills/semver-release/SKILL.md",
             ROOT / "plugins/three-axes-framework/references/commands.md",
             ROOT / "plugins/sage-instructor/skills/sage-instructor/SKILL.md",
+            ROOT / "plugins/lux-visual-systems/skills/lux-visual-systems/SKILL.md",
         ]
         for path in active_files:
             text = path.read_text(encoding="utf-8")

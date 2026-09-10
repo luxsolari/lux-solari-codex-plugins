@@ -26,6 +26,9 @@ jobs:
           python3 -m unittest plugins/lux-swiss/tests/test_theme_contract.py -v
           (cd plugins/hannah && python3 -m unittest discover -s tests -v)
           python3 -m unittest plugins/tri-swiss/tests/test_theme_contract.py -v
+          python3 -m unittest plugins/lux-visual-systems/tests/test_visual_system_contract.py -v
+          python3 -m unittest discover -s plugins/anime-identity-designer/tests -v
+          python3 -m unittest discover -s plugins/machine-pilgrim/tests -v
           for plugin in plugins/*; do
             python3 scripts/validate_plugin.py "$plugin"
           done

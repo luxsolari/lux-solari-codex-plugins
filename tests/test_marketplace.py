@@ -27,6 +27,9 @@ class MarketplaceTests(unittest.TestCase):
                 "lux-swiss",
                 "hannah",
                 "tri-swiss",
+                "lux-visual-systems",
+                "anime-identity-designer",
+                "machine-pilgrim",
             ],
         )
 

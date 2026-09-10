@@ -107,9 +107,41 @@ codex plugin add tri-swiss@lux-solari-codex
 
 See [tri-swiss](https://github.com/luxsolari/tri-swiss) for full documentation.
 
+### lux-visual-systems
+
+Lux Solari Visual Systems Director governs image-making across Swiss editorial,
+anime, analogue, and technical modes. It includes the canonical visual master,
+format-specific reference boards, explicit subject-versus-system rules, and
+direct image-generation and iteration workflows.
+
+```sh
+codex plugin add lux-visual-systems@lux-solari-codex
+```
+
+### anime-identity-designer
+
+Creates recognizable anime portraits, character branding boards, expression
+sheets, costume explorations, and production-ready character bibles from real
+people. Includes all 13 visual references and the original GPT configuration.
+
+```sh
+codex plugin add anime-identity-designer@lux-solari-codex
+```
+
+### machine-pilgrim
+
+Creates finished *Descent into the Machine* artworks, illustrated-book pages,
+and cinematic sequences grounded in the original canon, source text, and all
+18 visual references.
+
+```sh
+codex plugin add machine-pilgrim@lux-solari-codex
+```
+
 ## Codex compatibility
 
-The marketplace preserves the published source versions and runtime behavior.
+The marketplace preserves the published source versions and runtime behavior
+of imported packages and records native Codex packages at their authored version.
 Claude command wording is represented by explicit Codex skill routes. Three
 Axes uses a native `SessionStart` hook; Sage uses Codex structured prompts and
 contains a complete Three Axes calibration contract. The full host-adapter and
