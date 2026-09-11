@@ -2,4 +2,4 @@ interface:
   display_name: "Machine Pilgrim"
   short_description: "Illustrate the Descent into the Machine universe"
   brand_color: "#162C5A"
-  default_prompt: "Use $machine-pilgrim to create a finished Descent into the Machine illustration."
+  default_prompt: "Use $machine-pilgrim."

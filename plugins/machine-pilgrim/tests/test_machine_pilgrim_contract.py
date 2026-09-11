@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import unittest
 
@@ -37,11 +38,41 @@ class MachinePilgrimContractTests(unittest.TestCase):
         for name in (
             "machine-canon.md",
             "conversations-with-the-machine-01.md",
+            "help.md",
             "original-master-prompt.md",
             "original-gpt-config.md",
             "reference-assets.md",
         ):
             self.assertTrue((references / name).is_file(), name)
+
+    def test_invocation_and_rendering_language_gates(self) -> None:
+        text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        help_text = (SKILL / "references" / "help.md").read_text(encoding="utf-8")
+        for phrase in (
+            "No visual brief",
+            "Rendering language missing",
+            "Never infer or silently default this choice",
+            "final answer must contain only the complete contents",
+            "An attachment by itself is not a visual brief",
+            "the conversation already has an active selection",
+        ):
+            self.assertIn(phrase, text)
+        self.assertLess(
+            text.index("No visual brief"), text.index("Rendering language missing")
+        )
+        self.assertLess(
+            text.index("## Start every request"), text.index("## Load the canon")
+        )
+        self.assertIn("## Conversation starters", help_text)
+        self.assertIn("Create The Seventh Archive", help_text)
+
+        agent = (SKILL / "agents" / "openai.yaml").read_text(encoding="utf-8")
+        self.assertIn('default_prompt: "Use $machine-pilgrim."', agent)
+        manifest = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text())
+        self.assertEqual(
+            manifest["interface"]["defaultPrompt"],
+            "Use $machine-pilgrim.",
+        )
 
     def test_operational_contract_preserves_core_behavior(self) -> None:
         text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
@@ -55,7 +86,14 @@ class MachinePilgrimContractTests(unittest.TestCase):
             "roughly 40% luminous atmosphere",
         ):
             self.assertIn(phrase, text)
-        self.assertLess(text.index("1. Explicit user corrections"), text.index("2. Current-turn references"))
+        self.assertLess(
+            text.index("1. Explicit user corrections"),
+            text.index("2. User-selected rendering language"),
+        )
+        self.assertLess(
+            text.index("2. User-selected rendering language"),
+            text.index("3. Current-turn references"),
+        )
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 {
   "name": "machine-pilgrim",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Create finished Descent into the Machine illustrations grounded in its canon and visual reference library.",
   "author": {
     "name": "Lux Solari"
@@ -22,6 +22,6 @@
       "skills/machine-pilgrim/assets/3.png",
       "skills/machine-pilgrim/assets/ChatGPT Image Jun 13, 2026, 12_09_15 AM.png"
     ],
-    "defaultPrompt": "Use $machine-pilgrim to create a finished Descent into the Machine illustration."
+    "defaultPrompt": "Use $machine-pilgrim."
   }
 }

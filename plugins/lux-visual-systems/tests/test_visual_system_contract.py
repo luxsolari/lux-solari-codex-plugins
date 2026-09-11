@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import unittest
 
@@ -34,19 +35,55 @@ class VisualSystemContractTests(unittest.TestCase):
         priority_section = text.split("## Reference priority", 1)[1].split(
             "## Create the image", 1
         )[0]
-        expected_priority = """1. Current-turn references
-2. Explicit user corrections
-3. Subject references
-4. `00_VISUAL_SYSTEM_MASTER.png`
-5. Project references
-6. General Lux Solari references
-7. Model knowledge"""
+        expected_priority = """1. Explicit user corrections
+2. User-selected rendering language
+3. Current-turn references
+4. Subject references
+5. `00_VISUAL_SYSTEM_MASTER.png`
+6. Project references
+7. General Lux Solari references
+8. Model knowledge"""
         self.assertIn(expected_priority, priority_section)
         self.assertIn("Subject references control", text)
+        self.assertIn("rendering language controls medium and rendering technique", text)
         self.assertIn("The Lux Solari system controls", text)
 
+    def test_invocation_and_rendering_language_gates(self) -> None:
+        text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        help_text = (SKILL / "references" / "help.md").read_text(encoding="utf-8")
+        for phrase in (
+            "No visual brief",
+            "Rendering language missing",
+            "Never infer or silently default this choice",
+            "final answer must contain only the complete contents",
+            "An attachment by itself is not a visual brief",
+            "the conversation already has an active selection",
+        ):
+            self.assertIn(phrase, text)
+        self.assertLess(
+            text.index("No visual brief"), text.index("Rendering language missing")
+        )
+        self.assertLess(
+            text.index("## Start every request"), text.index("## Load the system")
+        )
+        self.assertIn("## Conversation starters", help_text)
+        self.assertIn("Create a Lux Solari sticker sheet", help_text)
+
+        agent = (SKILL / "agents" / "openai.yaml").read_text(encoding="utf-8")
+        self.assertIn('default_prompt: "Use $lux-visual-systems."', agent)
+        manifest = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text())
+        self.assertEqual(
+            manifest["interface"]["defaultPrompt"],
+            "Use $lux-visual-systems.",
+        )
+
     def test_reference_files_exist(self) -> None:
-        for name in ("visual-system.md", "formats.md", "reference-assets.md"):
+        for name in (
+            "help.md",
+            "visual-system.md",
+            "formats.md",
+            "reference-assets.md",
+        ):
             self.assertTrue((SKILL / "references" / name).is_file(), name)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "lux-visual-systems",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Art-direct and generate imagery through Lux Solari's Swiss editorial, anime, analogue, and technical visual system.",
   "author": {
     "name": "Lux Solari"
@@ -22,6 +22,6 @@
       "skills/lux-visual-systems/assets/12_REFERENCE_CHARACTER_EDITORIAL_A.png",
       "skills/lux-visual-systems/assets/16_REFERENCE_PHOTOGRAPHY_EDITORIAL.png"
     ],
-    "defaultPrompt": "Create a Lux Solari visual from this subject."
+    "defaultPrompt": "Use $lux-visual-systems."
   }
 }
