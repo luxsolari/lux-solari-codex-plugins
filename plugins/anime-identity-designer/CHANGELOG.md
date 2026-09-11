@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.1.1] — 2026-09-11
+
+- Show all four original custom GPT conversation starters in the plugin preview.
+
 ## [1.1.0] — 2026-09-11
 
 - Ask for a rendering language whenever a visual brief omits one.

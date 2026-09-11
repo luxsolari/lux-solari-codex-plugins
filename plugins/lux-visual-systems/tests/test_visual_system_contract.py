@@ -82,7 +82,12 @@ class VisualSystemContractTests(unittest.TestCase):
         manifest = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text())
         self.assertEqual(
             manifest["interface"]["defaultPrompt"],
-            "Use $lux-visual-systems.",
+            [
+                "Create a Lux Solari sticker sheet around this subject.",
+                "Turn this reference into a production-ready character sheet.",
+                "Create a full illustration for this piece of writing.",
+                "Design four disciplined visual experiments for this idea.",
+            ],
         )
 
     def test_reference_files_exist(self) -> None:

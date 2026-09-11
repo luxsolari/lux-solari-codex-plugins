@@ -84,7 +84,12 @@ class AnimeIdentityContractTests(unittest.TestCase):
         manifest = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text())
         self.assertEqual(
             manifest["interface"]["defaultPrompt"],
-            "Use $anime-identity-designer.",
+            [
+                "Turn this photo into an anime branding board",
+                "Design logos and emblems for this character",
+                "Make expression sheets from this portrait",
+                "Turn this photo into an anime portrait for sharing. No Text",
+            ],
         )
 
 

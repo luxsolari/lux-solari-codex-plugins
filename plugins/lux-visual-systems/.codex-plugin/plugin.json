@@ -1,13 +1,20 @@
 {
   "name": "lux-visual-systems",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Art-direct and generate imagery through Lux Solari's Swiss editorial, anime, analogue, and technical visual system.",
   "author": {
     "name": "Lux Solari"
   },
   "repository": "https://github.com/luxsolari/lux-solari-codex-plugins",
   "license": "CC-BY-SA-4.0",
-  "keywords": ["art-direction", "image-generation", "swiss", "anime", "analogue", "editorial"],
+  "keywords": [
+    "art-direction",
+    "image-generation",
+    "swiss",
+    "anime",
+    "analogue",
+    "editorial"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Lux Solari Visual Systems Director",
@@ -15,13 +22,23 @@
     "longDescription": "A governed image-making system for character art, sticker sheets, character sheets, editorial graphics, photography, technical visuals, and full illustrations.",
     "developerName": "Lux Solari",
     "category": "Design",
-    "capabilities": ["art direction", "image generation", "reference governance", "visual iteration"],
+    "capabilities": [
+      "art direction",
+      "image generation",
+      "reference governance",
+      "visual iteration"
+    ],
     "brandColor": "#D62828",
     "screenshots": [
       "skills/lux-visual-systems/assets/00_VISUAL_SYSTEM_MASTER.png",
       "skills/lux-visual-systems/assets/12_REFERENCE_CHARACTER_EDITORIAL_A.png",
       "skills/lux-visual-systems/assets/16_REFERENCE_PHOTOGRAPHY_EDITORIAL.png"
     ],
-    "defaultPrompt": "Use $lux-visual-systems."
+    "defaultPrompt": [
+      "Create a Lux Solari sticker sheet around this subject.",
+      "Turn this reference into a production-ready character sheet.",
+      "Create a full illustration for this piece of writing.",
+      "Design four disciplined visual experiments for this idea."
+    ]
   }
 }

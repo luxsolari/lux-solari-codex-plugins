@@ -1,13 +1,19 @@
 {
   "name": "machine-pilgrim",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create finished Descent into the Machine illustrations grounded in its canon and visual reference library.",
   "author": {
     "name": "Lux Solari"
   },
   "repository": "https://github.com/luxsolari/lux-solari-codex-plugins",
   "license": "CC-BY-SA-4.0",
-  "keywords": ["anime", "illustration", "worldbuilding", "image-generation", "descent-into-the-machine"],
+  "keywords": [
+    "anime",
+    "illustration",
+    "worldbuilding",
+    "image-generation",
+    "descent-into-the-machine"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Machine Pilgrim",
@@ -15,13 +21,23 @@
     "longDescription": "Create finished standalone artworks, illustrated-book pages, and cinematic sequences from the metaphysical archive-world of Descent into the Machine.",
     "developerName": "Lux Solari",
     "category": "Design",
-    "capabilities": ["art direction", "image generation", "worldbuilding", "visual continuity"],
+    "capabilities": [
+      "art direction",
+      "image generation",
+      "worldbuilding",
+      "visual continuity"
+    ],
     "brandColor": "#162C5A",
     "screenshots": [
       "skills/machine-pilgrim/assets/1.png",
       "skills/machine-pilgrim/assets/3.png",
       "skills/machine-pilgrim/assets/ChatGPT Image Jun 13, 2026, 12_09_15 AM.png"
     ],
-    "defaultPrompt": "Use $machine-pilgrim."
+    "defaultPrompt": [
+      "Create The Seventh Archive",
+      "Generate a terminal chapel at sunset",
+      "Illustrate a forgotten memory vault",
+      "Create a descent into the lower stacks"
+    ]
   }
 }

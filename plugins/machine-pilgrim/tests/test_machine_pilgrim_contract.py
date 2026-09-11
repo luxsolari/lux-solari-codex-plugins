@@ -71,7 +71,12 @@ class MachinePilgrimContractTests(unittest.TestCase):
         manifest = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text())
         self.assertEqual(
             manifest["interface"]["defaultPrompt"],
-            "Use $machine-pilgrim.",
+            [
+                "Create The Seventh Archive",
+                "Generate a terminal chapel at sunset",
+                "Illustrate a forgotten memory vault",
+                "Create a descent into the lower stacks",
+            ],
         )
 
     def test_operational_contract_preserves_core_behavior(self) -> None:

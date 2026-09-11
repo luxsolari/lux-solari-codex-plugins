@@ -1,13 +1,19 @@
 {
   "name": "anime-identity-designer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create recognizable anime character identities, portraits, branding boards, and production sheets from real people.",
   "author": {
     "name": "Lux Solari"
   },
   "repository": "https://github.com/luxsolari/lux-solari-codex-plugins",
   "license": "CC-BY-SA-4.0",
-  "keywords": ["anime", "character-design", "identity", "image-generation", "art-direction"],
+  "keywords": [
+    "anime",
+    "character-design",
+    "identity",
+    "image-generation",
+    "art-direction"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Anime Identity Designer",
@@ -15,13 +21,23 @@
     "longDescription": "Art-direct and generate anime portraits, character branding boards, expression sheets, costume explorations, and production-ready character bibles while preserving the subject's identity.",
     "developerName": "Lux Solari",
     "category": "Design",
-    "capabilities": ["art direction", "image generation", "identity preservation", "character systems"],
+    "capabilities": [
+      "art direction",
+      "image generation",
+      "identity preservation",
+      "character systems"
+    ],
     "brandColor": "#EF7D5A",
     "screenshots": [
       "skills/anime-identity-designer/assets/ChatGPT Image Jun 13, 2026, 01_13_19 AM.png",
       "skills/anime-identity-designer/assets/ChatGPT Image Jun 13, 2026, 01_24_25 AM.png",
       "skills/anime-identity-designer/assets/ChatGPT Image Jun 13, 2026, 01_31_40 AM.png"
     ],
-    "defaultPrompt": "Use $anime-identity-designer."
+    "defaultPrompt": [
+      "Turn this photo into an anime branding board",
+      "Design logos and emblems for this character",
+      "Make expression sheets from this portrait",
+      "Turn this photo into an anime portrait for sharing. No Text"
+    ]
   }
 }

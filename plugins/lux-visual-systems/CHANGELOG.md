@@ -4,6 +4,10 @@ All notable changes to `lux-visual-systems` are documented in this file.
 
 ## [Unreleased]
 
+## [1.2.1] — 2026-09-11
+
+- Show all four original custom GPT conversation starters in the plugin preview.
+
 ## [1.2.0] — 2026-09-11
 
 - Add explicit light/dark palette roles aligned with the companion Tri-Swiss theme.
