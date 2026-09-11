@@ -6,9 +6,10 @@ Use this skill to art-direct sticker sheets, character sheets, full illustration
 
 - Describe or attach the subject and any factual details that must be preserved.
 - State the rendering language, such as anime film keyframe, 35mm photography, monochrome collage, technical vector diagram, or another explicit treatment.
+- Choose **light mode** (cream field, dark structure) or **dark mode** (black field, cream structure).
 - Name the output format, aspect ratio, required text, and constraints that matter.
 
-The Lux Solari system supplies composition, hierarchy, palette discipline, typography, grid, texture, and severity. It does not silently choose the rendering language. If a visual brief omits that choice, the director will ask before generating.
+The Lux Solari system supplies composition, hierarchy, palette discipline, typography, grid, texture, and severity. It does not silently choose rendering language or color mode. Missing choices are collected with interactive option pickers when available, one question at a time, before generation. Choices persist through refinements; explicit choices are not asked again.
 
 ## Conversation starters
 

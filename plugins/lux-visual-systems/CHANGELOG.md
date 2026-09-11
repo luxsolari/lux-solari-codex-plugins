@@ -4,6 +4,13 @@ All notable changes to `lux-visual-systems` are documented in this file.
 
 ## [Unreleased]
 
+## [1.2.0] — 2026-09-11
+
+- Add explicit light/dark palette roles aligned with the companion Tri-Swiss theme.
+- Ask interactively for any missing rendering language or color-mode choice before generation; retain selections through refinements.
+- Add four website captures and four illustrated light/dark references, with provenance and guidance that preserve subject identity.
+- Make sticker backing and mode-only edits respect the selected palette.
+
 ## [1.1.0] — 2026-09-11
 
 - Ask for a rendering language whenever a visual brief omits one.

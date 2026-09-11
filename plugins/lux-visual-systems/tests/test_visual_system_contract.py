@@ -27,6 +27,14 @@ class VisualSystemContractTests(unittest.TestCase):
             "22_REFERENCE_WEBSITE_HOME_DARK.png",
             "23_REFERENCE_WEBSITE_BLOG.png",
             "24_REFERENCE_WEBSITE_PHOTO_INDEX.png",
+            "25_REFERENCE_WEBSITE_HOME_DARK.png",
+            "26_REFERENCE_WEBSITE_BLOG_DARK.png",
+            "27_REFERENCE_WEBSITE_PHOTO_INDEX_DARK.png",
+            "28_REFERENCE_WEBSITE_PHOTO_DIARY_DARK.png",
+            "30_REFERENCE_ILLUSTRATION_LIGHT_WIDE.png",
+            "31_REFERENCE_ILLUSTRATION_DARK_WIDE.png",
+            "32_REFERENCE_ILLUSTRATION_DARK_ARCHITECTURE.png",
+            "33_REFERENCE_ILLUSTRATION_LIGHT_PORTRAIT.png",
         }
         self.assertEqual({path.name for path in assets.glob("*.png")}, expected)
 
@@ -36,7 +44,7 @@ class VisualSystemContractTests(unittest.TestCase):
             "## Create the image", 1
         )[0]
         expected_priority = """1. Explicit user corrections
-2. User-selected rendering language
+2. User-selected rendering language and color mode
 3. Current-turn references
 4. Subject references
 5. `00_VISUAL_SYSTEM_MASTER.png`

@@ -11,17 +11,53 @@ Combine four controlled languages:
 
 The result is quiet, structured, expressive, human, production-ready, and recognizably Lux Solari. Discipline creates freedom. Same tools, brighter worlds.
 
-## Canonical palette
+## Light and dark palette roles
 
-| Role | Color | Hex | Typical ratio |
-| --- | --- | --- | ---: |
-| Primary field | Cream | `#F6F3EA` | 70% |
-| Primary structure | Charcoal | `#0D0D0D` | 20% |
-| Main accent | Signal Red | `#D62828` | 7% |
-| Secondary accent | Mint | `#5B8F7D` | 3% |
-| Neutral support | Warm Gray | `#C9C4B8` | flexible |
+Color mode is independent of rendering language. A photograph, anime keyframe,
+collage, or vector diagram can use either mode. Use the explicit selection from
+the entrypoint; never choose the mode from subject lighting or a reference image.
 
-Keep accents sparse and purposeful. Preserve cream and charcoal dominance. A subject may require a small factual color exception, but it does not replace the system palette. Avoid neon, rainbow palettes, glossy gradients, and uncontrolled saturation.
+These values follow the companion Tri-Swiss theme's light/dark role tokens.
+The earlier master board's cream/charcoal/red/mint colors remain visual examples,
+not a competing fixed light-only palette. For images, hex values are art-direction
+targets; tonal variation is allowed within those families for shading and grain.
+
+| Role | Light mode | Dark mode |
+| --- | --- | --- |
+| Primary field | Cream `#F5EFE0` | Black `#000000` |
+| Foreground / rules | Black `#000000` | Cream `#F5EFE0` |
+| Secondary surface | Pale cream `#FAF6EC` | Charcoal `#161616` |
+| Muted field | Warm cream `#EBE5D5` | Dark gray `#1F1F1F` |
+| Muted annotations | Warm gray `#4A4838` | Warm gray `#A8A696` |
+| Signal red | `#D3281B` | `#E2503F` |
+| Turquoise highlight | `#56BFA3` | `#63CBAE` |
+
+Use roughly 70% selected field family, 20% opposing structure, and no more than
+about 10% combined accents as a starting point, not a pixel quota. Red leads;
+turquoise is optional and subordinate (roughly 0–3%), never a mandatory addition.
+Large subject silhouettes can change those proportions while margins, negative
+space, and hierarchy still read unmistakably as the requested mode.
+
+- **Light:** cream stock and open margins carry the composition; dark ink anchors
+  silhouettes, typography, and rules. Large dark image windows can coexist with
+  a light editorial frame.
+- **Dark:** black negative space and charcoal surfaces carry the composition;
+  cream supplies silhouettes, type, fine borders, and restrained light. Do not
+  keep the light-mode cream frame as the dominant area. Dark mode does not imply
+  horror, dystopia, neon, or additional distressing.
+- Keep red and turquoise controlled in both modes. Use cream/black for small
+  text and essential fine lines when an accent lacks legibility. Avoid neon,
+  rainbow palettes, glossy gradients, and uncontrolled saturation.
+- Preserve factual subject colors when needed; do not invert skin, hair, eyes,
+  photographs, lighting direction, or costume details to change the canvas mode.
+- On a mode-only edit, retain identity, pose, crop, geometry, typography, and
+  texture treatment. Reassign palette roles and tonal balance; do not generate
+  an unrelated composition. For two-mode comparisons, keep those variables shared.
+
+The new website references document flat fields, cream borders, warm muted text,
+red navigation/structural accents, and sparse turquoise. Their photographic
+content is not a palette swatch. The illustrated references demonstrate tonal
+balance and framing, not mandatory characters, castles, stars, or text.
 
 ## Typography and grid
 

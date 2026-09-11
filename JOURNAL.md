@@ -1,5 +1,12 @@
 # Journal
 
+## 2026-09-11 - Visual Systems light/dark palettes 1.2.0
+
+- Added interactive light/dark selection alongside rendering language, with explicit-choice reuse and refinement continuity.
+- Aligned palette roles with Tri-Swiss and added eight user-supplied website/illustration references.
+- Updated the plugin manifest, changelog, asset inventory, and parity version checks.
+- Verified: 16 targeted plugin/marketplace tests, plugin and skill validation, and diff whitespace checks passed. Live generation with the new mode gate remains unverified.
+
 ## 2026-09-11 - Visual plugin interaction release 1.1.0
 
 - Promoted the shared rendering-language and bare-invocation help behavior to

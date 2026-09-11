@@ -11,7 +11,7 @@
 
 - Build a modular, iconic, reusable family rather than a loose collage.
 - Mix one clear hero subject with supporting objects, tools, symbols, landscapes, labels, film or technical elements, and small texture moments.
-- Use consistent cutlines, cream backing, controlled corner radii, visual rhythm, and generous breathing room.
+- Use consistent cutlines, mode-appropriate backing (cream in light mode; charcoal with cream cutlines in dark mode), controlled corner radii, visual rhythm, and generous breathing room.
 - Vary scale and shape while keeping one grid and one palette.
 - Make every sticker legible alone and coherent as part of the sheet.
 
