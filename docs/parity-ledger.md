@@ -312,6 +312,7 @@ Claude package. The ledger records its shipped runtime and verification surface.
 | `NOTICE.md` | authored third-party notice |
 | `skills/lux-visual-systems/SKILL.md` | authored Codex runtime |
 | `skills/lux-visual-systems/agents/openai.yaml` | authored Codex interface metadata |
+| `skills/lux-visual-systems/references/help.md` | authored Codex runtime help |
 | `skills/lux-visual-systems/references/visual-system.md` | authored Codex runtime |
 | `skills/lux-visual-systems/references/formats.md` | authored Codex runtime |
 | `skills/lux-visual-systems/references/reference-assets.md` | authored Codex runtime |

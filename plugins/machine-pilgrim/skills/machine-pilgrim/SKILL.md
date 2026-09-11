@@ -7,6 +7,16 @@ description: Art-direct and generate finished illustrations for Lux Solari's Des
 
 Create finished images from *Descent into the Machine*. Do not stop at prompts. Every result must reconcile three pillars: the canon of the Machine, its visual system, and the specific scene.
 
+## Start every request
+
+Apply these gates in order before loading visual references or calling image generation:
+
+1. **No visual brief:** If the invocation contains no substantive user request beyond the skill name, generated launcher text, or equivalent boilerplate, use [`references/help.md`](references/help.md) as the response. An attachment by itself is not a visual brief. Do not generate an image or ask a question. The final answer must contain only the complete contents of the help document, without extra preamble or commentary.
+2. **Rendering language missing:** If the user provides a substantive visual brief but neither the current request nor the established conversation states a rendering language, ask exactly one focused question and wait: “What rendering language should I use—for example, dark anime film keyframe, painterly background art, ink manga, or another explicit treatment?” Do not generate yet.
+3. **Rendering language established:** If the current request states a rendering language or the conversation already has an active selection, continue with the task. Carry that language through later refinements until the user changes it.
+
+The skill name, its house style, packaged references, and descriptions of scene, mood, palette, lighting, or composition do not count as a user-stated rendering language. Never infer or silently default this choice.
+
 ## Load the canon and grounding
 
 Read these for every task:
@@ -21,6 +31,8 @@ The untouched GPT instructions are preserved in [`references/original-master-pro
 
 The user's request and current-turn references control the scene: subject, event, location, required objects, continuity facts, and explicit corrections.
 
+The user-selected rendering language controls medium and rendering technique.
+
 The Machine canon controls metaphysics and meaning. The packaged visual library controls cinematic rendering, atmosphere, architecture, scale, palette tendencies, light, framing, and recurring motifs.
 
 Never let a visual reference rewrite canon. Never let a literal subject reference import an unrelated science-fiction language.
@@ -30,17 +42,18 @@ Never let a visual reference rewrite canon. Never let a literal subject referenc
 Resolve conflicts in this order:
 
 1. Explicit user corrections
-2. Current-turn references
-3. Established conversation continuity
-4. The requested scene
-5. `machine-canon.md` and the source text
-6. Packaged visual references
-7. Original master prompt
-8. Model knowledge
+2. User-selected rendering language
+3. Current-turn references
+4. Established conversation continuity
+5. The requested scene
+6. `machine-canon.md` and the source text
+7. Packaged visual references
+8. Original master prompt
+9. Model knowledge
 
 ## Direct the image
 
-Treat the Machine as a metaphysical territory made from accumulated human knowledge, memory, language, dreams, fears, and recorded thought. Render dark, mature anime film keyframes or background art with luminous weather, monumental recursive architecture, restrained character design, psychological solitude, and overwhelming but believable scale.
+Treat the Machine as a metaphysical territory made from accumulated human knowledge, memory, language, dreams, fears, and recorded thought. Work in the user's selected rendering language while preserving luminous weather, monumental recursive architecture, restrained character design, psychological solitude, and overwhelming but believable scale.
 
 Keep the original influence balance: roughly 40% luminous atmosphere, weather, color, and emotional scale; 35% monumental recursive architecture and industrial vastness; 15% psychological symbolism, solitude, and contemplation; and 10% restrained character design. These weights govern rendering and mood, never canon.
 
@@ -52,7 +65,7 @@ Avoid generic science fiction, military imagery, combat, superheroes, cyberpunk 
 
 ## Generate the finished work
 
-When the user requests an image or edit, expand the brief internally into a coherent scene—symbolism, architecture, lighting, composition, environmental storytelling, and emotional meaning—then call image generation directly. Make confident choices when details are missing; ask only when a missing fact would break canon or continuity.
+Once the user has stated a rendering language, expand an image or edit brief internally into a coherent scene—symbolism, architecture, lighting, composition, environmental storytelling, and emotional meaning—then call image generation directly. Make confident choices when other details are missing; ask only when a missing fact would break canon or continuity.
 
 Choose the most suitable mode unless the user specifies one:
 
@@ -68,4 +81,4 @@ Track locations, motifs, architecture, discoveries, atmosphere, symbolism, palet
 
 Reinterpret ordinary subjects through canon: transit becomes movement between archives; forests become taxonomies; skylines become recursive human thought; mountains become accumulated memory; oceans become unindexed information; portraits become encounters through reflection, absence, records, or memory traces.
 
-Before returning an image, silently check canon, non-humanoid AI, cinematic anime language, scale, environmental storytelling, continuity, and absence of generic sci-fi shortcuts.
+Before returning an image, silently check canon, non-humanoid AI, the selected rendering language, scale, environmental storytelling, continuity, and absence of generic sci-fi shortcuts.

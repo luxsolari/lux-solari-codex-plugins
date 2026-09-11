@@ -22,9 +22,9 @@ class ParityInventoryTests(unittest.TestCase):
             "lux-swiss": ("2.3.0", "CC-BY-SA-4.0"),
             "hannah": ("0.10.6", "MIT"),
             "tri-swiss": ("1.1.0", "CC-BY-SA-4.0"),
-            "lux-visual-systems": ("1.0.0", "CC-BY-SA-4.0"),
-            "anime-identity-designer": ("1.0.0", "CC-BY-SA-4.0"),
-            "machine-pilgrim": ("1.0.0", "CC-BY-SA-4.0"),
+            "lux-visual-systems": ("1.1.0", "CC-BY-SA-4.0"),
+            "anime-identity-designer": ("1.1.0", "CC-BY-SA-4.0"),
+            "machine-pilgrim": ("1.1.0", "CC-BY-SA-4.0"),
         }
         for name, (version, license_name) in expected.items():
             manifest = self.manifest(name)

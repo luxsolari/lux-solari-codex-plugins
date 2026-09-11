@@ -2,4 +2,4 @@ interface:
   display_name: "Lux Solari Visual Systems Director"
   short_description: "Direct images through the Lux Solari visual system"
   brand_color: "#D62828"
-  default_prompt: "Use $lux-visual-systems to create a Lux Solari visual from this subject."
+  default_prompt: "Use $lux-visual-systems."

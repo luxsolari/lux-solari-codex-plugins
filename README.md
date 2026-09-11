@@ -112,7 +112,8 @@ See [tri-swiss](https://github.com/luxsolari/tri-swiss) for full documentation.
 Lux Solari Visual Systems Director governs image-making across Swiss editorial,
 anime, analogue, and technical modes. It includes the canonical visual master,
 format-specific reference boards, explicit subject-versus-system rules, and
-direct image-generation and iteration workflows.
+direct image-generation and iteration workflows. A bare invocation shows usage
+help; a visual brief must state its rendering language before generation.
 
 ```sh
 codex plugin add lux-visual-systems@lux-solari-codex
@@ -123,6 +124,8 @@ codex plugin add lux-visual-systems@lux-solari-codex
 Creates recognizable anime portraits, character branding boards, expression
 sheets, costume explorations, and production-ready character bibles from real
 people. Includes all 13 visual references and the original GPT configuration.
+A bare invocation shows usage help; a visual brief must state its rendering
+language before generation.
 
 ```sh
 codex plugin add anime-identity-designer@lux-solari-codex
@@ -132,7 +135,8 @@ codex plugin add anime-identity-designer@lux-solari-codex
 
 Creates finished *Descent into the Machine* artworks, illustrated-book pages,
 and cinematic sequences grounded in the original canon, source text, and all
-18 visual references.
+18 visual references. A bare invocation shows usage help; a visual brief must
+state its rendering language before generation.
 
 ```sh
 codex plugin add machine-pilgrim@lux-solari-codex

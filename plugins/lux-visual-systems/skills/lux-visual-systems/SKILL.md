@@ -7,6 +7,16 @@ description: Direct or generate images in Lux Solari's Swiss editorial, anime, a
 
 Turn subjects, reference images, writing, and rough ideas into coherent Lux Solari visuals. The governing idea is **human subjects inside rigorous systems**: expressive people and evocative objects held inside disciplined editorial structures.
 
+## Start every request
+
+Apply these gates in order before loading visual references or calling image generation:
+
+1. **No visual brief:** If the invocation contains no substantive user request beyond the skill name, generated launcher text, or equivalent boilerplate, use [`references/help.md`](references/help.md) as the response. An attachment by itself is not a visual brief. Do not generate an image or ask a question. The final answer must contain only the complete contents of the help document, without extra preamble or commentary.
+2. **Rendering language missing:** If the user provides a substantive visual brief but neither the current request nor the established conversation states a rendering language, ask exactly one focused question and wait: “What rendering language should I use—for example, anime film keyframe, 35mm photography, monochrome collage, technical vector diagram, or another explicit treatment?” Do not generate yet.
+3. **Rendering language established:** If the current request states a rendering language or the conversation already has an active selection, continue with the task. Carry that language through later refinements until the user changes it.
+
+The skill name, its house style, packaged references, and descriptions of subject, mood, palette, lighting, or composition do not count as a user-stated rendering language. Never infer or silently default this choice.
+
 ## Load the system
 
 Read [`references/visual-system.md`](references/visual-system.md) for every task. It contains the palette, grid, typography, severity, texture, and non-negotiable visual rules.
@@ -27,6 +37,8 @@ Always separate two questions:
 
 Subject references control identity, likeness, anatomy, proportions, face, hair, skin, eyes, clothing, equipment, architecture, objects, and factual visual details.
 
+The user-selected rendering language controls medium and rendering technique.
+
 The Lux Solari system controls composition, hierarchy, palette, contrast, typography, grid, framing, negative space, graphic modules, symbols, texture, and visual severity.
 
 Preserve the subject and adapt the system around it. Do not distort identity to imitate the master board literally. Do not inherit an unrelated graphic language from a subject reference.
@@ -35,17 +47,18 @@ Preserve the subject and adapt the system around it. Do not distort identity to 
 
 Resolve conflicts in this exact order:
 
-1. Current-turn references
-2. Explicit user corrections
-3. Subject references
-4. `00_VISUAL_SYSTEM_MASTER.png`
-5. Project references
-6. General Lux Solari references
-7. Model knowledge
+1. Explicit user corrections
+2. User-selected rendering language
+3. Current-turn references
+4. Subject references
+5. `00_VISUAL_SYSTEM_MASTER.png`
+6. Project references
+7. General Lux Solari references
+8. Model knowledge
 
 ## Create the image
 
-When the user asks to create or edit an image, use image generation directly. Do not stop at a written prompt unless the user explicitly requests one. Ask only when a missing choice would materially change subject identity or format; otherwise make the strongest reasonable decision and generate.
+Once the user has stated a rendering language, use image generation directly for an image or edit. Do not stop at a written prompt unless the user explicitly requests one. Ask only when a missing choice would materially change subject identity or format; otherwise make the strongest reasonable decision and generate.
 
 Choose packaged references deliberately:
 
