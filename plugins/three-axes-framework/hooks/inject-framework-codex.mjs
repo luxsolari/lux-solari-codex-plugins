@@ -16,12 +16,14 @@ import { setupContext } from './lib/setup.mjs';
 const pluginRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 
 let cwd = process.cwd();
+let hasWorkspace = false;
 
 async function readEvent() {
   try {
     const chunks = [];
     for await (const chunk of process.stdin) chunks.push(chunk);
     const payload = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+    hasWorkspace = typeof payload.cwd === 'string' && payload.cwd.length > 0;
     cwd = payload.cwd || cwd;
     return payload.source ?? payload.session_event ?? payload.trigger ?? payload.event ?? 'startup';
   } catch {
@@ -50,12 +52,12 @@ const { values, sources } = resolveProfile(globalPath, projectProfilePath(cwd), 
 const axisContext = Object.entries(values)
   .map(([axis, value]) => `  ${axis}: ${value} (${sources[axis]})`)
   .join('\n');
-const configured = hasPersistentProfile(cwd);
-const additionalContext = `${frameworkBody}\n\n## Active Profile\n\n${axisContext}${configured ? '' : `\n\n${setupContext(cwd)}`}`;
+const configured = hasWorkspace && hasPersistentProfile(cwd);
+const additionalContext = `${frameworkBody}\n\n## Active Profile\n\n${axisContext}${hasWorkspace && !configured ? `\n\n${setupContext(cwd)}` : ''}`;
 
 process.stdout.write(`${JSON.stringify({
   suppressOutput: true,
-  ...(!configured && { systemMessage: 'Three Axes setup required before project work.' }),
+  ...(hasWorkspace && !configured && { systemMessage: 'Three Axes Framework profile required for project work.' }),
   hookSpecificOutput: {
     hookEventName: 'SessionStart',
     additionalContext,

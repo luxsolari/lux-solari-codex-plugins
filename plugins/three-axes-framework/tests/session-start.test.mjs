@@ -15,7 +15,7 @@ function invoke(event) {
   const result = spawnSync(process.execPath, [HOOK], {
     cwd: ROOT,
     env: { ...process.env, CODEX_HOME: codexHome, PLUGIN_ROOT: ROOT },
-    input: JSON.stringify({ session_event: event }),
+    input: JSON.stringify({ cwd: ROOT, session_event: event }),
     encoding: 'utf8',
   });
 

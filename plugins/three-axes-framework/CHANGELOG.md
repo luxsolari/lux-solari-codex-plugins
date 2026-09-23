@@ -12,6 +12,16 @@ versions and releases independently.
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-09-23
+
+### Fixed
+- Made first-run blocking copy identify the Three Axes Framework plugin and the
+  absent persistent profile as the cause.
+- Skip profile enforcement for hook events without a workspace `cwd`, allowing
+  projectless prompts to continue without onboarding.
+- Require an exposed Codex Desktop native question picker to be called directly
+  and reserve the unavailable fallback for turns where the host omits it.
+
 ## [1.5.0] — 2026-09-07
 
 - The changelog starts here. Everything up to and including 1.5.0 predates it;

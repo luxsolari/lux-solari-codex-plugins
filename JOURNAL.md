@@ -1,5 +1,15 @@
 # Journal
 
+## 2026-09-23 - Three Axes profile-gate UX 1.5.1
+
+- Updated the packaged Three Axes Framework profile gate to explain its own
+  block, skip projectless hook events, and use exposed native question pickers
+  directly.
+- Verified with the packaged Node test suite and source-package tests.
+- Open: release commit, tag, push, and marketplace CI status remain pending.
+- Relevant files: `plugins/three-axes-framework/hooks/`,
+  `plugins/three-axes-framework/tests/setup-gate.test.mjs`, and the manifest.
+
 ## 2026-09-11 - Visual Systems light/dark palettes 1.2.0
 
 - Added interactive light/dark selection alongside rendering language, with explicit-choice reuse and refinement continuity.
