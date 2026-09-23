@@ -1,5 +1,19 @@
 # Journal
 
+## 2026-09-23 - Generated-code ownership packages
+
+- Updated the Codex Three Axes and Sage Instructor packages with the shared
+  responsible-authorship standard, ownership loop, comprehension gate, and
+  review behavior.
+- Set local package metadata to Three Axes `1.6.0` and Sage Instructor `1.8.0`;
+  aligned the marketplace parity-inventory test with those versions.
+- Verified with the marketplace Python suite (12 tests), Sage schema tests
+  (7 tests), both plugin validators, and `git diff --check`.
+- Open: source repository releases, marketplace commit/tag/push, and hosted CI
+  have not been run.
+- Relevant files: `plugins/three-axes-framework/`,
+  `plugins/sage-instructor/`, and `tests/test_parity_inventory.py`.
+
 ## 2026-09-23 - Three Axes profile-gate UX 1.5.1
 
 - Updated the packaged Three Axes Framework profile gate to explain its own
