@@ -9,8 +9,9 @@
   aligned the marketplace parity-inventory test with those versions.
 - Verified with the marketplace Python suite (12 tests), Sage schema tests
   (7 tests), both plugin validators, and `git diff --check`.
-- Open: source repository releases, marketplace commit/tag/push, and hosted CI
-  have not been run.
+- Published: commit `794edb6`, tags `three-axes-framework-v1.6.0` and
+  `sage-instructor-v1.8.0`, and their GitHub Releases are live. All three
+  validation runs and both release workflows completed successfully.
 - Relevant files: `plugins/three-axes-framework/`,
   `plugins/sage-instructor/`, and `tests/test_parity_inventory.py`.
 
