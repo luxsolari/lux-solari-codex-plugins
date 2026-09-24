@@ -1,5 +1,20 @@
 # Journal
 
+## 2026-09-23 - Three Axes v1.7.0 publication
+
+- Published the action-boundary profile gate and native SessionStart lifecycle
+  compatibility as `three-axes-framework` v1.7.0.
+- Verified all 20 packaged plugin tests, all 12 marketplace/parity tests, the
+  package validator, changelog extraction, and `git diff --check` after the
+  release commit.
+- Published: commit `7820234`, tag `three-axes-framework-v1.7.0`, and GitHub
+  Release. Both the release workflow and marketplace validation completed
+  successfully.
+- Open: none for this package release. The source repository's public showcase
+  site is independently served from its `gh-pages` branch.
+- Relevant files: `plugins/three-axes-framework/`, `tests/test_parity_inventory.py`,
+  and `.github/workflows/release.yml`.
+
 ## 2026-09-23 - Three Axes SessionStart resume compatibility
 
 - Reproduced the native hook with startup, resume, clear, and compact payloads
