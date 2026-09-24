@@ -32,6 +32,17 @@ test('emits a native SessionStart payload with the framework context', () => {
   assert.match(output.hookSpecificOutput.additionalContext, /mastery: high \(session\)/);
 });
 
+test('every lifecycle source emits only the native SessionStart envelope', () => {
+  for (const event of ['startup', 'resume', 'clear', 'compact']) {
+    const { output } = invoke(event);
+    assert.deepEqual(Object.keys(output).sort(), ['hookSpecificOutput', 'suppressOutput', 'systemMessage']);
+    assert.equal(output.additionalContext, undefined);
+    assert.deepEqual(Object.keys(output.hookSpecificOutput).sort(), ['additionalContext', 'hookEventName']);
+    assert.equal(output.hookSpecificOutput.hookEventName, 'SessionStart');
+    assert.equal(typeof output.hookSpecificOutput.additionalContext, 'string');
+  }
+});
+
 test('clears the session profile only on startup', () => {
   const startup = invoke('startup');
   assert.equal(existsSync(startup.sessionPath), false);

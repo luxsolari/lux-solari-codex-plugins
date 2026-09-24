@@ -22,8 +22,9 @@ are cited by ID; the `three-axes audit` route is their recovery path.
 
 When the first-run hook reports setup is required, its onboarding flow takes
 precedence: ask for global/project scope and all three values, then use the
-literal profile-writer command from the hook. Other tool calls are denied until
-the profile exists and validates. Runtime paths honor `CODEX_HOME` (default
+literal profile-writer command from the hook. The blocked local workspace action
+remains denied until the profile exists and validates; conversation and
+non-workspace tools remain available. Runtime paths honor `CODEX_HOME` (default
 `~/.codex`); a valid legacy Claude global profile counts only when the Codex
 global file is absent. Session presets do not satisfy this gate.
 

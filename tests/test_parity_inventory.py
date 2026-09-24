@@ -35,6 +35,7 @@ class ParityInventoryTests(unittest.TestCase):
         required = [
             "plugins/three-axes-framework/hooks/hooks.json",
             "plugins/three-axes-framework/hooks/inject-framework-codex.mjs",
+            "plugins/three-axes-framework/hooks/lib/project-action.mjs",
             "plugins/sage-instructor/skills/sage-instructor/references/three-axes-contract.md",
             "plugins/whiting/scripts/run_tests.sh",
             "plugins/lux-swiss/skills/lux-swiss/references/HOUSE-MARK.md",

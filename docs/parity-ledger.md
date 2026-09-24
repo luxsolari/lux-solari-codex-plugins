@@ -29,6 +29,7 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `hooks/inject-framework.mjs` | copied runtime |
 | `hooks/lib/__tests__/profile.test.mjs` | copied runtime |
 | `hooks/lib/profile.mjs` | copied runtime |
+| `hooks/lib/project-action.mjs` | copied runtime |
 | `hooks/lib/setup.mjs` | copied runtime |
 | `hooks/require-profile.mjs` | copied runtime |
 | `skills/three-axes-framework/SKILL.md` | copied runtime |
