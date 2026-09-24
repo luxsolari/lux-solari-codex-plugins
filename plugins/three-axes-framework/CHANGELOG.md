@@ -12,6 +12,24 @@ versions and releases independently.
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-09-23
+
+### Changed
+- Moved first-run enforcement from session and prompt presence to the first
+  observable local project action. A host-supplied working directory no longer
+  triggers onboarding by itself.
+- Allow ordinary conversation, external tools, and path-aware operations outside
+  the attached workspace while no persistent profile exists.
+
+### Fixed
+- Keep every SessionStart lifecycle response, including resume and compact,
+  inside Codex's native `hookSpecificOutput` envelope. Regression coverage now
+  rejects the legacy Claude adapter's top-level `additionalContext` shape.
+- Classify built-in file, patch, shell, and Codex tool aliases consistently,
+  including symlink-resolved workspace paths and protected profile targets.
+- Accept the exact validated profile-writer command through both Claude-style
+  `Bash` and Codex-style `exec_command` tool inputs.
+
 ## [1.6.0] - 2026-09-23
 
 ### Added

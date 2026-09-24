@@ -1,5 +1,64 @@
 # Journal
 
+## 2026-09-23 - Three Axes SessionStart resume compatibility
+
+- Reproduced the native hook with startup, resume, clear, and compact payloads
+  and confirmed its JSON is accepted by the current Codex SessionStart schema.
+- Identified the visible failure as a duplicate, outdated
+  `three-axes-framework@claude-cowork` installation emitting the legacy
+  top-level `additionalContext` shape alongside the native plugin.
+- Removed that stale Codex-side duplicate while retaining
+  `three-axes-framework@lux-solari-codex`, then added regression coverage that
+  rejects the legacy shape for every lifecycle source.
+- Verified all 20 packaged Three Axes tests, all 44 source tests, and
+  `git diff --check` in both repositories. A fresh interactive resume was not
+  launched from this task.
+- Open: the action-boundary gate work remains uncommitted and unreleased; the
+  obsolete duplicate's hook trust hash remains inert in Codex configuration.
+- Relevant files: `plugins/three-axes-framework/tests/session-start.test.mjs`,
+  `plugins/three-axes-framework/CHANGELOG.md`, and the local Codex plugin state.
+
+## 2026-09-23 - Three Axes action-boundary profile gate
+
+- Mirrored the source plugin's deferred setup policy: session startup and prompt
+  submission remain conversational without a persistent profile, and setup
+  begins only when a tool attempts a local workspace action.
+- Added path-aware classification for Claude/Codex file, patch, shell, and
+  continued-process tools, including symlink resolution, external working
+  directory exemptions, protected profile targets, and absolute paths exposed
+  by filesystem MCP tools.
+- Added native Codex support for the validated profile writer through
+  `exec_command.cmd`, updated the framework contract, command references,
+  changelog, and parity inventory, and retained legacy Claude-profile fallback.
+- Verified the Three Axes suite (19 tests), marketplace/parity checks (12 tests),
+  the package validator, and `git diff --check` in both source and marketplace
+  repositories. The corresponding source repository suite passed 61 tests.
+- Open: no version bump, commit, tag, release, or publication has been performed.
+  Shell tools without an explicit outside working directory remain conservatively
+  workspace-bound; unknown tools require an exposed absolute local path to be
+  classified as project work.
+- Relevant files: `plugins/three-axes-framework/hooks/lib/project-action.mjs`,
+  `plugins/three-axes-framework/hooks/require-profile.mjs`,
+  `plugins/three-axes-framework/hooks/inject-framework-codex.mjs`, and
+  `plugins/three-axes-framework/tests/setup-gate.test.mjs`.
+
+## 2026-09-23 - Scope-aware Three Axes profile questions
+
+- Reframed the packaged first-run setup as a fallback for assistant behavior,
+  not a universal claim about the developer's ability.
+- Added scope-specific mastery, consequence, and intent questions: global
+  wording applies only without a project profile; project wording names the
+  current repository and its domain/tools.
+- Clarified that the gate appears when the host attaches a workspace and kept
+  genuinely projectless hook events ungated.
+- Verified the packaged profile, session-start, and setup-gate suites (18 tests)
+  plus `git diff --check`.
+- Open: package metadata, release notes, commit, tag, and publication remain
+  unchanged.
+- Relevant files: `plugins/three-axes-framework/hooks/lib/setup.mjs`,
+  `plugins/three-axes-framework/references/source-commands/three-axes-setup.md`,
+  and `plugins/three-axes-framework/tests/setup-gate.test.mjs`.
+
 ## 2026-09-23 - Generated-code ownership packages
 
 - Updated the Codex Three Axes and Sage Instructor packages with the shared
