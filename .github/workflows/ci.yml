@@ -19,7 +19,8 @@ jobs:
         run: python3 -m pip install PyYAML
       - name: Run parity validation
         run: |
-          python3 -m unittest tests/test_marketplace.py tests/test_parity_inventory.py tests/test_host_portability.py tests/test_plugin_changelogs.py -v
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -m unittest tests/test_marketplace.py tests/test_parity_inventory.py tests/test_host_portability.py tests/test_plugin_changelogs.py tests/test_bauer_package.py -v
           node --test plugins/three-axes-framework/tests/*.test.mjs
           python3 -m unittest plugins/sage-instructor/tests/test_check_progress_schema.py -v
           sh plugins/whiting/scripts/run_tests.sh
@@ -29,6 +30,7 @@ jobs:
           python3 -m unittest plugins/lux-visual-systems/tests/test_visual_system_contract.py -v
           python3 -m unittest discover -s plugins/anime-identity-designer/tests -v
           python3 -m unittest discover -s plugins/machine-pilgrim/tests -v
+          python3 -m unittest discover -s plugins/bauer/tests -v
           for plugin in plugins/*; do
             python3 scripts/validate_plugin.py "$plugin"
           done

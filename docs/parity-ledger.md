@@ -344,3 +344,40 @@ Claude package. The ledger records its shipped runtime and verification surface.
 | `skills/machine-pilgrim/references/*.md` | preserved or consolidated runtime grounding |
 | `tests/test_machine_pilgrim_contract.py` | copied verification contract |
 | `LICENSE`, `LICENSE-DESIGN`, `NOTICE.md` | runtime licensing and rights boundary |
+
+## bauer
+
+Pinned source: `luxsolari/bauer` at `213f085dcd316923aab78324c8ea6a3e58713c34` (0.1.0).
+All copied bytes are recorded in `docs/bauer-source-parity.json`. No source
+runtime or license translation is applied. The Claude manifest is retained
+only so the unchanged upstream cross-host test can run. Canonical release metadata
+provides the required Codex interface fields and a dated 0.1.0 changelog entry;
+these files are copied unchanged rather than patched for the marketplace.
+
+| Source file | Classification |
+| --- | --- |
+| `.claude-plugin/plugin.json` | copied verification |
+| `.codex-plugin/plugin.json` | copied native Codex manifest |
+| `.github/workflows/test.yml` | consolidated CI or source release packaging |
+| `.gitignore` | source-repository-only documentation/release packaging |
+| `CHANGELOG.md` | copied documentation/release packaging |
+| `JOURNAL.md` | source-repository-only documentation/release packaging |
+| `LICENSE` | copied runtime |
+| `NOTICE.md` | copied runtime |
+| `README.md` | copied documentation/release packaging |
+| `skills/bauer/SKILL.md` | copied runtime |
+| `skills/bauer/references/advisories.md` | copied runtime |
+| `skills/bauer/references/jev.md` | copied runtime |
+| `skills/bauer/references/report.md` | copied runtime |
+| `skills/bauer/references/security-sources.json` | copied runtime |
+| `skills/bauer/references/supply-chain.md` | copied runtime |
+| `skills/bauer/scripts/dependencies.py` | copied runtime |
+| `skills/bauer/scripts/jev.py` | copied runtime |
+| `skills/bauer/scripts/report.py` | copied runtime |
+| `skills/bauer/scripts/sources.py` | copied runtime |
+| `tests/test_dependencies.py` | copied verification |
+| `tests/test_jev.py` | copied verification |
+| `tests/test_report.py` | copied verification |
+| `tests/test_sources.py` | copied verification |
+| `tests/test_sources_contract.py` | copied verification |
+| `tests/test_workflow.py` | copied verification |

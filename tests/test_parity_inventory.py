@@ -25,6 +25,7 @@ class ParityInventoryTests(unittest.TestCase):
             "lux-visual-systems": ("1.2.1", "CC-BY-SA-4.0"),
             "anime-identity-designer": ("1.1.1", "CC-BY-SA-4.0"),
             "machine-pilgrim": ("1.1.1", "CC-BY-SA-4.0"),
+            "bauer": ("0.1.0", "MIT"),
         }
         for name, (version, license_name) in expected.items():
             manifest = self.manifest(name)
@@ -45,6 +46,12 @@ class ParityInventoryTests(unittest.TestCase):
             "plugins/anime-identity-designer/skills/anime-identity-designer/references/original-master-prompt.md",
             "plugins/machine-pilgrim/skills/machine-pilgrim/references/conversations-with-the-machine-01.md",
             "docs/parity-inventory.md",
+            "plugins/bauer/skills/bauer/scripts/dependencies.py",
+            "plugins/bauer/skills/bauer/scripts/jev.py",
+            "plugins/bauer/skills/bauer/scripts/report.py",
+            "plugins/bauer/skills/bauer/scripts/sources.py",
+            "plugins/bauer/NOTICE.md",
+            "docs/bauer-source-parity.json",
         ]
         for path in required:
             self.assertTrue((ROOT / path).is_file(), path)
@@ -63,6 +70,7 @@ class ParityInventoryTests(unittest.TestCase):
             "lux-visual-systems",
             "anime-identity-designer",
             "machine-pilgrim",
+            "bauer",
         ):
             self.assertIn(f"## {source}", text)
         self.assertIn("| Source file | Classification |", text)
