@@ -22,8 +22,9 @@ source-maintenance automation).
 | Machine Pilgrim | recovered GPT prompt/configuration, original source text, compact canon, 18 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and preserves scene, canon, and conversation continuity. |
 | Bauer 0.1.1 | exact portable skill, four Python helpers, five reference files, six upstream test modules, both manifests, README, changelog, MIT license and third-party notice | No runtime translation; resolve helper paths from the installed skill. Claude manifest is verification-only for the unchanged upstream cross-host contract. |
 
-Bauer is pinned to `b66402ad3cb194cce684602a2728414c5d583d8f` from
-`luxsolari/bauer`: the post-tag metadata fix for version 0.1.1, not the immutable
+Bauer is pinned to `8dd9d1d5175187255398562e0381a6118896d9cf` from
+`luxsolari/bauer`: the persistent-environment and 1Password documentation update
+following the post-tag metadata fix for version 0.1.1, not the immutable
 `v0.1.1` tag at `9870701ce5fa73cecc71a9ed2e1935eeebb8e943`. Both source
 manifests carry the corrected description, "Evidence-backed security audits with
 optional Jev review." [bauer-source-parity.json](bauer-source-parity.json) records

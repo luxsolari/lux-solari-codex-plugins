@@ -10,7 +10,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'plugins/bauer'
 SKILL = PACKAGE / 'skills/bauer'
-PIN = 'b66402ad3cb194cce684602a2728414c5d583d8f'
+PIN = '8dd9d1d5175187255398562e0381a6118896d9cf'
 
 
 class BauerPackageTests(unittest.TestCase):
@@ -21,6 +21,16 @@ class BauerPackageTests(unittest.TestCase):
         self.assertEqual(inventory['revision'], PIN)
         self.assertEqual(inventory['version'], '0.1.1')
         self.assertEqual(len(inventory['files']), 22)
+        readme = (PACKAGE / 'README.md').read_text()
+        for expected in ('For persistent terminal setup', '~/.zshrc', '~/.bashrc',
+                         'shell_environment_policy', '### Secret-manager example: 1Password',
+                         "TYPESAFE_API_KEY='op://Private/TypeSafe/api_key' op run -- claude",
+                         'claude-jev()', 'Bauer does not resolve secret-manager references',
+                         'no live vault retrieval was exercised',
+                         'A configured key does not grant that approval'):
+            with self.subTest(documented_setup=expected):
+                self.assertIn(expected, readme)
+        self.assertNotIn('read -r -s TYPESAFE_API_KEY', readme)
         for host in ('claude', 'codex'):
             manifest = json.loads((PACKAGE / ('.' + host + '-plugin/plugin.json')).read_text())
             self.assertEqual(manifest['version'], inventory['version'])
