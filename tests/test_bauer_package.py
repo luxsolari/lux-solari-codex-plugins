@@ -11,7 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'plugins/bauer'
 SKILL = PACKAGE / 'skills/bauer'
-PIN = '69c870e3bc5cfedc204899c9ad08feaef8f7e5d8'
+PIN = '08320e9155850cbd9b4be2f2051eb62bf4247f81'
 
 
 class BauerPackageTests(unittest.TestCase):
@@ -20,7 +20,7 @@ class BauerPackageTests(unittest.TestCase):
         self.assertTrue(path.is_file(), 'pinned source parity inventory missing')
         inventory = json.loads(path.read_text())
         self.assertEqual(inventory['revision'], PIN)
-        self.assertEqual(inventory['version'], '0.2.0')
+        self.assertEqual(inventory['version'], '0.2.1')
         self.assertEqual(len(inventory['files']), 26)
         readme = (PACKAGE / 'README.md').read_text()
         for expected in ('For persistent terminal setup', '~/.zshrc', '~/.bashrc',
@@ -82,6 +82,7 @@ class BauerPackageTests(unittest.TestCase):
                 run = subprocess.run([sys.executable, str(SKILL / 'scripts/report.py'), str(evidence), '--format', fmt],
                                      capture_output=True, text=True, timeout=10)
                 self.assertEqual(run.returncode, 0, run.stderr)
+                self.assertIn('Security audits can be token-intensive', run.stdout)
                 if fmt == 'json':
                     gate = json.loads(run.stdout)['completion_gate']
                     self.assertEqual(gate['status'], 'partial')

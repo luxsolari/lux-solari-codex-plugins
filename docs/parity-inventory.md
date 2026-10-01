@@ -20,14 +20,16 @@ source-maintenance automation).
 | Lux Visual Systems | native Codex skill, canonical master, 13 supporting visual boards, format rules, reference governance, dual licenses | Direct image generation; subject references and current-turn corrections take priority over the packaged visual system. |
 | Anime Identity Designer | recovered GPT prompt/configuration, compact skill, 13 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and separates subject identity from the packaged style system. |
 | Machine Pilgrim | recovered GPT prompt/configuration, original source text, compact canon, 18 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and preserves scene, canon, and conversation continuity. |
-| Bauer 0.2.0 | exact portable skill, five CLI helpers plus completion support, five reference files, eight upstream test modules, both manifests, README, changelog, MIT license and third-party notice | No runtime translation; resolve helper paths from the installed skill. Claude manifest is verification-only for the unchanged upstream cross-host contract. |
+| Bauer 0.2.1 | exact portable skill, five CLI helpers plus completion support, five reference files, eight upstream test modules, both manifests, README, changelog, MIT license and third-party notice | No runtime translation; resolve helper paths from the installed skill. Claude manifest is verification-only for the unchanged upstream cross-host contract. |
 
-Bauer is pinned to `69c870e3bc5cfedc204899c9ad08feaef8f7e5d8` from `luxsolari/bauer`, version
-0.2.0. [bauer-source-parity.json](bauer-source-parity.json) records every one of
+Bauer is pinned to `08320e9155850cbd9b4be2f2051eb62bf4247f81` from `luxsolari/bauer`, version
+0.2.1. [bauer-source-parity.json](bauer-source-parity.json) records every one of
 26 copied files with SHA-256. Both manifests, SKILL version, version assertions,
 README and dated changelog ship unchanged. Six stdlib modules include selection
 and completion; five have CLI entry points. Eight upstream test modules contain
-94 tests. The completion ledger validates supplied records, not source truth;
+96 tests. The patch adds mandatory actual-chat resource warnings and stable generated
+JSON/Markdown notes without measured-token/cost claims or automatic budget caps.
+The completion ledger validates supplied records, not source truth;
 missing/unknown/blocked work and contradictory dependency/OSV nonapplicability
 remain partial. report.py renders the gate in JSON/Markdown. No runtime or
 license translation is applied. Selection defaults disabled/MEDIUM, while a

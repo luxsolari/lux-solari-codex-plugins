@@ -347,14 +347,16 @@ Claude package. The ledger records its shipped runtime and verification surface.
 
 ## bauer
 
-Pinned source: `luxsolari/bauer` at `69c870e3bc5cfedc204899c9ad08feaef8f7e5d8` (0.2.0).
+Pinned source: `luxsolari/bauer` at `08320e9155850cbd9b4be2f2051eb62bf4247f81` (0.2.1).
 All 26 copied files are recorded in `docs/bauer-source-parity.json`; runtime,
 licenses, native manifests, current docs and upstream tests are unchanged from
 canonical. Selection adds deterministic optional-review queues; the sixth
 module validates supplied completion/applicability records without queries.
 Five modules have CLI entry points; report.py renders completion JSON/Markdown.
-Eight upstream test modules contain 94 tests; reports include all severity counts. A separate presence preflight and
-proactive offer preserve scheduling/disclosure consent boundaries. Actual local
+Eight upstream test modules contain 96 tests; reports include all severity counts.
+The patch adds mandatory actual-chat resource warnings and stable generated
+JSON/Markdown notes, with no fabricated usage metrics or automatic budget cap.
+A separate presence preflight and proactive offer preserve scheduling/disclosure consent boundaries. Actual local
 host checks are synthetic, not a fresh audit or activated marketplace test.
 Earlier release tags stay immutable. New installation remains unexercised.
 

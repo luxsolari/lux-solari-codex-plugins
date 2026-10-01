@@ -156,11 +156,18 @@ codex plugin add bauer@lux-solari-codex
 ```
 
 See [Bauer](https://github.com/luxsolari/bauer) and the
-[pinned source inventory](docs/bauer-source-parity.json). Version 0.2.0 at
-`69c870e3bc5cfedc204899c9ad08feaef8f7e5d8` adds deterministic optional-review selection, complete
+[pinned source inventory](docs/bauer-source-parity.json). Version 0.2.1 at
+`08320e9155850cbd9b4be2f2051eb62bf4247f81` retains deterministic optional-review selection, complete
 five-severity tables and a supplied-evidence completion/applicability gate. All 26
 files ship unchanged, including five CLI helpers plus the completion support module,
-eight upstream test modules (94 tests), both manifests and current setup docs.
+eight upstream test modules (96 tests), both manifests and current setup docs.
+The patch adds actual-chat preflight/closing warnings and generated JSON/Markdown
+resource notes. Security audits can be token-intensive: repository tracing,
+source queries, repeated evidence review and reporting can consume substantial
+tokens. Usage depends on repository scope and host model; no exact estimate is
+promised. Optional Jev charges are separate. If budget matters, agree on bounded
+scope; unfinished mandatory checks remain partial under the continuation gate.
+See [token guidance](plugins/bauer/README.md#token-usage).
 The workflow checks key presence as a boolean, proactively offers all eligible
 findings when present, and requires separate scheduling opt-in and final packet
 approval. Default scheduling remains disabled with a MEDIUM threshold.
