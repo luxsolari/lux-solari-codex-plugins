@@ -1,5 +1,14 @@
 # Journal
 
+## 2026-10-01 - Bauer persistent-environment documentation marketplace sync
+
+- Standing delivery rule from the owner: marketplace copies must automatically follow canonical plugin state, including documentation-only updates; do not defer synchronization merely because the runtime/version is unchanged. Recorded here without changing active-profile skills or settings.
+- Used clean scratch worktree `docs/bauer-persistent-env-sync` from fetched `origin/main` at `43e12e7`; original checkout and untracked `IDEA.md` are untouched. Copied the exact 22-file allowlist from canonical Git revision `8dd9d1d5175187255398562e0381a6118896d9cf`. Only packaged `README.md` changed; all runtime, manifest, reference and upstream-test bytes remain unchanged at version 0.1.1. Immutable tags were not rewritten, and canonical source was not edited.
+- Refreshed source pin/SHA-256 inventory, root README and parity docs. Extended the existing parity regression with persistent shell setup, Codex policy, 1Password launch/function, unresolved-reference warning, unexercised-vault boundary and separate disclosure-approval requirements. The updated pin test failed against the stale inventory before copying, then passed after synchronization.
+- Verified: 74 packaged tests and 16 marketplace tests pass with bytecode disabled; all ten plugin validators pass through isolated `uv run --with PyYAML`; changelog extraction, catalog JSON parsing and `git diff --check` pass. All 22 package files match canonical bytes and recorded hashes; the remaining 21 files match the preceding marketplace pin exactly.
+- Delivery: dedicated PR with hosted checks required before merge; owner authorizes admin merge only for a review gate, never failed checks. Final remote merged-state and complete 22-file canonical readback are required before claiming publication. No new install, live audit, credential retrieval or host-runtime evidence is claimed; 1Password retrieval remains explicitly unexercised.
+- Files: `plugins/bauer/README.md`, `docs/bauer-source-parity.json`, `docs/parity-{inventory,ledger}.md`, `tests/test_bauer_package.py`, root `README.md`, `JOURNAL.md`. Open at commit time: hosted CI and merged readback, to be reported in the delivery receipt. No unrelated package changes or profile writes.
+
 ## 2026-10-01 - Bauer 0.1.1 documentation sync and post-tag metadata pin
 
 - Prepared `chore/bauer-v0.1.1-sync` in a clean scratch worktree from fetched `origin/main` at `19b5f5b`; the original checkout's branch and untracked `IDEA.md` remain untouched. No canonical source edits or unrelated package edits.

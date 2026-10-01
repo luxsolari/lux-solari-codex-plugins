@@ -158,6 +158,9 @@ codex plugin add bauer@lux-solari-codex
 See [Bauer](https://github.com/luxsolari/bauer) and the
 [pinned source inventory](docs/bauer-source-parity.json). Version 0.1.1 refreshes
 the documentation and version metadata without changing the Python helpers.
+The package follows canonical `8dd9d1d5175187255398562e0381a6118896d9cf`,
+including [persistent Jev key setup and 1Password launch examples](plugins/bauer/README.md#configure-your-key).
+This documentation sync keeps version 0.1.1 and existing release tags unchanged.
 Source bytes are preserved, including the documented audit and host-execution
 limits; local verification and publication boundaries are recorded in `JOURNAL.md`.
 

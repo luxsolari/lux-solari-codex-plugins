@@ -347,8 +347,9 @@ Claude package. The ledger records its shipped runtime and verification surface.
 
 ## bauer
 
-Pinned source: `luxsolari/bauer` at `b66402ad3cb194cce684602a2728414c5d583d8f` (0.1.1).
-This pin is the post-tag description metadata fix, not an exact copy of the
+Pinned source: `luxsolari/bauer` at `8dd9d1d5175187255398562e0381a6118896d9cf` (0.1.1).
+This pin adds persistent-environment and 1Password setup documentation after the
+post-tag description metadata fix; it is not an exact copy of the
 immutable `v0.1.1` tag at `9870701ce5fa73cecc71a9ed2e1935eeebb8e943`.
 All copied bytes are recorded in `docs/bauer-source-parity.json`. No source
 runtime or license translation is applied. The Claude manifest is retained
