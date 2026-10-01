@@ -30,6 +30,7 @@ class MarketplaceTests(unittest.TestCase):
                 "lux-visual-systems",
                 "anime-identity-designer",
                 "machine-pilgrim",
+                "bauer",
             ],
         )
 

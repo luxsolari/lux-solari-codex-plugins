@@ -99,6 +99,12 @@
       "source": {"source": "local", "path": "./plugins/machine-pilgrim"},
       "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
       "category": "Design"
+    },
+    {
+      "name": "bauer",
+      "source": {"source": "local", "path": "./plugins/bauer"},
+      "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+      "category": "Productivity"
     }
   ]
 }
