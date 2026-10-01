@@ -1,12 +1,12 @@
 {
   "files": {
-    ".claude-plugin/plugin.json": "9887b365b67c098753d77a48820574ac8a52ef5fde4c08d0877adeb48b256551",
-    ".codex-plugin/plugin.json": "e37009b2ab5f6aecbf3b338cde0ad5a96558e9ad447128aa799141c885aa717e",
-    "CHANGELOG.md": "7c378311938ea0e9fa3b57fc51b356694765aab43416641978a1b7ea06f7792a",
+    ".claude-plugin/plugin.json": "75f3d35ac0e20f057b820b71164b3446da1f9885308fa2b248f48fc5ddd03934",
+    ".codex-plugin/plugin.json": "f852989ed3a45e8a5b3353ca9bbefa0395e2e62a52b280cc60955a67cbbda402",
+    "CHANGELOG.md": "f050c176539172b5625b914e58288ac3b64bb567e59810006de3ab28efaada20",
     "LICENSE": "8fb712a4d8c460cbe5d21670eca25b42af259ea6b5198522ec16ac44876e82ed",
     "NOTICE.md": "75fce84b46afa524ec086294f3f11f203adf34197f0f5ec0ec39ff8f7b58f602",
-    "README.md": "1a18c2648e20cdb0b92034fdfd7aa3a7d09108b7d5d96a9203a8bf83ac6ed49f",
-    "skills/bauer/SKILL.md": "c6554e9bd5ab64823138e9d1ece2b0fda63ce13ad18ce7719442dd6859b3e169",
+    "README.md": "5b32e0b29709705c5658fb7d31658a86fca234ff9beb850bb877fe0ac7a8537e",
+    "skills/bauer/SKILL.md": "c99b582bdd2bce6ae9be25290bb0d0759136e941203eb5880ac0733bc80ee804",
     "skills/bauer/references/advisories.md": "d3a1707f08f0da8346a766ae6ada9027a89be5533d44e6ca086746316afd3c97",
     "skills/bauer/references/jev.md": "c9432bc4ef3e8d8583f273e509fe95477738a9b112781e12919d12c15c187bbd",
     "skills/bauer/references/report.md": "d8859f6dd215521299618e72d1dd050b00d47bf04667962509c061a100475a4e",
@@ -21,9 +21,9 @@
     "tests/test_report.py": "14cd60f894ae679615f2dd2db04dc7eda73de07d7c591db5ac6cd767ef8cce01",
     "tests/test_sources.py": "bc0799e6c927e182754f53d9cb5b31ea0117e9f8658db11c2d5a5e281b2c1340",
     "tests/test_sources_contract.py": "1566f315062f00d0133abc4bde845175932d2470aef5e42f6614ac0a3c673e8f",
-    "tests/test_workflow.py": "ba91fece763afc58d2755c53b3394598b4cfd35268f5174420df89acd137a65e"
+    "tests/test_workflow.py": "8ae8d79a69b898620954ac2d7e72399ab22131166dc8160c9b2ff4614e1f9ae6"
   },
   "repository": "https://github.com/luxsolari/bauer",
-  "revision": "213f085dcd316923aab78324c8ea6a3e58713c34",
-  "version": "0.1.0"
+  "revision": "b66402ad3cb194cce684602a2728414c5d583d8f",
+  "version": "0.1.1"
 }

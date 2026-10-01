@@ -151,15 +151,15 @@ standard library. Read-only by default: target execution and external inventory
 or code disclosure require explicit permission. This is an agent-driven audit
 workflow, not a standalone scanner or certification.
 
-After this catalog update is published:
-
 ```sh
 codex plugin add bauer@lux-solari-codex
 ```
 
 See [Bauer](https://github.com/luxsolari/bauer) and the
-[pinned source inventory](docs/bauer-source-parity.json). Source bytes are
-preserved; publication readiness gaps are recorded in `JOURNAL.md`.
+[pinned source inventory](docs/bauer-source-parity.json). Version 0.1.1 refreshes
+the documentation and version metadata without changing the Python helpers.
+Source bytes are preserved, including the documented audit and host-execution
+limits; local verification and publication boundaries are recorded in `JOURNAL.md`.
 
 ## Codex compatibility
 

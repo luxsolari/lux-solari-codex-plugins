@@ -10,7 +10,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'plugins/bauer'
 SKILL = PACKAGE / 'skills/bauer'
-PIN = '213f085dcd316923aab78324c8ea6a3e58713c34'
+PIN = 'b66402ad3cb194cce684602a2728414c5d583d8f'
 
 
 class BauerPackageTests(unittest.TestCase):
@@ -19,7 +19,13 @@ class BauerPackageTests(unittest.TestCase):
         self.assertTrue(path.is_file(), 'pinned source parity inventory missing')
         inventory = json.loads(path.read_text())
         self.assertEqual(inventory['revision'], PIN)
-        self.assertEqual(inventory['version'], '0.1.0')
+        self.assertEqual(inventory['version'], '0.1.1')
+        self.assertEqual(len(inventory['files']), 22)
+        for host in ('claude', 'codex'):
+            manifest = json.loads((PACKAGE / ('.' + host + '-plugin/plugin.json')).read_text())
+            self.assertEqual(manifest['version'], inventory['version'])
+            self.assertEqual(manifest['description'],
+                             'Evidence-backed security audits with optional Jev review.')
         files = inventory['files']
         self.assertTrue(files)
         actual = {p.relative_to(PACKAGE).as_posix() for p in PACKAGE.rglob('*') if p.is_file()}

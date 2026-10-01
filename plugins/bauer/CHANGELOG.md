@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-01
+
+- Record actual Claude/Codex dogfood boundaries and known source-discovery/secret-filter limitations; refresh release packages with current documentation. Runtime helper behavior is unchanged.
+
+- Edit README using Lux's blog-voice guidance and add the thirteen-source catalog with descriptions and actual integration boundaries.
+
+- Explain with/without-Jev behavior, supplemental evidence-review benefits, disclosure/cost trade-offs and unmeasured accuracy boundaries.
+
+- Document optional bring-your-own-key Jev setup for Claude Code, Codex, Hermes and other agents, including safe presence checks and packet-specific disclosure approval.
+
 ## [0.1.0] - 2026-10-01
 
 - Added opt-in OSV curated-inventory queries with bounded pagination, package-aware alias deduplication and response provenance; deterministic Markdown reporting and supplemental-check schema validation.
