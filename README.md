@@ -156,13 +156,20 @@ codex plugin add bauer@lux-solari-codex
 ```
 
 See [Bauer](https://github.com/luxsolari/bauer) and the
-[pinned source inventory](docs/bauer-source-parity.json). Version 0.1.1 refreshes
-the documentation and version metadata without changing the Python helpers.
-The package follows canonical `8dd9d1d5175187255398562e0381a6118896d9cf`,
-including [persistent Jev key setup and 1Password launch examples](plugins/bauer/README.md#configure-your-key).
-This documentation sync keeps version 0.1.1 and existing release tags unchanged.
-Source bytes are preserved, including the documented audit and host-execution
-limits; local verification and publication boundaries are recorded in `JOURNAL.md`.
+[pinned source inventory](docs/bauer-source-parity.json). Version 0.2.0 at
+`69c870e3bc5cfedc204899c9ad08feaef8f7e5d8` adds deterministic optional-review selection, complete
+five-severity tables and a supplied-evidence completion/applicability gate. All 26
+files ship unchanged, including five CLI helpers plus the completion support module,
+eight upstream test modules (94 tests), both manifests and current setup docs.
+The workflow checks key presence as a boolean, proactively offers all eligible
+findings when present, and requires separate scheduling opt-in and final packet
+approval. Default scheduling remains disabled with a MEDIUM threshold.
+Actual Claude/Codex synthetic policy and presence/offer checks used local routes;
+the corrected helper eligible-offer exercises stopped for consent using dummy
+presence. No fresh feed audit, post-consent Jev request or activated marketplace
+plugin was exercised. The gate validates supplied records, not source truth;
+use report.py for completion JSON/Markdown, not a standalone completion CLI. Newly published installation remains unverified. Existing release tags
+are preserved; `JOURNAL.md` records exact checks and publication boundaries.
 
 ## Codex compatibility
 

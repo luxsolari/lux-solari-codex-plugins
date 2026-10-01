@@ -20,26 +20,23 @@ source-maintenance automation).
 | Lux Visual Systems | native Codex skill, canonical master, 13 supporting visual boards, format rules, reference governance, dual licenses | Direct image generation; subject references and current-turn corrections take priority over the packaged visual system. |
 | Anime Identity Designer | recovered GPT prompt/configuration, compact skill, 13 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and separates subject identity from the packaged style system. |
 | Machine Pilgrim | recovered GPT prompt/configuration, original source text, compact canon, 18 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and preserves scene, canon, and conversation continuity. |
-| Bauer 0.1.1 | exact portable skill, four Python helpers, five reference files, six upstream test modules, both manifests, README, changelog, MIT license and third-party notice | No runtime translation; resolve helper paths from the installed skill. Claude manifest is verification-only for the unchanged upstream cross-host contract. |
+| Bauer 0.2.0 | exact portable skill, five CLI helpers plus completion support, five reference files, eight upstream test modules, both manifests, README, changelog, MIT license and third-party notice | No runtime translation; resolve helper paths from the installed skill. Claude manifest is verification-only for the unchanged upstream cross-host contract. |
 
-Bauer is pinned to `8dd9d1d5175187255398562e0381a6118896d9cf` from
-`luxsolari/bauer`: the persistent-environment and 1Password documentation update
-following the post-tag metadata fix for version 0.1.1, not the immutable
-`v0.1.1` tag at `9870701ce5fa73cecc71a9ed2e1935eeebb8e943`. Both source
-manifests carry the corrected description, "Evidence-backed security audits with
-optional Jev review." [bauer-source-parity.json](bauer-source-parity.json) records
-SHA-256 for every copied file, including documentation and verification. The
-package parity test checks the exact file inventory and helper/reference paths
-without needing the source checkout or network. The pinned upstream manifest
-includes the required Codex interface metadata, and the changelog contains a
-dated 0.1.1 entry. All 22 files are copied unchanged, including the refreshed
-README, manifest/skill versions and upstream version assertion. This is a
-documentation-and-version refresh: the four helper implementations and reference
-files are unchanged. Host dogfood evidence in the README is bounded: Claude
-session-local execution and Codex local-skill execution did not exercise activated
-marketplace plugins or demonstrate a new vulnerability. Known discovery, secret-
-filter and OSV timestamp limitations remain documented, not remediated. See
-`JOURNAL.md` for local verification and publication boundaries.
+Bauer is pinned to `69c870e3bc5cfedc204899c9ad08feaef8f7e5d8` from `luxsolari/bauer`, version
+0.2.0. [bauer-source-parity.json](bauer-source-parity.json) records every one of
+26 copied files with SHA-256. Both manifests, SKILL version, version assertions,
+README and dated changelog ship unchanged. Six stdlib modules include selection
+and completion; five have CLI entry points. Eight upstream test modules contain
+94 tests. The completion ledger validates supplied records, not source truth;
+missing/unknown/blocked work and contradictory dependency/OSV nonapplicability
+remain partial. report.py renders the gate in JSON/Markdown. No runtime or
+license translation is applied. Selection defaults disabled/MEDIUM, while a
+separate boolean-only preflight must proactively offer all eligible reviews
+when present; scheduling and packet disclosure approval are distinct.
+Real local-route Claude/Codex synthetic policy/presence checks are not fresh
+security audits, live Jev requests, activated marketplace tests or proof of
+current installation. Historical source-discovery, secret-filter and OSV
+leap-second limitations remain. Earlier immutable tags are preserved.
 
 The only package-system translation is Sage's Claude marketplace dependency:
 Codex manifests have no package-dependency field, so Sage carries the complete

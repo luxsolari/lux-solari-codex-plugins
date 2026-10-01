@@ -6,7 +6,7 @@ Bauer guides your coding agent through a security audit of a codebase. It traces
 
 ## Status
 
-Bauer is listed in the Claude/Codex marketplaces and Hermes tap. Version 0.1.1 refreshes the documentation and records the host dogfood results; release status is available on the [releases page](https://github.com/luxsolari/bauer/releases). Your agent runs the audit using the skill and its Python helpers. Installation checks and audit results are recorded below; neither certifies that an application is secure.
+Bauer is listed in the Claude/Codex marketplaces and Hermes tap. Version 0.2.0 adds deterministic optional-review selection, complete severity tables and a supplied-evidence completion/applicability gate; publication status is available on the [releases page](https://github.com/luxsolari/bauer/releases). Your agent runs the audit using the skill and its Python helpers. Installation checks and audit results are recorded below; neither certifies that an application is secure.
 
 ## Sources we check
 
@@ -29,6 +29,16 @@ Bauer uses advisory databases, weakness classifications and verification standar
 | [OpenSSF Scorecard](https://scorecard.dev/) | Checks of an open-source repository's security practices | The agent uses available per-check results as evidence, not as a blanket trust score. |
 
 Only OWASP retrieval and OSV queries have dedicated clients in this release. The other checks depend on the agent's tools, access and the application being audited. A dependency match still needs an applicability review. An unqueried feed stays unqueried in the report.
+
+## Completion and applicability
+
+Every audit must plan and account for the thirteen registered sources/frameworks, dependency coverage and relevant remote configuration, even when some checks are agent-mediated. Input `completion_checks` records applicability, outcome, specific reason and supporting evidence; `completion_scope` records exact inventory/approval/query identity sets and scoped hosted targets. Applicability `unknown` is not `not_applicable`. Missing records remain `unattempted`; access blocked, controls not tested and failed retrieval are distinct. The report computes an overall complete/partial ledger and displays every obligation in JSON and a Markdown table. A partial audit remains partial even with zero findings.
+
+The gate validates supplied records and references, not their factual truth or fresh agent classification. It performs no source/client queries and no remote access. An approved 90-package query out of 715 discovered scoped identities leaves 625 unresolved unless each exclusion has specific scope evidence; the remaining inventory is not automatically approved for disclosure. Supabase/Vercel settings require scoped authorized read-only evidence, not inference from source. GHSA needs an explicit applicability decision. CVE/NVD/KEV/EPSS cannot be dismissed from lack of custom-code CVEs while dependencies remain unqueried. ASVS depends on evidenced control scope, and SLSA source/build/distribution usually applies to plugin/CLI code despite stdlib-only runtime.
+
+At preflight plan the checks; at closing show the gate table/status, unresolved checks and ask permission to continue. Optional Jev outcomes remain separate and do not conceal base gaps or grant disclosure permission. Run `scripts/report.py` for both formats; `completion.py` is a support module, not a standalone CLI. See [exact completion schema](skills/bauer/references/report.md#completionapplicability-input-and-derived-gate).
+
+Actual frozen synthetic Claude session-local-plugin and Codex read-only local-skill exercises rendered the partial 90/715 ledger, evidenced complete/nonapplicable and unknown/partial cases, and all five severity counts. The first gate exercise predates the independently reproduced contradiction fix; nine completion tests and the original contradiction fixture verify the correction. Both hosts separately exercised the corrected helper with one eligible MEDIUM finding and dummy-only key presence, asked the scheduling/disclosure/cost question and stopped for consent. No user reply, enabled scheduling, approved packet or post-consent API request was exercised. These are supplied-fixture host mechanics, not a fresh feed audit or activated marketplace-plugin audit. Host permission/cache warnings and one Claude evidence-file read omission remain in the receipts; no sandbox or scanner bypass was used.
 
 ## Optional Jev review
 
@@ -54,6 +64,30 @@ Jev gives the reviewer a few things to work with:
 - The report keeps its answers, model version, question rubric and request digest with the finding.
 
 Use Jev when you want that extra review and can approve sending the packet. Skip it when cost or code-disclosure rules get in the way. We tested the live integration; we have not measured better accuracy or fewer false positives. Model agreement can still be wrong, and confidence is not the probability that a finding is correct. Jev cannot suppress findings, lower severity, override a reproduced failure or approve a fix.
+
+### Selection policy
+
+Every audit now runs `selection.py` on frozen report evidence before optional Jev review. Default: disabled, minimum MEDIUM. With explicit review scheduling enabled, every CRITICAL/HIGH/MEDIUM finding is queued for packet approval, whether candidate, supported or reproduced. Use `--min-severity LOW` or another uppercase severity to explicitly change that boundary; there is no arbitrary cap. The queue includes below-threshold and disabled entries with reasons, not just selected findings.
+
+```sh
+python3 skills/bauer/scripts/selection.py evidence.json
+python3 skills/bauer/scripts/selection.py evidence.json --enabled
+python3 skills/bauer/scripts/selection.py evidence.json --enabled --min-severity HIGH
+```
+
+The helper validates through `report.normalize`; its output `policy` can be copied to evidence `jev_policy` so JSON/Markdown include the same queue. Same evidence and policy yield the same queue regardless of agent or finding order. Agents still discover findings and assign severity; fresh audits are not deterministic. The helper reads no key, constructs no packet, scans/executes no code and makes no network request. `pending_packet_approval` is not disclosure authorization: the final curated packet still requires approval and both existing adapter consent switches. Completed/unavailable adapter results and auditor-authored declined notes remain separate finding `jev` metadata; the queue is a plan, not a completion ledger. See [policy and outcomes](skills/bauer/references/jev.md).
+
+JSON supplies all five normalized severity counts. Markdown and the agent's final chat must show a separate compact `Severity | Count` table in CRITICAL/HIGH/MEDIUM/LOW/INFORMATIONAL order, including zeros. Prose counts or limited finding highlights do not replace it; level totals do not repeat on each finding row.
+
+Real Claude Code session-local plugin and Codex local-skill exercises both ran the selection/report helpers on the same 15 synthetic findings: nine eligible at MEDIUM, all evidence statuses preserved, identical parsed queues, and all five final-chat severity counts correct. Frozen trees stayed unchanged. These are policy/report checks, not a fresh security audit, live Jev request or activated marketplace-plugin test.
+
+### Proactive review offer
+
+Before closing every audit, unless the user explicitly declined Jev for this audit, execute a separate boolean-only presence check in the exact environment that would launch `jev.py`: `python3 -c "import os; print(bool(os.environ.get('TYPESAFE_API_KEY')))"`. Do this even while selection is disabled; never read credential files, print the value, ask for a key in chat, or call the adapter to test presence. Record `key_present` when True; when False record `missing_key` (absent in the helper environment), or `filtered_environment` only if known host policy/launch evidence establishes filtering. False alone cannot establish whether a configured key was filtered. If the user explicitly declined or disabled Jev, skip the check and record `explicitly_disabled` with the user's reason; the default disabled policy is not an explicit decline.
+
+When `key_present` and the disabled queue has eligible findings (MEDIUM or higher by default), proactively ask the user whether to schedule secondary review before declaring the audit finished. Offer scheduling for all eligible entries, not an arbitrary subset or cap; the user may explicitly change the severity threshold or later decline individual packets. Display every eligible queue entry's generated ID, severity and evidence status; explain TypeSafe disclosure of minimized snippets and possible provider cost. Ask through the host's interactive question tool or ordinary chat, and wait for an answer. Only after explicit opt-in rerun selection with `--enabled`; prepare source-checked, minimized specific packets and obtain separate final packet approval before either adapter consent switch. Presence and scheduling opt-in never authorize disclosure. A decline leaves selection disabled and records `explicitly_disabled`; no answer is pending, not declined. If the host genuinely cannot ask, record `not_offered` with `interaction_unavailable`, not user decline, and keep selection disabled. With no eligible findings record that reason, not a missing offer. Preserve these auditor-authored preflight/offer outcomes in finding `jev` notes and report limitations separately from actual adapter responses; never invent probabilities, request hashes or completed reviews. Do not silently skip this stage.
+
+The amended end-stage workflow was exercised on actual Claude Code and Codex local routes with a synthetic presence-only value and with the variable absent. Both present runs displayed the nine eligible entries, disclosed cost/data boundaries, asked an ordinary-chat opt-in question and stopped with scheduling disabled. Both absent runs recorded `missing_key` without claiming user decline or proven filtering. These checks did not exercise user answers, packet preparation, native interactive question widgets or live TypeSafe requests.
 
 ### Configure your key
 
@@ -149,7 +183,8 @@ The GitHub download may need authenticated access if the anonymous API quota is 
 
 ## What we tested
 
-- 74 offline tests passed locally on Python 3.9.6/macOS and in hosted Linux/macOS/Windows CI on Python 3.9 and 3.13 ([run](https://github.com/luxsolari/bauer/actions/runs/36898896800)).
+- The current v0.2.0 suite has 94 offline tests, including nine completion regressions, deterministic selection, consent boundaries and the five-row severity table. Historical v0.1.0 hosted Linux/macOS/Windows CI on Python 3.9 and 3.13 ran 74 tests ([run](https://github.com/luxsolari/bauer/actions/runs/36898896800)); that receipt does not establish current-release CI.
+- Independent bounded selection/report review passed seven probe groups, including 30 malformed/forged inputs and 30 input permutations, without new security/logic blockers. Real Claude/Codex policy exercises are scoped as described above; no live Jev or fresh security audit was performed for this change.
 - Actual OWASP source retrieval selected Web 2025 and LLM 2026; the LLM PDF category extraction is an agent step, and the downloaded cover's publication-date placeholder remains an explicit provenance discrepancy.
 - Approved synthetic live Jev packet returned a schema-validated response from pinned `jev-1.13.0`; no domain-calibration claim.
 - Approved public OSV test inventory (`PyPI/requests/2.19.1`, not project inventory) returned ten source records grouped into five alias groups. Applicability stays unverified.
@@ -162,7 +197,7 @@ A bounded source-only audit of OWASP-linked PyGoat at `19d17cc8874861142b330636d
 
 ## Limits
 
-Actual Claude Code session-local plugin execution invoked `bauer:bauer` and read all four helpers. Codex execution loaded the local skill, inspected the native package and exercised bounded offline helper/report checks. Neither run exercised an activated marketplace plugin. Both used cached guidance, left their frozen source trees unchanged and found no new demonstrated security vulnerability.
+Historical v0.1.1 Claude Code session-local plugin execution invoked `bauer:bauer` and read all four helpers. Codex execution loaded the local skill, inspected the native package and exercised bounded offline helper/report checks. Neither run exercised an activated marketplace plugin. Both used cached guidance, left their frozen source trees unchanged and found no new demonstrated security vulnerability.
 
 Claude retained one LOW candidate about publication-status wording heuristics and one INFORMATIONAL secret-filter limitation. The candidate was not reproduced: Web categories are checked exactly, and LLM downloads still require document extraction. Discovery uses a finite wording check, not an authoritative publication-status API. A single official download may be selected without an independently descriptive link label; the agent must verify the document. Secret-pattern screening is best effort and does not replace review of the packet before disclosure. Codex retained the already documented leap-second limitation. These results are scoped reviews, not proof that Bauer is safe under every host or input.
 
