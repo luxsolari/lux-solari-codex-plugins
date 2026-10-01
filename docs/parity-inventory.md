@@ -20,17 +20,25 @@ source-maintenance automation).
 | Lux Visual Systems | native Codex skill, canonical master, 13 supporting visual boards, format rules, reference governance, dual licenses | Direct image generation; subject references and current-turn corrections take priority over the packaged visual system. |
 | Anime Identity Designer | recovered GPT prompt/configuration, compact skill, 13 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and separates subject identity from the packaged style system. |
 | Machine Pilgrim | recovered GPT prompt/configuration, original source text, compact canon, 18 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and preserves scene, canon, and conversation continuity. |
-| Bauer 0.1.0 | exact portable skill, four Python helpers, five reference files, six upstream test modules, both manifests, README, changelog, MIT license and third-party notice | No runtime translation; resolve helper paths from the installed skill. Claude manifest is verification-only for the unchanged upstream cross-host contract. |
+| Bauer 0.1.1 | exact portable skill, four Python helpers, five reference files, six upstream test modules, both manifests, README, changelog, MIT license and third-party notice | No runtime translation; resolve helper paths from the installed skill. Claude manifest is verification-only for the unchanged upstream cross-host contract. |
 
-Bauer is pinned to `213f085dcd316923aab78324c8ea6a3e58713c34` from
-`luxsolari/bauer`. [bauer-source-parity.json](bauer-source-parity.json) records
+Bauer is pinned to `b66402ad3cb194cce684602a2728414c5d583d8f` from
+`luxsolari/bauer`: the post-tag metadata fix for version 0.1.1, not the immutable
+`v0.1.1` tag at `9870701ce5fa73cecc71a9ed2e1935eeebb8e943`. Both source
+manifests carry the corrected description, "Evidence-backed security audits with
+optional Jev review." [bauer-source-parity.json](bauer-source-parity.json) records
 SHA-256 for every copied file, including documentation and verification. The
 package parity test checks the exact file inventory and helper/reference paths
 without needing the source checkout or network. The pinned upstream manifest
 includes the required Codex interface metadata, and the changelog contains a
-dated 0.1.0 entry. Both are copied unchanged; no Bauer-specific local publication
-blocker remains after validation. See `JOURNAL.md` for verification and the
-separate pre-existing Three Axes test failure.
+dated 0.1.1 entry. All 22 files are copied unchanged, including the refreshed
+README, manifest/skill versions and upstream version assertion. This is a
+documentation-and-version refresh: the four helper implementations and reference
+files are unchanged. Host dogfood evidence in the README is bounded: Claude
+session-local execution and Codex local-skill execution did not exercise activated
+marketplace plugins or demonstrate a new vulnerability. Known discovery, secret-
+filter and OSV timestamp limitations remain documented, not remediated. See
+`JOURNAL.md` for local verification and publication boundaries.
 
 The only package-system translation is Sage's Claude marketplace dependency:
 Codex manifests have no package-dependency field, so Sage carries the complete

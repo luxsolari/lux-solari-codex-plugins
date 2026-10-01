@@ -347,12 +347,16 @@ Claude package. The ledger records its shipped runtime and verification surface.
 
 ## bauer
 
-Pinned source: `luxsolari/bauer` at `213f085dcd316923aab78324c8ea6a3e58713c34` (0.1.0).
+Pinned source: `luxsolari/bauer` at `b66402ad3cb194cce684602a2728414c5d583d8f` (0.1.1).
+This pin is the post-tag description metadata fix, not an exact copy of the
+immutable `v0.1.1` tag at `9870701ce5fa73cecc71a9ed2e1935eeebb8e943`.
 All copied bytes are recorded in `docs/bauer-source-parity.json`. No source
 runtime or license translation is applied. The Claude manifest is retained
 only so the unchanged upstream cross-host test can run. Canonical release metadata
-provides the required Codex interface fields and a dated 0.1.0 changelog entry;
-these files are copied unchanged rather than patched for the marketplace.
+provides the required Codex interface fields and a dated 0.1.1 changelog entry;
+these files and the current README are copied unchanged rather than patched for
+the marketplace. The update records bounded host dogfood and known limitations,
+not new helper behavior, an activated-marketplace audit or security certification.
 
 | Source file | Classification |
 | --- | --- |
