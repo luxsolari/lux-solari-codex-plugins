@@ -42,16 +42,38 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(report['counts']['HIGH'], 1)
         self.assertEqual(report['findings'][0]['status'], 'reproduced')
 
+    def test_proactive_review_offer_contract_and_boolean_presence(self):
+        import os
+        for relative in ('skills/bauer/SKILL.md', 'skills/bauer/references/jev.md', 'README.md'):
+            text = (ROOT / relative).read_text()
+            for requirement in ('key_present', 'missing_key', 'filtered_environment',
+                                'explicitly_disabled', 'interaction_unavailable',
+                                'not_offered', 'proactively', 'packet approval',
+                                'not an arbitrary subset or cap'):
+                with self.subTest(document=relative, requirement=requirement):
+                    self.assertIn(requirement, text)
+        command = "import os; print(bool(os.environ.get('TYPESAFE_API_KEY')))"
+        for present in (False, True):
+            env = {key: value for key, value in os.environ.items()
+                   if key in ('PATH', 'HOME', 'SYSTEMROOT', 'TMPDIR')}
+            if present:
+                env['TYPESAFE_API_KEY'] = 'synthetic-presence-only-not-a-key'
+            run = subprocess.run([sys.executable, '-c', command], env=env,
+                                 capture_output=True, text=True, timeout=10, check=True)
+            self.assertEqual(run.stdout, str(present) + '\n')
+            self.assertEqual(run.stderr, '')
+            self.assertNotIn('synthetic-presence-only-not-a-key', run.stdout + run.stderr)
+
     def test_manifests_and_runtime_support_files_match(self):
         for host in ('claude', 'codex'):
             manifest = json.loads((ROOT / ('.' + host + '-plugin/plugin.json')).read_text())
             self.assertEqual(manifest['name'], 'bauer')
-            self.assertEqual(manifest['version'], '0.1.1')
+            self.assertEqual(manifest['version'], '0.2.0')
         skill = (ROOT / 'skills/bauer/SKILL.md').read_text()
         self.assertTrue(skill.startswith('---\n'))
         description = next(line for line in skill.splitlines() if line.startswith('description: '))[13:]
         self.assertLessEqual(len(description), 60)
-        for path in ('scripts/report.py', 'scripts/sources.py', 'scripts/jev.py',
+        for path in ('scripts/report.py', 'scripts/sources.py', 'scripts/jev.py', 'scripts/selection.py',
                      'references/report.md', 'references/jev.md'):
             self.assertTrue((ROOT / 'skills/bauer' / path).is_file(), path)
         self.assertIn('scripts/jev.py', (ROOT / 'skills/bauer/references/jev.md').read_text())

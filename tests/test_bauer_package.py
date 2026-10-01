@@ -5,12 +5,13 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'plugins/bauer'
 SKILL = PACKAGE / 'skills/bauer'
-PIN = '8dd9d1d5175187255398562e0381a6118896d9cf'
+PIN = '69c870e3bc5cfedc204899c9ad08feaef8f7e5d8'
 
 
 class BauerPackageTests(unittest.TestCase):
@@ -19,8 +20,8 @@ class BauerPackageTests(unittest.TestCase):
         self.assertTrue(path.is_file(), 'pinned source parity inventory missing')
         inventory = json.loads(path.read_text())
         self.assertEqual(inventory['revision'], PIN)
-        self.assertEqual(inventory['version'], '0.1.1')
-        self.assertEqual(len(inventory['files']), 22)
+        self.assertEqual(inventory['version'], '0.2.0')
+        self.assertEqual(len(inventory['files']), 26)
         readme = (PACKAGE / 'README.md').read_text()
         for expected in ('For persistent terminal setup', '~/.zshrc', '~/.bashrc',
                          'shell_environment_policy', '### Secret-manager example: 1Password',
@@ -53,21 +54,43 @@ class BauerPackageTests(unittest.TestCase):
             references.update(re.findall(r'(?:scripts|references)/[A-Za-z0-9_.-]+\.(?:py|md|json)', text))
             self.assertNotIn('CLAUDE_PLUGIN_ROOT', text)
             self.assertNotIn('${PLUGIN_ROOT}', text)
-        required = {'scripts/dependencies.py', 'scripts/jev.py', 'scripts/report.py', 'scripts/sources.py',
+        required = {'scripts/dependencies.py', 'scripts/jev.py', 'scripts/report.py', 'scripts/sources.py', 'scripts/selection.py', 'scripts/completion.py',
                     'references/advisories.md', 'references/jev.md', 'references/report.md',
                     'references/security-sources.json', 'references/supply-chain.md'}
-        self.assertTrue(required.issubset(references), required - references)
+        self.assertTrue((required - {'scripts/completion.py'}).issubset(references), required - references)
+        self.assertTrue((SKILL / 'scripts/completion.py').is_file())
+        self.assertIn('completion_checks', (SKILL / 'references/report.md').read_text())
+        self.assertIn('completion_scope', (SKILL / 'references/report.md').read_text())
         for relative in references:
             self.assertTrue((SKILL / relative).is_file(), relative)
 
     def test_helpers_run_from_outside_the_package_without_network(self):
-        for name in ('dependencies', 'jev', 'report', 'sources'):
+        for name in ('dependencies', 'jev', 'report', 'sources', 'selection'):
             with self.subTest(helper=name):
                 run = subprocess.run([sys.executable, str(SKILL / 'scripts' / (name + '.py')), '--help'],
                                      cwd=ROOT.parent, capture_output=True, text=True, timeout=10)
                 self.assertEqual(run.returncode, 0, run.stderr)
                 self.assertEqual(run.stderr, '')
                 self.assertIn('usage:', run.stdout)
+
+        fixture = dict(scope='synthetic package contract', sources=[], coverage=[],
+                       limitations=['Synthetic only; no queries'], findings=[])
+        with tempfile.TemporaryDirectory() as folder:
+            evidence = Path(folder) / 'evidence.json'
+            evidence.write_text(json.dumps(fixture))
+            for fmt in ('json', 'markdown'):
+                run = subprocess.run([sys.executable, str(SKILL / 'scripts/report.py'), str(evidence), '--format', fmt],
+                                     capture_output=True, text=True, timeout=10)
+                self.assertEqual(run.returncode, 0, run.stderr)
+                if fmt == 'json':
+                    gate = json.loads(run.stdout)['completion_gate']
+                    self.assertEqual(gate['status'], 'partial')
+                    self.assertEqual(len(gate['obligations']), 15)
+                    self.assertTrue(all(row['status'] == 'unattempted' for row in gate['obligations']))
+                else:
+                    self.assertIn('Overall: partial', run.stdout)
+                    self.assertIn('dependency&#95;coverage', run.stdout)
+
 
     def test_ci_exercises_packaged_bauer_tests_and_parity(self):
         workflow = (ROOT / '.github/workflows/ci.yml').read_text()

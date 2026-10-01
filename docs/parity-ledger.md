@@ -347,17 +347,16 @@ Claude package. The ledger records its shipped runtime and verification surface.
 
 ## bauer
 
-Pinned source: `luxsolari/bauer` at `8dd9d1d5175187255398562e0381a6118896d9cf` (0.1.1).
-This pin adds persistent-environment and 1Password setup documentation after the
-post-tag description metadata fix; it is not an exact copy of the
-immutable `v0.1.1` tag at `9870701ce5fa73cecc71a9ed2e1935eeebb8e943`.
-All copied bytes are recorded in `docs/bauer-source-parity.json`. No source
-runtime or license translation is applied. The Claude manifest is retained
-only so the unchanged upstream cross-host test can run. Canonical release metadata
-provides the required Codex interface fields and a dated 0.1.1 changelog entry;
-these files and the current README are copied unchanged rather than patched for
-the marketplace. The update records bounded host dogfood and known limitations,
-not new helper behavior, an activated-marketplace audit or security certification.
+Pinned source: `luxsolari/bauer` at `69c870e3bc5cfedc204899c9ad08feaef8f7e5d8` (0.2.0).
+All 26 copied files are recorded in `docs/bauer-source-parity.json`; runtime,
+licenses, native manifests, current docs and upstream tests are unchanged from
+canonical. Selection adds deterministic optional-review queues; the sixth
+module validates supplied completion/applicability records without queries.
+Five modules have CLI entry points; report.py renders completion JSON/Markdown.
+Eight upstream test modules contain 94 tests; reports include all severity counts. A separate presence preflight and
+proactive offer preserve scheduling/disclosure consent boundaries. Actual local
+host checks are synthetic, not a fresh audit or activated marketplace test.
+Earlier release tags stay immutable. New installation remains unexercised.
 
 | Source file | Classification |
 | --- | --- |
@@ -376,13 +375,17 @@ not new helper behavior, an activated-marketplace audit or security certificatio
 | `skills/bauer/references/report.md` | copied runtime |
 | `skills/bauer/references/security-sources.json` | copied runtime |
 | `skills/bauer/references/supply-chain.md` | copied runtime |
+| `skills/bauer/scripts/completion.py` | copied runtime |
 | `skills/bauer/scripts/dependencies.py` | copied runtime |
 | `skills/bauer/scripts/jev.py` | copied runtime |
 | `skills/bauer/scripts/report.py` | copied runtime |
 | `skills/bauer/scripts/sources.py` | copied runtime |
+| `skills/bauer/scripts/selection.py` | copied runtime |
+| `tests/test_completion.py` | copied verification |
 | `tests/test_dependencies.py` | copied verification |
 | `tests/test_jev.py` | copied verification |
 | `tests/test_report.py` | copied verification |
 | `tests/test_sources.py` | copied verification |
+| `tests/test_selection.py` | copied verification |
 | `tests/test_sources_contract.py` | copied verification |
 | `tests/test_workflow.py` | copied verification |

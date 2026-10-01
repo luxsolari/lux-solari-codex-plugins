@@ -1,5 +1,13 @@
 # Journal
 
+## 2026-10-01 — Bauer v0.2.0 final canonical distribution
+
+- Copy all26 declared files from exact canonical `69c870e3bc5cfedc204899c9ad08feaef8f7e5d8` (immutable v0.2.0); add selection/completion modules and corresponding upstream tests, retain both native manifests/current README/CHANGELOG unchanged. Five CLI entry points plus completion support, eight upstream test modules/94 tests. Updated pin/hashes/version assertions, complete29-path source ledger and current setup/docs. No downstream runtime adaptations or invented catalog change.
+- Verified all26 byte/hash/inventory entries against canonical Git blobs, all94 packaged tests, all16 marketplace tests, all ten validators, complete source-ledger classification and git diff --check. Existing package contract now exercises report.py JSON/Markdown partial gate with15 missing obligations; the initial literal underscore assertion failed against actual escaped Markdown, then was corrected to the rendered bytes and passed. Validator initially mistook an empty error list for failure; corrected the runner assertion, all ten return no errors. No runtime modification for either test-runner issue.
+- Canonical PR4 merged after exact-head green CI; merged-main run36927591916 succeeded across six jobs. Non-draft/non-prerelease v0.2.0 release/tag target was read back. Corrected helper host offers use dummy-only presence and stop for scheduling/packet consent; no fresh feed audit, activated plugin, current install or post-consent Jev request claimed.
+- Publication will use exact-head green marketplace CI, then ordinary squash or user-authorized admin only for missing approving review. Remote PR state/full copied-blob parity will be read back into scratch/bauer-v020-publication receipts; no source journal edit after freeze. Original checkout/untracked IDEA.md, profiles and immutable earlier tags preserved.
+- Files: plugins/bauer/*, docs/bauer-source-parity.json, docs/parity-inventory.md/parity-ledger.md, tests/test_bauer_package.py/test_parity_inventory.py, README.md, JOURNAL.md. Open at commit: marketplace CI/merge/readback; current installs remain unexercised. Unrelated packages unchanged.
+
 ## 2026-10-01 - Bauer persistent-environment documentation marketplace sync
 
 - Standing delivery rule from the owner: marketplace copies must automatically follow canonical plugin state, including documentation-only updates; do not defer synchronization merely because the runtime/version is unchanged. Recorded here without changing active-profile skills or settings.
