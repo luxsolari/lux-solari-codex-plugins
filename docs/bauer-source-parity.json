@@ -1,15 +1,15 @@
 {
   "repository": "https://github.com/luxsolari/bauer",
-  "revision": "fc7ba2eb8f4f91cc12f27fb3c0655c519127691d",
-  "version": "0.3.0",
+  "revision": "ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69",
+  "version": "0.3.1",
   "files": {
-    ".claude-plugin/plugin.json": "6da4e99a4135b35a2d364d63afd19824c1ff9e70405c00f5ed81ae2fa37be093",
-    ".codex-plugin/plugin.json": "6dfd6a487eded07526ccb533aaf8c89e765e4e2795468ebd09342b95ce8980ef",
-    "CHANGELOG.md": "fcee2927c1c61a1a4c958e2b6aeaf4120880886fd13d5b5da8669fc3f0f5c789",
+    ".claude-plugin/plugin.json": "3def8493972f53d1636121bc36575d770226ec81cfcdfbf4669398c965414b5f",
+    ".codex-plugin/plugin.json": "638816a75dd6577df7de951fde5eb59d2afcf92053d0b1ffbb7d8240ad8d1971",
+    "CHANGELOG.md": "a46e34a2cbf6f3356d50242e1d5e04037721ffc80bb18965783b58e708adc420",
     "LICENSE": "8fb712a4d8c460cbe5d21670eca25b42af259ea6b5198522ec16ac44876e82ed",
     "NOTICE.md": "75fce84b46afa524ec086294f3f11f203adf34197f0f5ec0ec39ff8f7b58f602",
     "README.md": "ecf52fa5ff281467658aaaa2d8bc47211d9d6560b5edb48b5b32201220fe3bf9",
-    "skills/bauer/SKILL.md": "37e9b835082ed21ed034f7597d3180bb499ed68eacd5d4e1cd29864183a5a47f",
+    "skills/bauer/SKILL.md": "007a8e42b70d97df9acce52e5b7b665bd62c49e0678297b8603878457e2ccc56",
     "skills/bauer/references/advisories.md": "f6b1b7c4298df8f8c69b72961c83b2649864ea86925507ca4d7eb98caa375728",
     "skills/bauer/references/jev.md": "0e3edfd0ee68084a71a325893b63ed699c856c8deafe812ff4251a13a496b6d5",
     "skills/bauer/references/report.md": "a4e2148846973f33ab9751274f9c38bb1e5c7507c74c5b96223a9cccdbae600a",
@@ -40,6 +40,6 @@
     "tests/test_selection.py": "e4990c6cc32a0beba75ac62d046991d2c341e811b8f7308131fc486e2295754a",
     "tests/test_sources.py": "d719b479ea1845ea4c98b438f50275b2409e897b9316714046f69199b872f857",
     "tests/test_sources_contract.py": "279b8b1623a701b64935d4b6e1a17dc47a99d07a78d4507a8aa616ac4b2b730d",
-    "tests/test_workflow.py": "b7570f59243ff61b5d548e5885d8f2b28277c8ed6828f65149f8fa213e518949"
+    "tests/test_workflow.py": "4d4b1871d06c7441c1a2c2d100ac2a6ff7258cf9461e97756b7f54389ea57a02"
   }
 }

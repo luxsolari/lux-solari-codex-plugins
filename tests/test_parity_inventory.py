@@ -25,7 +25,7 @@ class ParityInventoryTests(unittest.TestCase):
             "lux-visual-systems": ("1.2.1", "CC-BY-SA-4.0"),
             "anime-identity-designer": ("1.1.1", "CC-BY-SA-4.0"),
             "machine-pilgrim": ("1.1.1", "CC-BY-SA-4.0"),
-            "bauer": ("0.3.0", "MIT"),
+            "bauer": ("0.3.1", "MIT"),
         }
         for name, (version, license_name) in expected.items():
             manifest = self.manifest(name)
