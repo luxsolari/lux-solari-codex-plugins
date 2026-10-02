@@ -11,7 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'plugins/bauer'
 SKILL = PACKAGE / 'skills/bauer'
-PIN = '08320e9155850cbd9b4be2f2051eb62bf4247f81'
+PIN = '25cad4f9c2e875444348f738fea012b812ae4287'
 
 
 class BauerPackageTests(unittest.TestCase):
@@ -20,17 +20,13 @@ class BauerPackageTests(unittest.TestCase):
         self.assertTrue(path.is_file(), 'pinned source parity inventory missing')
         inventory = json.loads(path.read_text())
         self.assertEqual(inventory['revision'], PIN)
-        self.assertEqual(inventory['version'], '0.2.1')
-        self.assertEqual(len(inventory['files']), 26)
+        self.assertEqual(inventory['version'], '0.3.0')
+        self.assertEqual(len(inventory['files']), 38)
         readme = (PACKAGE / 'README.md').read_text()
-        for expected in ('For persistent terminal setup', '~/.zshrc', '~/.bashrc',
-                         'shell_environment_policy', '### Secret-manager example: 1Password',
-                         "TYPESAFE_API_KEY='op://Private/TypeSafe/api_key' op run -- claude",
-                         'claude-jev()', 'Bauer does not resolve secret-manager references',
-                         'no live vault retrieval was exercised',
-                         'A configured key does not grant that approval'):
-            with self.subTest(documented_setup=expected):
-                self.assertIn(expected, readme)
+        for expected in ('You provide the API key and configure your environment',
+                         'TYPESAFE_API_KEY', 'does not manage credentials or load configuration files',
+                         'Sending evidence still requires approval'):
+            self.assertIn(expected, readme)
         self.assertNotIn('read -r -s TYPESAFE_API_KEY', readme)
         for host in ('claude', 'codex'):
             manifest = json.loads((PACKAGE / ('.' + host + '-plugin/plugin.json')).read_text())
@@ -65,9 +61,9 @@ class BauerPackageTests(unittest.TestCase):
             self.assertTrue((SKILL / relative).is_file(), relative)
 
     def test_helpers_run_from_outside_the_package_without_network(self):
-        for name in ('dependencies', 'jev', 'report', 'sources', 'selection'):
+        for name in ('dependencies', 'jev', 'report', 'sources', 'selection', 'control'):
             with self.subTest(helper=name):
-                run = subprocess.run([sys.executable, str(SKILL / 'scripts' / (name + '.py')), '--help'],
+                run = subprocess.run([sys.executable, '-B', str(SKILL / 'scripts' / (name + '.py')), '--help'],
                                      cwd=ROOT.parent, capture_output=True, text=True, timeout=10)
                 self.assertEqual(run.returncode, 0, run.stderr)
                 self.assertEqual(run.stderr, '')
@@ -78,8 +74,18 @@ class BauerPackageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             evidence = Path(folder) / 'evidence.json'
             evidence.write_text(json.dumps(fixture))
+            control = SKILL / 'scripts/control.py'
+            pending = Path(folder) / 'pending.json'
+            confirmed = Path(folder) / 'confirmed.json'
+            first = subprocess.run([sys.executable, '-B', str(control), 'preflight', '--output', str(pending)],
+                                   capture_output=True, text=True, check=True)
+            self.assertEqual(json.loads(first.stdout)['status'], 'pending_confirmation')
+            subprocess.run([sys.executable, '-B', str(control), 'confirm', '--run-record', str(pending),
+                            '--decision', 'confirm', '--user-response', 'Synthetic package fixture confirmation',
+                            '--response-ref', 'fixture:second-turn', '--output', str(confirmed)],
+                           capture_output=True, text=True, check=True)
             for fmt in ('json', 'markdown'):
-                run = subprocess.run([sys.executable, str(SKILL / 'scripts/report.py'), str(evidence), '--format', fmt],
+                run = subprocess.run([sys.executable, '-B', str(SKILL / 'scripts/report.py'), str(evidence), '--run-record', str(confirmed), '--format', fmt],
                                      capture_output=True, text=True, timeout=10)
                 self.assertEqual(run.returncode, 0, run.stderr)
                 self.assertIn('Security audits can be token-intensive', run.stdout)
@@ -87,7 +93,7 @@ class BauerPackageTests(unittest.TestCase):
                     gate = json.loads(run.stdout)['completion_gate']
                     self.assertEqual(gate['status'], 'partial')
                     self.assertEqual(len(gate['obligations']), 15)
-                    self.assertTrue(all(row['status'] == 'unattempted' for row in gate['obligations']))
+                    self.assertTrue(all(row['status'] == 'unattempted' for row in gate['obligations'] if row['selected']))
                 else:
                     self.assertIn('Overall: partial', run.stdout)
                     self.assertIn('dependency&#95;coverage', run.stdout)

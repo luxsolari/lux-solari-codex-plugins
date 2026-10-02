@@ -347,24 +347,13 @@ Claude package. The ledger records its shipped runtime and verification surface.
 
 ## bauer
 
-Pinned source: `luxsolari/bauer` at `08320e9155850cbd9b4be2f2051eb62bf4247f81` (0.2.1).
-All 26 copied files are recorded in `docs/bauer-source-parity.json`; runtime,
-licenses, native manifests, current docs and upstream tests are unchanged from
-canonical. Selection adds deterministic optional-review queues; the sixth
-module validates supplied completion/applicability records without queries.
-Five modules have CLI entry points; report.py renders completion JSON/Markdown.
-Eight upstream test modules contain 96 tests; reports include all severity counts.
-The patch adds mandatory actual-chat resource warnings and stable generated
-JSON/Markdown notes, with no fabricated usage metrics or automatic budget cap.
-A separate presence preflight and proactive offer preserve scheduling/disclosure consent boundaries. Actual local
-host checks are synthetic, not a fresh audit or activated marketplace test.
-Earlier release tags stay immutable. New installation remains unexercised.
+Pinned source: `luxsolari/bauer` at `25cad4f9c2e875444348f738fea012b812ae4287` (0.3.0). All 38 copied files match the complete [SHA-256 inventory](bauer-source-parity.json); ten runtime modules and thirteen upstream test modules (138 tests). Contracts and bounded host gaps are in [the shipped README](../plugins/bauer/README.md). Earlier tags remain immutable.
 
 | Source file | Classification |
 | --- | --- |
 | `.claude-plugin/plugin.json` | copied verification |
 | `.codex-plugin/plugin.json` | copied native Codex manifest |
-| `.github/workflows/test.yml` | consolidated CI or source release packaging |
+| `.github/workflows/test.yml` | source-repository-only documentation/release packaging |
 | `.gitignore` | source-repository-only documentation/release packaging |
 | `CHANGELOG.md` | copied documentation/release packaging |
 | `JOURNAL.md` | source-repository-only documentation/release packaging |
@@ -378,16 +367,28 @@ Earlier release tags stay immutable. New installation remains unexercised.
 | `skills/bauer/references/security-sources.json` | copied runtime |
 | `skills/bauer/references/supply-chain.md` | copied runtime |
 | `skills/bauer/scripts/completion.py` | copied runtime |
+| `skills/bauer/scripts/control.py` | copied runtime |
 | `skills/bauer/scripts/dependencies.py` | copied runtime |
 | `skills/bauer/scripts/jev.py` | copied runtime |
+| `skills/bauer/scripts/profiles.py` | copied runtime |
 | `skills/bauer/scripts/report.py` | copied runtime |
-| `skills/bauer/scripts/sources.py` | copied runtime |
+| `skills/bauer/scripts/run_record.py` | copied runtime |
+| `skills/bauer/scripts/scorecard.py` | copied runtime |
 | `skills/bauer/scripts/selection.py` | copied runtime |
+| `skills/bauer/scripts/sources.py` | copied runtime |
+| `tests/fixtures/v021-asvs-gap.json` | copied verification |
+| `tests/fixtures/v021-complete.json` | copied verification |
+| `tests/fixtures/v021-disabled-policy.json` | copied verification |
 | `tests/test_completion.py` | copied verification |
+| `tests/test_confirmation.py` | copied verification |
+| `tests/test_control.py` | copied verification |
 | `tests/test_dependencies.py` | copied verification |
 | `tests/test_jev.py` | copied verification |
+| `tests/test_legacy.py` | copied verification |
+| `tests/test_profiles.py` | copied verification |
 | `tests/test_report.py` | copied verification |
-| `tests/test_sources.py` | copied verification |
+| `tests/test_run_record.py` | copied verification |
 | `tests/test_selection.py` | copied verification |
+| `tests/test_sources.py` | copied verification |
 | `tests/test_sources_contract.py` | copied verification |
 | `tests/test_workflow.py` | copied verification |
