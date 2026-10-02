@@ -155,9 +155,9 @@ workflow, not a standalone scanner or certification.
 codex plugin add bauer@lux-solari-codex
 ```
 
-Bauer v0.3.0 ships 38 exact files from canonical `fc7ba2eb8f4f91cc12f27fb3c0655c519127691d`, a post-tag documentation revision. Runtime bytes remain unchanged from the immutable v0.3.0 tag. Lean is default; Full and explicit Custom retain required dependency/remote coverage. New audit reports and selection require a confirmed run record. Offline status/scorecard controls inspect saved evidence; the audit control is a plan, not a scanner.
+Bauer v0.3.1 ships 38 exact files from canonical `ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69`, the immutable v0.3.1 documentation-only tag. Runtime helpers remain unchanged from v0.3.0. Lean is default; Full and explicit Custom retain required dependency/remote coverage. New audit reports and selection require a confirmed run record. Offline status/scorecard controls inspect saved evidence; the audit control is a plan, not a scanner.
 
-Security audits can be token-intensive; unfinished checks stay partial and optional Jev charges are separate. You provide the key and environment; Bauer reads `TYPESAFE_API_KEY` in its helper process. Sending evidence still requires approval. See [current setup and host limits](https://github.com/luxsolari/bauer/blob/fc7ba2eb8f4f91cc12f27fb3c0655c519127691d/README.md).
+Security audits can be token-intensive; unfinished checks stay partial and optional Jev charges are separate. You provide the key and environment; Bauer reads `TYPESAFE_API_KEY` in its helper process. Sending evidence still requires approval. See [current setup and host limits](https://github.com/luxsolari/bauer/blob/ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69/README.md).
 
 Unsigned records validate consistency, not user authority or safety. Claude preconfirmation discovery/helper ordering and Codex offline-disable proposals remain known limits; older installs do not prove new host activation. [JOURNAL.md](JOURNAL.md) records verification.
 

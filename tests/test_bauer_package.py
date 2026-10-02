@@ -11,7 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'plugins/bauer'
 SKILL = PACKAGE / 'skills/bauer'
-PIN = 'fc7ba2eb8f4f91cc12f27fb3c0655c519127691d'
+PIN = 'ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69'
 
 
 class BauerPackageTests(unittest.TestCase):
@@ -20,7 +20,7 @@ class BauerPackageTests(unittest.TestCase):
         self.assertTrue(path.is_file(), 'pinned source parity inventory missing')
         inventory = json.loads(path.read_text())
         self.assertEqual(inventory['revision'], PIN)
-        self.assertEqual(inventory['version'], '0.3.0')
+        self.assertEqual(inventory['version'], '0.3.1')
         self.assertEqual(len(inventory['files']), 38)
         readme = (PACKAGE / 'README.md').read_text()
         for expected in ('You provide the API key and configure your environment',
