@@ -22,7 +22,7 @@ source-maintenance automation).
 | Machine Pilgrim | recovered GPT prompt/configuration, original source text, compact canon, 18 original PNG references, tests, dual licenses | GPT capabilities become an explicit Codex skill that calls image generation directly and preserves scene, canon, and conversation continuity. |
 | Bauer 0.3.0 | 38 exact files: portable skill, ten stdlib modules, references, thirteen upstream test modules/fixtures, manifests, docs and notices | No runtime translation; resolve helpers relative to the installed skill. |
 
-Bauer is pinned to `25cad4f9c2e875444348f738fea012b812ae4287`. [bauer-source-parity.json](bauer-source-parity.json) inventories every copied byte. Canonical tests total 138; local package and hosted checks are separate. Profiles, confirmed run records, scorecards and offline controls validate supplied evidence, not truth or user authority. See [Bauer documentation](../plugins/bauer/README.md) and [verification journal](../JOURNAL.md) for contracts and known host gaps.
+Bauer is pinned to `fc7ba2eb8f4f91cc12f27fb3c0655c519127691d`. [bauer-source-parity.json](bauer-source-parity.json) inventories every copied byte. Canonical tests total 138; local package and hosted checks are separate. Profiles, confirmed run records, scorecards and offline controls validate supplied evidence, not truth or user authority. See [Bauer documentation](../plugins/bauer/README.md) and [verification journal](../JOURNAL.md) for contracts and known host gaps.
 
 The only package-system translation is Sage's Claude marketplace dependency:
 Codex manifests have no package-dependency field, so Sage carries the complete

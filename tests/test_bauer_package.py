@@ -11,7 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'plugins/bauer'
 SKILL = PACKAGE / 'skills/bauer'
-PIN = '25cad4f9c2e875444348f738fea012b812ae4287'
+PIN = 'fc7ba2eb8f4f91cc12f27fb3c0655c519127691d'
 
 
 class BauerPackageTests(unittest.TestCase):

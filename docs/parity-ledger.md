@@ -347,7 +347,7 @@ Claude package. The ledger records its shipped runtime and verification surface.
 
 ## bauer
 
-Pinned source: `luxsolari/bauer` at `25cad4f9c2e875444348f738fea012b812ae4287` (0.3.0). All 38 copied files match the complete [SHA-256 inventory](bauer-source-parity.json); ten runtime modules and thirteen upstream test modules (138 tests). Contracts and bounded host gaps are in [the shipped README](../plugins/bauer/README.md). Earlier tags remain immutable.
+Pinned source: `luxsolari/bauer` at `fc7ba2eb8f4f91cc12f27fb3c0655c519127691d` (0.3.0). All 38 copied files match the complete [SHA-256 inventory](bauer-source-parity.json); ten runtime modules and thirteen upstream test modules (138 tests). Contracts and bounded host gaps are in [the shipped README](../plugins/bauer/README.md). This is a post-tag documentation pin; v0.3.0 remains at `25cad4f9c2e875444348f738fea012b812ae4287`. All runtime bytes are unchanged. Earlier tags remain immutable.
 
 | Source file | Classification |
 | --- | --- |
