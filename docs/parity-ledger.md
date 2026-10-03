@@ -317,7 +317,10 @@ Claude package. The ledger records its shipped runtime and verification surface.
 | `skills/lux-visual-systems/references/visual-system.md` | authored Codex runtime |
 | `skills/lux-visual-systems/references/formats.md` | authored Codex runtime |
 | `skills/lux-visual-systems/references/reference-assets.md` | authored Codex runtime |
+| `skills/lux-visual-systems/references/craft-stickers.md` | authored visual reference catalogue |
+| `skills/lux-visual-systems/references/craft-stickers.json` | source-to-package mapping and SHA-256 inventory for all 57 supplied images |
 | `skills/lux-visual-systems/assets/*.png` | authored and reference visual runtime |
+| `skills/lux-visual-systems/assets/craft-stickers/*.png` | 44 supplied visual originals, preserved byte-for-byte |
 | `tests/test_visual_system_contract.py` | authored verification |
 
 ## anime-identity-designer

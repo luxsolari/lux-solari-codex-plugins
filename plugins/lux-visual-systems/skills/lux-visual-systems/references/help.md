@@ -19,3 +19,12 @@ The Lux Solari system supplies composition, hierarchy, palette discipline, typog
 4. **Art-direct this photograph as a Lux Solari editorial piece** — Attach the photograph, state the photographic or mixed-media rendering language, and identify any copy or metadata that must appear.
 
 You can refine a result with instructions such as “keep the subject, rendering language, and composition; change only the accent color.”
+
+## Your packaged reference library
+
+The plugin includes all 57 images from your 2026-10-03 Craft-stickers snapshot:
+mixed craft sheets, character studies, full illustrations, photography cards,
+film labels, and PS2/game labels. Name a category or original filename when you
+want a particular reference; otherwise the skill selects relevant originals for
+the brief. You do not need to attach those images again. Your subject references,
+chosen rendering language, and color mode still govern the result.

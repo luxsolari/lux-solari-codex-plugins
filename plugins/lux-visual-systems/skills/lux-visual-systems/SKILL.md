@@ -28,6 +28,7 @@ Then read only what the requested format needs:
 
 - Sticker sheets, character sheets, or full illustrations: [`references/formats.md`](references/formats.md)
 - Choosing packaged visual references: [`references/reference-assets.md`](references/reference-assets.md)
+- Selecting from Lux's complete craft-sticker collection: [`references/craft-stickers.md`](references/craft-stickers.md). Scan its relevant category for every generation brief, then visually inspect the few candidate originals. It includes character studies, full illustrations, mixed craft sheets, film labels, photography cards, and gaming labels; use the categories matching the subject and format.
 
 `assets/00_VISUAL_SYSTEM_MASTER.png` is the canonical visual source. Supporting boards demonstrate applications. The selected mode and the role-based palette in `references/visual-system.md` govern color: the master's cream-heavy example does not force light mode.
 
@@ -68,6 +69,7 @@ Choose packaged references deliberately:
 - Always treat the master as canonical, but attach only the few assets that materially help the current image.
 - Prefer a mode-matched board; describe which reference supplies subject identity, system grammar, and palette.
 - Prefer the master plus one or two format-specific boards over attaching the whole library.
+- The craft-sticker catalogue maps every source image to a packaged original. Use its images as supporting references, below the canonical master; do not inherit unrequested characters, logos, inscriptions, or multicolor palettes. Resolve asset paths relative to the installed skill directory. These references do not silently establish rendering language or color mode.
 - When current-turn subject images are available only through conversation context and the image tool cannot combine them with local asset paths, prioritize the current-turn subject images and encode the Lux system explicitly in the generation prompt.
 - When local paths exist for both subject and system references, include the subject paths first, then the canonical master, then the most relevant supporting board.
 
