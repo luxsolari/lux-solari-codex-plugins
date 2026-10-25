@@ -323,31 +323,6 @@ Claude package. The ledger records its shipped runtime and verification surface.
 | `skills/lux-visual-systems/assets/craft-stickers/*.png` | 44 supplied visual originals, preserved byte-for-byte |
 | `tests/test_visual_system_contract.py` | authored verification |
 
-## anime-identity-designer
-
-| Source file | Classification |
-| --- | --- |
-| Original GPT Builder instructions | preserved source and translated Codex skill |
-| Original GPT Builder configuration | preserved source and translated manifest/interface |
-| 13 Knowledge PNG files | copied runtime visual grounding |
-| `skills/anime-identity-designer/SKILL.md` | translated Codex runtime |
-| `skills/anime-identity-designer/references/*.md` | preserved or consolidated runtime grounding |
-| `tests/test_anime_identity_contract.py` | copied verification contract |
-| `LICENSE`, `LICENSE-DESIGN`, `NOTICE.md` | runtime licensing and rights boundary |
-
-## machine-pilgrim
-
-| Source file | Classification |
-| --- | --- |
-| Original GPT Builder instructions | preserved source and translated Codex skill |
-| Original GPT Builder configuration | preserved source and translated manifest/interface |
-| `conversations-with-the-machine-01.md` | copied runtime source text |
-| 18 Knowledge PNG files | copied runtime visual grounding |
-| `skills/machine-pilgrim/SKILL.md` | translated Codex runtime |
-| `skills/machine-pilgrim/references/*.md` | preserved or consolidated runtime grounding |
-| `tests/test_machine_pilgrim_contract.py` | copied verification contract |
-| `LICENSE`, `LICENSE-DESIGN`, `NOTICE.md` | runtime licensing and rights boundary |
-
 ## bauer
 
 Pinned source: `luxsolari/bauer` at `ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69` (0.3.1). All 38 copied files match the complete [SHA-256 inventory](bauer-source-parity.json); ten runtime modules and thirteen upstream test modules (138 tests). Contracts and bounded host gaps are in [the shipped README](../plugins/bauer/README.md). This pin matches the immutable v0.3.1 documentation-only tag. Runtime helpers are unchanged from v0.3.0; earlier tags remain immutable.

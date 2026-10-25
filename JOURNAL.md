@@ -1,5 +1,16 @@
 # Journal
 
+
+## 2026-10-25 — Keep personal image plugins outside the public marketplace
+
+- Removed Machine Pilgrim and Anime Identity Designer from the public catalogue, shipped plugin directories, README, parity inventory/ledger, root catalogue expectations and CI package invocations. Lux Visual Systems 1.3.0 remains listed and its package bytes are unchanged.
+- The owner is retaining both retired plugins privately. Their complete files were preserved and hash-checked in the owner's vault before removing the public-tree copies; the local instance was restored from a private vault-backed marketplace after an initially overbroad uninstall. No private paths or payloads are added to this public repository. This changes current distribution, not historical Git commits.
+- Verified: 16 root catalogue/portability/parity/changelog/Bauer checks, six unchanged Lux Visual Systems contract tests and all eight remaining plugin validators passed; whitespace checks passed. Windows default decoding and sandbox temp creation initially blocked checks, and Git autocrlf altered Bauer hashes. Reran in UTF-8 with a workspace temp directory and materialized the unchanged Bauer Git blobs byte-for-byte; no Bauer or Lux Visual Systems diff remains. Hosted full CI is recorded on the PR. No image-generation run or fresh-session loading claim.
+- Open at entry creation: PR/CI/merge; target hosts may need a refresh/new chat to load the private source. Potential Agensi packaging or design-system bundling for Lux Visual Systems remains a separate future decision, not an available offer added here.
+- Ruled out: removing Lux Visual Systems, modifying its assets/version, publishing the private catalogue, changing unrelated plugins or rewriting Git history.
+- Files: .agents/plugins/marketplace.json, README.md, docs/parity-inventory.md, docs/parity-ledger.md, tests/test_marketplace.py, tests/test_parity_inventory.py, .github/workflows/ci.yml, plugins/{machine-pilgrim,anime-identity-designer} (removed), JOURNAL.md.
+
+
 ## 2026-10-03 — Visual Systems 1.3.0 craft-reference library
 
 - Imported the owner's complete `Personal/01-Creative-Practice/Craft-stickers` snapshot: 57 source PNGs, 56 distinct images. Added 44 unchanged originals; 13 source files map to existing byte-identical boards, including one source duplicate. Category catalogue and JSON provenance cover every original filename, packaged path, dimensions, bytes and SHA-256. Visually inspected all images in four contact sheets to describe useful subject/format evidence.
