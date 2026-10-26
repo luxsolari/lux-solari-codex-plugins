@@ -4,6 +4,8 @@
 
 ### Fixed
 
+- Match both workspace path spellings and resolved realpaths in outside-workspace shell checks, covering macOS /var aliases.
+
 - Generate literal PowerShell onboarding commands on Windows, preserve POSIX commands elsewhere, and use the running Node executable. Cover quoted installation/profile paths and test native onboarding on Linux, Windows and macOS.
 
 ### Changed

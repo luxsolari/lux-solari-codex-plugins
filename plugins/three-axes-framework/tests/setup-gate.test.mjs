@@ -104,6 +104,10 @@ test('project action detection is path-aware and protects profile targets', (t) 
   const alias = join(f.outside, 'project-alias');
   symlinkSync(f.cwd, alias, process.platform === 'win32' ? 'junction' : 'dir');
   denied(f.tool('Read', { file_path: join(alias, 'README.md') }));
+  // Retain both the hook cwd spelling and its resolved location for commands
+  // running outside the workspace. macOS TEMP normally exercises both forms.
+  denied(f.gate({ cwd: alias, hook_event_name: 'PreToolUse', tool_name: 'functions.exec_command',
+    tool_input: { cmd: `git -C ${alias} status`, workdir: f.outside } }));
 });
 
 test('projectless prompts do not receive setup guidance or tool blocks', (t) => {
