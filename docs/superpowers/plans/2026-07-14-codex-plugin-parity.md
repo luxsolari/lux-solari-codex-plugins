@@ -11,8 +11,8 @@
 ## Global Constraints
 
 - Port against the source revisions recorded below; do not summarize, selectively recreate, or silently omit a source runtime file.
-- Preserve published plugin names and source versions: Three Axes `1.2.1`, Sage `1.7.2`, Whiting `0.2.0`, Lux Swiss `2.3.0`, Hannah `0.10.6`, Tri-Swiss `1.1.0`.
-- Preserve upstream licenses: MIT for Three Axes, Sage, Whiting, and Hannah; dual MIT/X11 (`LICENSE`) plus CC-BY-SA-4.0 (`LICENSE-DESIGN`) for Lux Swiss and Tri-Swiss, with the design-system material under CC-BY-SA-4.0.
+- Preserve published plugin names and source versions: Three Axes `1.2.1`, Sage `1.7.2`, Whiting `0.2.0`, Lux Visual Systems - Lux Swiss `2.3.0`, Hannah `0.10.6`, Lux Visual Systems - Tri-Swiss `1.1.0`.
+- Preserve upstream licenses: MIT for Three Axes, Sage, Whiting, and Hannah; dual MIT/X11 (`LICENSE`) plus CC-BY-SA-4.0 (`LICENSE-DESIGN`) for Lux Visual Systems - Lux Swiss and Lux Visual Systems - Tri-Swiss, with the design-system material under CC-BY-SA-4.0.
 - Keep all packages offline-capable except Hannah's explicitly optional live benchmark/library enrichment and Sage's explicitly conditional current-docs research.
 - Keep Three Axes lifecycle parity: inject on `startup`, `resume`, `clear`, and `compact`; clear only the session override on `startup`.
 - Preserve all learner data and Three Axes project files as user/project state, never inside an installed plugin directory.
@@ -27,9 +27,9 @@
 | Three Axes | `04346e064ffac6a3026002601571185603fc651c` | framework skill; six commands; profile library/tests; session injector/hook |
 | Sage | `fe94cc3a38a733aa80bf4c92aa616a199429a3d0` | instructor skill; 20 command routes; curricula/template/references; schema validator and ten scenarios |
 | Whiting | `31c545d117f99908a2256c5b0f79d64b1fe038c8` | four skills; auditor; release/version/template utilities; hooks; release workflow template; tests |
-| Lux Swiss | `c255468eec1e8a81ae4cd00d74fec2a26d4293c1` | complete skill; exact Tailwind theme; component catalogue; house-mark rules |
+| Lux Visual Systems - Lux Swiss | `c255468eec1e8a81ae4cd00d74fec2a26d4293c1` | complete skill; exact Tailwind theme; component catalogue; house-mark rules |
 | Hannah | `21c19d03cb6611f9d36e678e37a28817df3fe49c` | full `hannah` Python package; CLI; strategy skill; tests |
-| Tri-Swiss | `51ce460204a0c7f26cc46ce966c580a1d16dce81` | complete skill; exact Tailwind theme; component catalogue; house-mark rules |
+| Lux Visual Systems - Tri-Swiss | `51ce460204a0c7f26cc46ce966c580a1d16dce81` | complete skill; exact Tailwind theme; component catalogue; house-mark rules |
 
 ## Target File Structure
 
@@ -64,9 +64,9 @@ plugins/
     scripts/hooks/{commit-msg,pre-push}
     templates/{AGENTS.md.tmpl,CHANGELOG.md.tmpl,CLAUDE.md.tmpl,LICENSE-MIT.tmpl,README.md.tmpl,release.yml}
     tests/
-  lux-swiss/
+  lux-visual-systems-lux-swiss/
     .codex-plugin/plugin.json
-    skills/lux-swiss/{SKILL.md,assets/theme.css,references/components.md,references/HOUSE-MARK.md}
+    skills/lux-visual-systems-lux-swiss/{SKILL.md,assets/theme.css,references/components.md,references/HOUSE-MARK.md}
     {LICENSE,LICENSE-DESIGN}
   hannah/
     .codex-plugin/plugin.json
@@ -77,9 +77,9 @@ plugins/
     pyproject.toml
     scripts/run-hannah
     tests/test_smoke.py
-  tri-swiss/
+  lux-visual-systems-tri-swiss/
     .codex-plugin/plugin.json
-    skills/tri-swiss/{SKILL.md,assets/theme.css,references/components.md,references/HOUSE-MARK.md}
+    skills/lux-visual-systems-tri-swiss/{SKILL.md,assets/theme.css,references/components.md,references/HOUSE-MARK.md}
     {LICENSE,LICENSE-DESIGN}
 README.md
 LICENSE
@@ -93,9 +93,9 @@ tests/test_marketplace.py
 | Three Axes | six behavioral principles; three-layer profile cascade; defaults/source labels; five presets; granular set; setup/status/overview routes; four conversational signals; all four session events; profile validation and malformed-file resilience |
 | Sage | onboarding; profile/track persistence; three-axis calibration; two bundled curricula; custom curriculum generation with conditional current-docs research; all 20 navigation/progress/mode/interaction/track/meta routes; seven-step lesson; verification gate; hint escalation/streaks; confidence/review queue; track completion/switch/reset; schema and scenario coverage |
 | Whiting | repo bootstrap; conventional-commit and no-direct-push hooks; AGENTS/CLAUDE rules; read-only compliance audit; changelog release workflow; release backfill; semver classification; all templates/utilities/tests |
-| Lux Swiss | all house-mark rules, exact tokens/fonts/Tailwind mappings, component catalogue, interaction/hover rules, chart policy, image/icon rules, implementation checklist |
+| Lux Visual Systems - Lux Swiss | all house-mark rules, exact tokens/fonts/Tailwind mappings, component catalogue, interaction/hover rules, chart policy, image/icon rules, implementation checklist |
 | Hannah | positional path plus `--json`, `--track`, `--gpu`, `--ram`, `--no-color`, and `--version` CLI options; repository scan/complexity/framework detection; hardware detection and overrides; Ollama pulled-model/library scan; benchmark enrichment/cache; ranked candidates; console/JSON reports; platform race notes; strategy report/pull commands |
-| Tri-Swiss | all house-mark rules, exact tokens/fonts/Tailwind mappings, component catalogue, red/turquoise governance, structural blocks, interaction/hover rules, chart policy, image/icon rules, implementation checklist |
+| Lux Visual Systems - Tri-Swiss | all house-mark rules, exact tokens/fonts/Tailwind mappings, component catalogue, red/turquoise governance, structural blocks, interaction/hover rules, chart policy, image/icon rules, implementation checklist |
 
 ---
 
@@ -110,7 +110,7 @@ tests/test_marketplace.py
 - Create: `.gitignore`
 
 **Interfaces:**
-- Produces: marketplace entries named exactly `three-axes-framework`, `sage-instructor`, `whiting`, `lux-swiss`, `hannah`, and `tri-swiss`.
+- Produces: marketplace entries named exactly `three-axes-framework`, `sage-instructor`, `whiting`, `lux-visual-systems-lux-swiss`, `hannah`, and `lux-visual-systems-tri-swiss`.
 - Produces: `tests/test_marketplace.py`, which later tasks extend with their package-specific assertions.
 
 - [ ] **Step 1: Write the failing marketplace test**
@@ -120,7 +120,7 @@ def test_marketplace_has_the_complete_published_catalog():
     names = [entry["name"] for entry in load_marketplace()["plugins"]]
     assert names == [
         "three-axes-framework", "sage-instructor", "whiting",
-        "lux-swiss", "hannah", "tri-swiss",
+        "lux-visual-systems-lux-swiss", "hannah", "lux-visual-systems-tri-swiss",
     ]
 
 def test_every_entry_resolves_to_a_manifest():
@@ -137,7 +137,7 @@ Expected: FAIL because `.agents/plugins/marketplace.json` and package manifests 
 
 - [ ] **Step 3: Create the catalog and root documentation**
 
-Create the ordered local marketplace entries with `AVAILABLE` / `ON_INSTALL` policy and categories `Productivity` (Three Axes, Sage, Whiting, Hannah) and `Design` (Lux Swiss, Tri-Swiss). Write the README with the six package descriptions, local marketplace installation, the source ledger, and an explicit compatibility statement: every listed runtime capability is ported; only Claude-branded invocation wording is translated to Codex skill routing. Add one CI workflow that runs the complete validation matrix defined in Task 8 on Ubuntu with Node 20 and Python 3.11.
+Create the ordered local marketplace entries with `AVAILABLE` / `ON_INSTALL` policy and categories `Productivity` (Three Axes, Sage, Whiting, Hannah) and `Design` (Lux Visual Systems - Lux Swiss, Lux Visual Systems - Tri-Swiss). Write the README with the six package descriptions, local marketplace installation, the source ledger, and an explicit compatibility statement: every listed runtime capability is ported; only Claude-branded invocation wording is translated to Codex skill routing. Add one CI workflow that runs the complete validation matrix defined in Task 8 on Ubuntu with Node 20 and Python 3.11.
 
 - [ ] **Step 4: Run the test to verify it passes**
 
@@ -318,16 +318,16 @@ git add plugins/whiting tests/test_marketplace.py
 git commit -m "feat: port Whiting release discipline"
 ```
 
-### Task 5: Port Lux Swiss without weakening its design governance
+### Task 5: Port Lux Visual Systems - Lux Swiss without weakening its design governance
 
 **Files:**
-- Create: `plugins/lux-swiss/.codex-plugin/plugin.json`
-- Create: `plugins/lux-swiss/skills/lux-swiss/SKILL.md`
-- Create: `plugins/lux-swiss/skills/lux-swiss/assets/theme.css`
-- Create: `plugins/lux-swiss/skills/lux-swiss/references/{components.md,HOUSE-MARK.md}`
-- Create: `plugins/lux-swiss/LICENSE`
-- Create: `plugins/lux-swiss/LICENSE-DESIGN`
-- Create: `plugins/lux-swiss/tests/test_theme_contract.py`
+- Create: `plugins/lux-visual-systems-lux-swiss/.codex-plugin/plugin.json`
+- Create: `plugins/lux-visual-systems-lux-swiss/skills/lux-visual-systems-lux-swiss/SKILL.md`
+- Create: `plugins/lux-visual-systems-lux-swiss/skills/lux-visual-systems-lux-swiss/assets/theme.css`
+- Create: `plugins/lux-visual-systems-lux-swiss/skills/lux-visual-systems-lux-swiss/references/{components.md,HOUSE-MARK.md}`
+- Create: `plugins/lux-visual-systems-lux-swiss/LICENSE`
+- Create: `plugins/lux-visual-systems-lux-swiss/LICENSE-DESIGN`
+- Create: `plugins/lux-visual-systems-lux-swiss/tests/test_theme_contract.py`
 
 **Interfaces:**
 - Produces: exact CSS custom-property and Tailwind token contract from the published `theme.css`.
@@ -345,7 +345,7 @@ def test_lux_swiss_theme_has_required_tokens():
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `python3 -m unittest plugins/lux-swiss/tests/test_theme_contract.py -v`
+Run: `python3 -m unittest plugins/lux-visual-systems-lux-swiss/tests/test_theme_contract.py -v`
 
 Expected: FAIL because the exact theme is absent.
 
@@ -355,28 +355,28 @@ Copy the published `SKILL.md`, `assets/theme.css`, `references/components.md`, `
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `python3 -m unittest plugins/lux-swiss/tests/test_theme_contract.py -v`
+Run: `python3 -m unittest plugins/lux-visual-systems-lux-swiss/tests/test_theme_contract.py -v`
 
 Expected: PASS, confirming the copied token contract and shadow prohibition.
 
 - [ ] **Step 5: Validate the package and commit**
 
 ```bash
-python3 /Users/luxsolari/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/lux-swiss
-git add plugins/lux-swiss tests/test_marketplace.py
-git commit -m "feat: port Lux Swiss design system"
+python3 /Users/luxsolari/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/lux-visual-systems-lux-swiss
+git add plugins/lux-visual-systems-lux-swiss tests/test_marketplace.py
+git commit -m "feat: port Lux Visual Systems - Lux Swiss design system"
 ```
 
-### Task 6: Port Tri-Swiss without weakening its accent governance
+### Task 6: Port Lux Visual Systems - Tri-Swiss without weakening its accent governance
 
 **Files:**
-- Create: `plugins/tri-swiss/.codex-plugin/plugin.json`
-- Create: `plugins/tri-swiss/skills/tri-swiss/SKILL.md`
-- Create: `plugins/tri-swiss/skills/tri-swiss/assets/theme.css`
-- Create: `plugins/tri-swiss/skills/tri-swiss/references/{components.md,HOUSE-MARK.md}`
-- Create: `plugins/tri-swiss/LICENSE`
-- Create: `plugins/tri-swiss/LICENSE-DESIGN`
-- Create: `plugins/tri-swiss/tests/test_theme_contract.py`
+- Create: `plugins/lux-visual-systems-tri-swiss/.codex-plugin/plugin.json`
+- Create: `plugins/lux-visual-systems-tri-swiss/skills/lux-visual-systems-tri-swiss/SKILL.md`
+- Create: `plugins/lux-visual-systems-tri-swiss/skills/lux-visual-systems-tri-swiss/assets/theme.css`
+- Create: `plugins/lux-visual-systems-tri-swiss/skills/lux-visual-systems-tri-swiss/references/{components.md,HOUSE-MARK.md}`
+- Create: `plugins/lux-visual-systems-tri-swiss/LICENSE`
+- Create: `plugins/lux-visual-systems-tri-swiss/LICENSE-DESIGN`
+- Create: `plugins/lux-visual-systems-tri-swiss/tests/test_theme_contract.py`
 
 **Interfaces:**
 - Produces: exact CSS/Tailwind tokens, including `--highlight` and its foreground token.
@@ -397,26 +397,26 @@ def test_component_reference_documents_the_red_turquoise_exception():
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `python3 -m unittest plugins/tri-swiss/tests/test_theme_contract.py -v`
+Run: `python3 -m unittest plugins/lux-visual-systems-tri-swiss/tests/test_theme_contract.py -v`
 
 Expected: FAIL because the theme and component catalogue are absent.
 
 - [ ] **Step 3: Transfer the complete design-system runtime**
 
-Copy the published `SKILL.md`, `assets/theme.css`, `references/components.md`, `HOUSE-MARK.md`, `LICENSE`, and `LICENSE-DESIGN` byte-for-byte. Preserve the dual-license scope and all baseline Swiss rules and the Tri-Swiss-only red/turquoise restrictions, tri-part stripe exception, turquoise second-series/chart guidance, sidebar/hero/closing-band options, Geist/Jost governance, and hover hierarchy.
+Copy the published `SKILL.md`, `assets/theme.css`, `references/components.md`, `HOUSE-MARK.md`, `LICENSE`, and `LICENSE-DESIGN` byte-for-byte. Preserve the dual-license scope and all baseline Swiss rules and the Lux Visual Systems - Tri-Swiss-only red/turquoise restrictions, tri-part stripe exception, turquoise second-series/chart guidance, sidebar/hero/closing-band options, Geist/Jost governance, and hover hierarchy.
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `python3 -m unittest plugins/tri-swiss/tests/test_theme_contract.py -v`
+Run: `python3 -m unittest plugins/lux-visual-systems-tri-swiss/tests/test_theme_contract.py -v`
 
 Expected: PASS, proving the full highlight token and structural exception material is available.
 
 - [ ] **Step 5: Validate the package and commit**
 
 ```bash
-python3 /Users/luxsolari/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/tri-swiss
-git add plugins/tri-swiss tests/test_marketplace.py
-git commit -m "feat: port Tri-Swiss design system"
+python3 /Users/luxsolari/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/lux-visual-systems-tri-swiss
+git add plugins/lux-visual-systems-tri-swiss tests/test_marketplace.py
+git commit -m "feat: port Lux Visual Systems - Tri-Swiss design system"
 ```
 
 ### Task 7: Ship Hannah's complete recommendation engine
@@ -500,9 +500,9 @@ REQUIRED = {
     "three-axes-framework": ["LICENSE", "skills/three-axes-framework/SKILL.md", "references/commands.md", "hooks/hooks.json", "hooks/inject-framework-codex.mjs", "hooks/lib/profile.mjs"],
     "sage-instructor": ["LICENSE", "skills/sage-instructor/SKILL.md", "skills/sage-instructor/curricula/TEMPLATE.md", "skills/sage-instructor/curricula/python-basics.md", "skills/sage-instructor/curricula/rust-cli.md", "skills/sage-instructor/references/.three-axes-upstream-snapshot.md", "skills/sage-instructor/references/three-axes-contract.md", "scripts/check_framework_drift.py", "tests/check_progress_schema.py", "tests/run_scenario_prompt.md"],
     "whiting": ["LICENSE", "scripts/inspect_repo.sh", "scripts/extract_changelog.py", "scripts/suggest_version_bump.py", "scripts/render_template.py", "scripts/shields_escape.py", "scripts/hooks/commit-msg", "scripts/hooks/pre-push", "templates/release.yml"],
-    "lux-swiss": ["skills/lux-swiss/SKILL.md", "skills/lux-swiss/assets/theme.css", "skills/lux-swiss/references/components.md", "skills/lux-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
+    "lux-visual-systems-lux-swiss": ["skills/lux-visual-systems-lux-swiss/SKILL.md", "skills/lux-visual-systems-lux-swiss/assets/theme.css", "skills/lux-visual-systems-lux-swiss/references/components.md", "skills/lux-visual-systems-lux-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
     "hannah": ["LICENSE", "README.md", "pyproject.toml", "scripts/run-hannah", "hannah/cli.py", "hannah/analyzers/repo.py", "hannah/catalog/benchmarks.py", "hannah/catalog/ollama.py", "hannah/hardware/detect.py", "hannah/models/registry.py", "hannah/reporters/console.py", "hannah/reporters/json.py", "hannah/reporters/notes.py"],
-    "tri-swiss": ["skills/tri-swiss/SKILL.md", "skills/tri-swiss/assets/theme.css", "skills/tri-swiss/references/components.md", "skills/tri-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
+    "lux-visual-systems-tri-swiss": ["skills/lux-visual-systems-tri-swiss/SKILL.md", "skills/lux-visual-systems-tri-swiss/assets/theme.css", "skills/lux-visual-systems-tri-swiss/references/components.md", "skills/lux-visual-systems-tri-swiss/references/HOUSE-MARK.md", "LICENSE", "LICENSE-DESIGN"],
 }
 
 def test_every_source_runtime_artifact_has_a_target():
@@ -512,7 +512,7 @@ def test_every_source_runtime_artifact_has_a_target():
 
 def test_manifests_preserve_source_versions_and_licenses():
     assert manifest("hannah")["version"] == "0.10.6"
-    assert manifest("lux-swiss")["license"] == "CC-BY-SA-4.0"
+    assert manifest("lux-visual-systems-lux-swiss")["license"] == "CC-BY-SA-4.0"
 ```
 
 Add explicit host-adapter assertions: Three Axes has `hooks/hooks.json` and no unsupported manifest `hooks` key; every Codex route is mapped from its source command; Sage has all 20 routes and a complete `three-axes-contract.md`; and the Hannah package's console-script metadata names `hannah.cli:main`.
@@ -538,9 +538,9 @@ python3 -m unittest tests/test_marketplace.py tests/test_parity_inventory.py -v
 node --test plugins/three-axes-framework/tests/*.test.mjs
 python3 -m unittest plugins/sage-instructor/tests/test_check_progress_schema.py -v
 sh plugins/whiting/scripts/run_tests.sh
-python3 -m unittest plugins/lux-swiss/tests/test_theme_contract.py -v
+python3 -m unittest plugins/lux-visual-systems-lux-swiss/tests/test_theme_contract.py -v
 cd plugins/hannah && python3 -m unittest discover -s tests -v && cd ../..
-python3 -m unittest plugins/tri-swiss/tests/test_theme_contract.py -v
+python3 -m unittest plugins/lux-visual-systems-tri-swiss/tests/test_theme_contract.py -v
 ```
 
 Expected: every command exits `0`.

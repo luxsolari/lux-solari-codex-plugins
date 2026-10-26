@@ -24,9 +24,9 @@ class MarketplaceTests(unittest.TestCase):
                 "three-axes-framework",
                 "sage-instructor",
                 "whiting",
-                "lux-swiss",
+                "lux-visual-systems-lux-swiss",
                 "hannah",
-                "tri-swiss",
+                "lux-visual-systems-tri-swiss",
                 "bauer",
             ],
         )

@@ -15,9 +15,9 @@ in this stable order:
 1. `three-axes-framework`
 2. `sage-instructor`
 3. `whiting`
-4. `lux-swiss`
+4. `lux-visual-systems-lux-swiss`
 5. `hannah`
-6. `tri-swiss`
+6. `lux-visual-systems-tri-swiss`
 
 This work creates the new repository, a marketplace catalog, one installable
 Codex package per plugin, documentation, and local validation. It does not
@@ -65,9 +65,9 @@ skills, references, and portable scripts will carry the product behavior.
 | `three-axes-framework` | Applies Mastery, Consequence, and Intent calibration; supports project/global profile guidance and mode signals. | Port its lifecycle injection through a Codex-native `SessionStart` hook and a Codex-specific wrapper. It will target `startup`, `resume`, `clear`, and `compact`, matching the published framework; only `startup` clears the ephemeral session profile. |
 | `sage-instructor` | Delivers discovery-first programming instruction, curricula, milestones, and progress guidance. | Claude `AskUserQuestion` interactions become normal Codex conversational prompts; its complete Three Axes calibration contract is bundled so it works both alongside and without a separately installed Three Axes package. |
 | `whiting` | Provides distinct release-discipline initialization and repository-inspection workflows, with portable release guidance/scripts where applicable. | Claude command routing becomes skills and starter prompts. |
-| `lux-swiss` | Supplies the Lux Swiss visual rules, Tailwind theme, and component/chart guidance. | The styling guidance is host-independent; only invocation changes. |
+| `lux-visual-systems-lux-swiss` | Supplies the Lux Visual Systems - Lux Swiss visual rules, Tailwind theme, and component/chart guidance. | The styling guidance is host-independent; only invocation changes. |
 | `hannah` | Analyzes the repository and local machine context to recommend local LLM models and runtimes. | Codex-native read-only inspection replaces Claude-specific invocation. |
-| `tri-swiss` | Supplies the Tri-Swiss visual rules, Tailwind theme, and component guidance. | The styling guidance is host-independent; only invocation changes. |
+| `lux-visual-systems-tri-swiss` | Supplies the Lux Visual Systems - Tri-Swiss visual rules, Tailwind theme, and component guidance. | The styling guidance is host-independent; only invocation changes. |
 
 ## Package contents
 

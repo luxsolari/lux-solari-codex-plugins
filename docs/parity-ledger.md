@@ -145,7 +145,7 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `tests/test_suggest_version_bump_cli.py` | copied verification |
 | `tests/test_templates_render.py` | copied verification |
 
-## lux-swiss
+## lux-visual-systems-lux-swiss
 
 | Source file | Classification |
 | --- | --- |
@@ -191,9 +191,9 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `scripts/hooks/commit-msg` | source-repository-only documentation/release packaging |
 | `scripts/hooks/pre-push` | source-repository-only documentation/release packaging |
 | `scripts/suggest_version_bump.py` | source-repository-only documentation/release packaging |
-| `skills/lux-swiss/SKILL.md` | copied runtime |
-| `skills/lux-swiss/assets/theme.css` | copied runtime |
-| `skills/lux-swiss/references/components.md` | copied runtime |
+| `skills/lux-visual-systems-lux-swiss/SKILL.md` | copied runtime |
+| `skills/lux-visual-systems-lux-swiss/assets/theme.css` | copied runtime |
+| `skills/lux-visual-systems-lux-swiss/references/components.md` | copied runtime |
 
 ## hannah
 
@@ -245,7 +245,7 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `skills/hannah/SKILL.md` | copied runtime |
 | `tests/test_smoke.py` | copied verification |
 
-## tri-swiss
+## lux-visual-systems-tri-swiss
 
 | Source file | Classification |
 | --- | --- |
@@ -295,9 +295,9 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `scripts/hooks/commit-msg` | source-repository-only documentation/release packaging |
 | `scripts/hooks/pre-push` | source-repository-only documentation/release packaging |
 | `scripts/suggest_version_bump.py` | source-repository-only documentation/release packaging |
-| `skills/tri-swiss/SKILL.md` | copied runtime |
-| `skills/tri-swiss/assets/theme.css` | copied runtime |
-| `skills/tri-swiss/references/components.md` | copied runtime |
+| `skills/lux-visual-systems-tri-swiss/SKILL.md` | copied runtime |
+| `skills/lux-visual-systems-tri-swiss/assets/theme.css` | copied runtime |
+| `skills/lux-visual-systems-tri-swiss/references/components.md` | copied runtime |
 
 ## bauer
 

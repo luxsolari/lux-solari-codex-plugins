@@ -19,9 +19,9 @@ class ParityInventoryTests(unittest.TestCase):
             "three-axes-framework": ("1.7.0", "MIT"),
             "sage-instructor": ("1.8.0", "MIT"),
             "whiting": ("0.6.0", "MIT"),
-            "lux-swiss": ("2.3.0", "CC-BY-SA-4.0"),
+            "lux-visual-systems-lux-swiss": ("2.3.0", "CC-BY-SA-4.0"),
             "hannah": ("0.10.6", "MIT"),
-            "tri-swiss": ("1.1.0", "CC-BY-SA-4.0"),
+            "lux-visual-systems-tri-swiss": ("1.1.0", "CC-BY-SA-4.0"),
             "bauer": ("0.3.1", "MIT"),
         }
         for name, (version, license_name) in expected.items():
@@ -36,9 +36,9 @@ class ParityInventoryTests(unittest.TestCase):
             "plugins/three-axes-framework/hooks/lib/project-action.mjs",
             "plugins/sage-instructor/skills/sage-instructor/references/three-axes-contract.md",
             "plugins/whiting/scripts/run_tests.sh",
-            "plugins/lux-swiss/skills/lux-swiss/references/HOUSE-MARK.md",
+            "plugins/lux-visual-systems-lux-swiss/skills/lux-visual-systems-lux-swiss/references/HOUSE-MARK.md",
             "plugins/hannah/scripts/run-hannah",
-            "plugins/tri-swiss/skills/tri-swiss/references/HOUSE-MARK.md",
+            "plugins/lux-visual-systems-tri-swiss/skills/lux-visual-systems-tri-swiss/references/HOUSE-MARK.md",
             "docs/parity-inventory.md",
             "plugins/bauer/skills/bauer/scripts/dependencies.py",
             "plugins/bauer/skills/bauer/scripts/jev.py",
@@ -58,9 +58,9 @@ class ParityInventoryTests(unittest.TestCase):
             "three-axes-framework",
             "sage-instructor",
             "whiting",
-            "lux-swiss",
+            "lux-visual-systems-lux-swiss",
             "hannah",
-            "tri-swiss",
+            "lux-visual-systems-tri-swiss",
             "bauer",
         ):
             self.assertIn(f"## {source}", text)

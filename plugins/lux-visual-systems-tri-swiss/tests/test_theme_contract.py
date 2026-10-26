@@ -3,8 +3,8 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-THEME = ROOT / "skills/tri-swiss/assets/theme.css"
-COMPONENTS = ROOT / "skills/tri-swiss/references/components.md"
+THEME = ROOT / "skills/lux-visual-systems-tri-swiss/assets/theme.css"
+COMPONENTS = ROOT / "skills/lux-visual-systems-tri-swiss/references/components.md"
 
 
 class TriSwissThemeTests(unittest.TestCase):

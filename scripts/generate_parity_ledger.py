@@ -44,7 +44,7 @@ def main() -> None:
     if len(sys.argv) != 3:
         raise SystemExit("usage: generate_parity_ledger.py SOURCE_ROOT OUTPUT")
     source_root, output = map(Path, sys.argv[1:])
-    repositories = ["three-axes-framework", "sage-instructor", "whiting", "lux-swiss", "hannah", "tri-swiss"]
+    repositories = ["three-axes-framework", "sage-instructor", "whiting", "lux-visual-systems-lux-swiss", "hannah", "lux-visual-systems-tri-swiss"]
     lines = ["# File-level upstream parity ledger", "", "Generated from the pinned source checkouts with `scripts/generate_parity_ledger.py`. Every tracked upstream file has exactly one classification.", ""]
     for name in repositories:
         lines.extend([f"## {name}", "", "| Source file | Classification |", "| --- | --- |"])

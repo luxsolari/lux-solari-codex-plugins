@@ -24,9 +24,9 @@ jobs:
           node --test plugins/three-axes-framework/tests/*.test.mjs
           python3 -m unittest plugins/sage-instructor/tests/test_check_progress_schema.py -v
           sh plugins/whiting/scripts/run_tests.sh
-          python3 -m unittest plugins/lux-swiss/tests/test_theme_contract.py -v
+          python3 -m unittest plugins/lux-visual-systems-lux-swiss/tests/test_theme_contract.py -v
           (cd plugins/hannah && python3 -m unittest discover -s tests -v)
-          python3 -m unittest plugins/tri-swiss/tests/test_theme_contract.py -v
+          python3 -m unittest plugins/lux-visual-systems-tri-swiss/tests/test_theme_contract.py -v
           python3 -m unittest discover -s plugins/bauer/tests -v
           for plugin in plugins/*; do
             python3 scripts/validate_plugin.py "$plugin"

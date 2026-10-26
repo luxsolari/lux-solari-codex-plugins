@@ -71,17 +71,17 @@ codex plugin add whiting@lux-solari-codex
 
 See [whiting](https://github.com/luxsolari/whiting) for full documentation.
 
-### lux-swiss
+### lux-visual-systems-lux-swiss
 
 Lux Solari's strict two-color Swiss design system: visible borders, no shadows,
 Space Mono / Space Grotesk typography, governed blood-red accents, hand-rolled
 SVG charts, component guidance, and a ready-to-paste Tailwind 4 theme.
 
 ```sh
-codex plugin add lux-swiss@lux-solari-codex
+codex plugin add lux-visual-systems-lux-swiss@lux-solari-codex
 ```
 
-See [lux-swiss](https://github.com/luxsolari/lux-swiss) for full documentation.
+See [lux-visual-systems-lux-swiss](https://github.com/luxsolari/lux-visual-systems-lux-swiss) for full documentation.
 
 ### hannah
 
@@ -95,17 +95,17 @@ codex plugin add hannah@lux-solari-codex
 
 See [hannah](https://github.com/luxsolari/hannah) for full documentation.
 
-### tri-swiss
+### lux-visual-systems-tri-swiss
 
-Tri-Swiss is the red-and-turquoise sibling to Lux Swiss: a governed tri-tone
+Lux Visual Systems - Tri-Swiss is the red-and-turquoise sibling to Lux Visual Systems - Lux Swiss: a governed tri-tone
 Swiss system with Geist typography, structural bands, chart guidance, component
 catalogue, and an exact Tailwind 4 theme.
 
 ```sh
-codex plugin add tri-swiss@lux-solari-codex
+codex plugin add lux-visual-systems-tri-swiss@lux-solari-codex
 ```
 
-See [tri-swiss](https://github.com/luxsolari/tri-swiss) for full documentation.
+See [lux-visual-systems-tri-swiss](https://github.com/luxsolari/lux-visual-systems-tri-swiss) for full documentation.
 
 ### bauer
 
