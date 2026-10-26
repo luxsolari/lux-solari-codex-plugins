@@ -41,10 +41,10 @@
       "category": "Productivity"
     },
     {
-      "name": "lux-swiss",
+      "name": "lux-visual-systems-lux-swiss",
       "source": {
         "source": "local",
-        "path": "./plugins/lux-swiss"
+        "path": "./plugins/lux-visual-systems-lux-swiss"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -65,10 +65,10 @@
       "category": "Productivity"
     },
     {
-      "name": "tri-swiss",
+      "name": "lux-visual-systems-tri-swiss",
       "source": {
         "source": "local",
-        "path": "./plugins/tri-swiss"
+        "path": "./plugins/lux-visual-systems-tri-swiss"
       },
       "policy": {
         "installation": "AVAILABLE",
