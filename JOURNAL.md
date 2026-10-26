@@ -1,5 +1,19 @@
 # Journal
 
+## 2026-10-26 — advance reviewed marketplace source to published 1.7.3
+
+- Both editions are published as 1.7.3. Advance this codex source binding to immutable open three-axes-framework-v1.7.3 at b73c4c495ac87454c6544a11f34f152f151ea6b5; retain host identity, unrelated plugins, collection versions and historical provenance.
+- Generic synchronization correctly refused changed hooks. Manually reviewed the exact changed set (manifest/changelog/setup/path matcher); canonical mechanisms match the already-tested Codex adapter, Claude consumes the released native fix, and Hermes remains conversational. No generic guard is relaxed or automatic acceptance added.
+- Updated delivered version, exact copied artifacts and source/adaptation inventories. Known-release regression now binds 1.7.3 to its actual commit. Pending: exact-head CI and final audit. All marketplace PRs remain unmerged; no installed plugin or local harness is changed.
+- Files: release inventory/baseline, host manifest or skill/catalog, copied changelog/source references, source provenance where present, regression tests, CHANGELOG.md and JOURNAL.md.
+
+## 2026-10-26 — Windows onboarding final audit and CI evidence
+
+- Repaired native Windows onboarding quoting in Codex PR 19 at 1fae672401490229836ce59451ab118c33cb734e. PowerShell single-quoted literals (including smart quote delimiters), call operator and exact running Node executable preserve installation/profile paths; POSIX retains its own syntax. Explicit shell guidance and exact setup allowlisting remain. New actual-shell regression failed before the helper fix and passed after it.
+- Initial macOS CI exposed /var versus /private/var command-text mismatch; fixed both caller-resolved/realpath spellings and added explicit alias coverage. Windows uses junctions instead of privileged directory symlinks; disposable fixtures initialize Git roots so workspace TEMP does not inherit unrelated profiles.
+- Verified: all 22 hook tests passed locally in native Windows Node 24, including Windows PowerShell 5.1 and PowerShell 7; root 34 Python tests passed with one Linux-only skip. Exact-head push CI 40389037821 passed Linux/Windows/macOS Node 20 hooks plus full 276-Python validation. Duplicate PR run 40389046131 passed Windows/Linux/full validation; its macOS job remains queued with no runner or steps at final readback. No failed final-head test is hidden by this distinction. Source bindings and actual release no-op rechecked.
+- Final audit found no further code issue in quoting, onboarding, workspace aliases and synchronization. Canonical equivalent is upstream PR 8; prior assumption that Claude was Bash-only was disproved by current official docs. Claude requires a later published patch to obtain the fix, with Supporter in lockstep. No release/tag, installed payload, profile/configuration or permissions changed; all PRs remain unmerged. Files: helper/path matcher, onboarding tests, CI matrix, source/adaptation inventory and documentation. This post-freeze observation remains local/uncommitted.
+
 ## 2026-10-26 — repair Windows onboarding command quoting
 
 - Root cause: the adapter generated POSIX single-quote escaping on Windows, while existing tests used Node shell:true (cmd.exe). POSIX apostrophe escapes are not PowerShell syntax, and cmd.exe treats their quotes as path text.
