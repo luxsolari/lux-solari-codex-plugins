@@ -1,6 +1,7 @@
 name: Validate marketplace
 
 on:
+  workflow_dispatch:
   push:
   pull_request:
 
@@ -20,7 +21,7 @@ jobs:
       - name: Run parity validation
         run: |
           export PYTHONDONTWRITEBYTECODE=1
-          python3 -m unittest tests/test_marketplace.py tests/test_parity_inventory.py tests/test_host_portability.py tests/test_plugin_changelogs.py tests/test_bauer_package.py -v
+          python3 -m unittest tests/test_release_sync.py tests/test_marketplace.py tests/test_parity_inventory.py tests/test_host_portability.py tests/test_plugin_changelogs.py tests/test_bauer_package.py -v
           node --test plugins/three-axes-framework/tests/*.test.mjs
           python3 -m unittest plugins/sage-instructor/tests/test_check_progress_schema.py -v
           sh plugins/whiting/scripts/run_tests.sh
@@ -33,3 +34,6 @@ jobs:
           done
           python3 -m json.tool .agents/plugins/marketplace.json >/dev/null
           git diff --check
+
+      - name: Check Three Axes released-source binding
+        run: python3 scripts/sync_three_axes.py --check
