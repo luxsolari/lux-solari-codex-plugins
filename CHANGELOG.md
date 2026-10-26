@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Generate literal PowerShell onboarding commands on Windows, preserve POSIX commands elsewhere, and use the running Node executable. Cover quoted installation/profile paths and test native onboarding on Linux, Windows and macOS.
+
 ### Changed
 
 - Add hourly published-release synchronization through reviewed PRs, explicit CI dispatch, immutable source bindings and refusal of incompatible host changes.

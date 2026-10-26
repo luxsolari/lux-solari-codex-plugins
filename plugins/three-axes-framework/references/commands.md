@@ -28,6 +28,11 @@ non-workspace tools remain available. Runtime paths honor `CODEX_HOME` (default
 `~/.codex`); a valid legacy Claude global profile counts only when the Codex
 global file is absent. Session presets do not satisfy this gate.
 
+On Windows, execute the hook's literal writer command in PowerShell, selecting
+`powershell.exe` or `pwsh.exe` explicitly for `exec_command`. On Linux/macOS,
+use a POSIX shell. Preserve the generated executable/path quoting and change only
+the three selected axis values.
+
 Presets remain `learning`, `output`, `production`, `explore`, and `balanced`.
 The task-scoped signals remain “walk me through this,” “let me try this,”
 “just do it,” and “what are the tradeoffs?” Their source-defined durations and

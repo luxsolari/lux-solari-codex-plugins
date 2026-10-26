@@ -3,10 +3,15 @@ import { fileURLToPath } from 'node:url';
 import { persistentProfilePaths, validateProfile } from './profile.mjs';
 
 const writer = resolve(dirname(fileURLToPath(import.meta.url)), '../configure-profile.mjs');
-const quote = (value) => `'${value.replaceAll("'", "'\\''")}'`;
+const windows = process.platform === 'win32';
+// PowerShell treats smart single quotes as delimiters too. All other shell
+// metacharacters stay literal inside the selected shell's single-quoted string.
+const quote = (value) => windows
+  ? `'${value.replace(/['\u2018\u2019\u201a\u201b]/gu, (char) => char + char)}'`
+  : `'${value.replaceAll("'", "'\\''")}'`;
 
 export function setupCommand(target, values) {
-  return `node ${quote(writer)} ${quote(target)} mastery=${values.mastery} consequence=${values.consequence} intent=${values.intent}`;
+  return `${windows ? '& ' : ''}${quote(process.execPath)} ${quote(writer)} ${quote(target)} mastery=${values.mastery} consequence=${values.consequence} intent=${values.intent}`;
 }
 
 export function isSetupCommand(command, cwd) {
@@ -91,6 +96,8 @@ profile does not unlock work.
 
 Once the user has chosen the scope and all three values, run the corresponding
 shell command below, replacing ONLY the three axis values with their choices:
+
+${windows ? 'Use PowerShell on Windows. For exec_command, explicitly select shell="powershell.exe" or shell="pwsh.exe"; do not send this command to cmd.exe or Bash.' : 'Use a POSIX shell such as /bin/sh or Bash for these commands.'}
 
 Global: ${setupCommand(paths.global, example)}
 Project: ${setupCommand(paths.project, example)}

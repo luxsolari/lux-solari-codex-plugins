@@ -37,6 +37,8 @@ features itself. If the question tool is unavailable, setup asks one question
 at a time in chat.
 Hooks must be enabled and trusted; tool enforcement covers the paths the host
 exposes to `PreToolUse`, not hosted tools outside that hook lifecycle.
+On Windows, the setup writer command uses PowerShell; select `powershell.exe`
+or `pwsh.exe` explicitly for that tool call. Linux/macOS use POSIX shell quoting.
 
 ```sh
 codex plugin add three-axes-framework@lux-solari-codex
