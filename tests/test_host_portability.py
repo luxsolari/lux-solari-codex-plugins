@@ -21,14 +21,13 @@ class HostPortabilityTests(unittest.TestCase):
             ROOT / "plugins/whiting/skills/semver-release/SKILL.md",
             ROOT / "plugins/three-axes-framework/references/commands.md",
             ROOT / "plugins/sage-instructor/skills/sage-instructor/SKILL.md",
-            ROOT / "plugins/lux-visual-systems/skills/lux-visual-systems/SKILL.md",
         ]
         for path in active_files:
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("CLAUDE_PLUGIN_ROOT", text, path)
             self.assertNotIn("${PLUGIN_ROOT}", text, path)
             self.assertNotIn("AskUserQuestion", text, path)
-        self.assertNotIn("~/.claude/three-axes-session.json", active_files[-2].read_text(encoding="utf-8"))
+        self.assertNotIn("~/.claude/three-axes-session.json", (ROOT / "plugins/sage-instructor/skills/sage-instructor/SKILL.md").read_text(encoding="utf-8"))
 
     def test_skill_source_tables_point_at_files_the_plugin_ships(self) -> None:
         """A `Source (<plugin root>/...)` column must name a file that exists.

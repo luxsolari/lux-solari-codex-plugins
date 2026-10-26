@@ -107,22 +107,6 @@ codex plugin add tri-swiss@lux-solari-codex
 
 See [tri-swiss](https://github.com/luxsolari/tri-swiss) for full documentation.
 
-### lux-visual-systems
-
-Lux Solari Visual Systems Director governs image-making across Swiss editorial,
-anime, analogue, and technical modes. It includes the canonical visual master,
-format-specific reference boards, the complete 57-image Craft-stickers snapshot
-(56 distinct images) with a subject/format catalogue, explicit subject-versus-system
-rules, and direct image-generation and iteration workflows. A bare invocation
-shows usage help; a visual brief must state its rendering language and color mode
-before generation.
-The packaged snapshot requires no personal-vault access; future vault additions
-need another import. Current package version: **1.3.0**.
-
-```sh
-codex plugin add lux-visual-systems@lux-solari-codex
-```
-
 ### bauer
 
 Evidence-backed security review against current OWASP Web and LLM guidance,

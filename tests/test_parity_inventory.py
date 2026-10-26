@@ -22,7 +22,6 @@ class ParityInventoryTests(unittest.TestCase):
             "lux-swiss": ("2.3.0", "CC-BY-SA-4.0"),
             "hannah": ("0.10.6", "MIT"),
             "tri-swiss": ("1.1.0", "CC-BY-SA-4.0"),
-            "lux-visual-systems": ("1.3.0", "CC-BY-SA-4.0"),
             "bauer": ("0.3.1", "MIT"),
         }
         for name, (version, license_name) in expected.items():
@@ -40,7 +39,6 @@ class ParityInventoryTests(unittest.TestCase):
             "plugins/lux-swiss/skills/lux-swiss/references/HOUSE-MARK.md",
             "plugins/hannah/scripts/run-hannah",
             "plugins/tri-swiss/skills/tri-swiss/references/HOUSE-MARK.md",
-            "plugins/lux-visual-systems/skills/lux-visual-systems/assets/00_VISUAL_SYSTEM_MASTER.png",
             "docs/parity-inventory.md",
             "plugins/bauer/skills/bauer/scripts/dependencies.py",
             "plugins/bauer/skills/bauer/scripts/jev.py",
@@ -63,7 +61,6 @@ class ParityInventoryTests(unittest.TestCase):
             "lux-swiss",
             "hannah",
             "tri-swiss",
-            "lux-visual-systems",
             "bauer",
         ):
             self.assertIn(f"## {source}", text)

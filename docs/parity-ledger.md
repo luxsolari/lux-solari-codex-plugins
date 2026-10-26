@@ -299,30 +299,6 @@ Generated from the pinned source checkouts with `scripts/generate_parity_ledger.
 | `skills/tri-swiss/assets/theme.css` | copied runtime |
 | `skills/tri-swiss/references/components.md` | copied runtime |
 
-## lux-visual-systems
-
-This package is authored for Codex rather than translated from an upstream
-Claude package. The ledger records its shipped runtime and verification surface.
-
-| Source file | Classification |
-| --- | --- |
-| `.codex-plugin/plugin.json` | authored Codex manifest |
-| `CHANGELOG.md` | source-repository-only documentation/release packaging |
-| `LICENSE` | authored runtime license |
-| `LICENSE-DESIGN` | authored design license |
-| `NOTICE.md` | authored third-party notice |
-| `skills/lux-visual-systems/SKILL.md` | authored Codex runtime |
-| `skills/lux-visual-systems/agents/openai.yaml` | authored Codex interface metadata |
-| `skills/lux-visual-systems/references/help.md` | authored Codex runtime help |
-| `skills/lux-visual-systems/references/visual-system.md` | authored Codex runtime |
-| `skills/lux-visual-systems/references/formats.md` | authored Codex runtime |
-| `skills/lux-visual-systems/references/reference-assets.md` | authored Codex runtime |
-| `skills/lux-visual-systems/references/craft-stickers.md` | authored visual reference catalogue |
-| `skills/lux-visual-systems/references/craft-stickers.json` | source-to-package mapping and SHA-256 inventory for all 57 supplied images |
-| `skills/lux-visual-systems/assets/*.png` | authored and reference visual runtime |
-| `skills/lux-visual-systems/assets/craft-stickers/*.png` | 44 supplied visual originals, preserved byte-for-byte |
-| `tests/test_visual_system_contract.py` | authored verification |
-
 ## bauer
 
 Pinned source: `luxsolari/bauer` at `ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69` (0.3.1). All 38 copied files match the complete [SHA-256 inventory](bauer-source-parity.json); ten runtime modules and thirteen upstream test modules (138 tests). Contracts and bounded host gaps are in [the shipped README](../plugins/bauer/README.md). This pin matches the immutable v0.3.1 documentation-only tag. Runtime helpers are unchanged from v0.3.0; earlier tags remain immutable.
