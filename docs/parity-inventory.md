@@ -21,6 +21,11 @@ source-maintenance automation).
 
 Bauer is pinned to `ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69`. [bauer-source-parity.json](bauer-source-parity.json) inventories every copied byte. Canonical tests total 138; local package and hosted checks are separate. Profiles, confirmed run records, scorecards and offline controls validate supplied evidence, not truth or user authority. See [Bauer documentation](../plugins/bauer/README.md) and [verification journal](../JOURNAL.md) for contracts and known host gaps.
 
+Three Axes now follows released open versions through
+`maintenance/three-axes/release.json` and the hourly synchronization workflow.
+The current source binding supersedes the initial design-plan pin; host hooks
+remain adapted and require manual review when upstream hook behavior changes.
+
 The only package-system translation is Sage's Claude marketplace dependency:
 Codex manifests have no package-dependency field, so Sage carries the complete
 calibration contract and uses Three Axes state when available. No learner,
