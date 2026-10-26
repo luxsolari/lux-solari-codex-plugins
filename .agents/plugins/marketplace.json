@@ -77,18 +77,6 @@
       "category": "Design"
     },
     {
-      "name": "lux-visual-systems",
-      "source": {
-        "source": "local",
-        "path": "./plugins/lux-visual-systems"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Design"
-    },
-    {
       "name": "bauer",
       "source": {
         "source": "local",

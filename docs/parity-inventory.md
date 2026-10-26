@@ -17,7 +17,6 @@ source-maintenance automation).
 | Lux Swiss | skill, exact theme, component catalogue, house mark, dual licenses | Invocation only; visual material is host-independent. |
 | Hannah | full Python package, pyproject, CLI, strategy material, smoke tests, README, MIT license | Local `run-hannah` invokes the package without third-party dependencies. |
 | Tri-Swiss | skill, exact theme, component catalogue, house mark, dual licenses | Invocation only; visual material is host-independent. |
-| Lux Visual Systems | native Codex skill, canonical master, 13 supporting visual boards, format rules, reference governance, dual licenses | Direct image generation; subject references and current-turn corrections take priority over the packaged visual system. |
 | Bauer 0.3.1 | 38 exact files: portable skill, ten stdlib modules, references, thirteen upstream test modules/fixtures, manifests, docs and notices | No runtime translation; resolve helpers relative to the installed skill. |
 
 Bauer is pinned to `ed8ab5f2a7e587faf07560e99a04d0f34f8e6c69`. [bauer-source-parity.json](bauer-source-parity.json) inventories every copied byte. Canonical tests total 138; local package and hosted checks are separate. Profiles, confirmed run records, scorecards and offline controls validate supplied evidence, not truth or user authority. See [Bauer documentation](../plugins/bauer/README.md) and [verification journal](../JOURNAL.md) for contracts and known host gaps.

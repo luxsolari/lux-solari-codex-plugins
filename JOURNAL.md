@@ -1,6 +1,16 @@
 # Journal
 
 
+
+## 2026-10-26 — Retire Lux Visual Systems from public distribution
+
+- Remove Lux Visual Systems from the public catalogue, package tree, README, parity ledger/inventory, catalogue expectations and CI invocation. Remaining packages and their versions are unchanged; the Sage portability check now names its target rather than relying on a list index.
+- The owner requested private maintenance and a future paid design-system extension. Source/reference assets and original licenses were backed up and verified before removing the package; no private source or personal vault paths are published here. Historical Git commits are not rewritten.
+- Verified: 16 root catalogue/parity/portability/changelog checks and all seven remaining package validators passed locally; git diff --check passed. Hosted full CI and merge state belong to the PR. No new release tag, image-generation test or pricing/listing change is included.
+- Open at entry creation: checked PR and public catalogue readback after merge. Private installation and source backup are verified outside this public repository.
+- Files: .agents/plugins/marketplace.json, plugins/lux-visual-systems (removed), README.md, docs/parity-{inventory,ledger}.md, tests/test_{marketplace,parity_inventory,host_portability}.py, .github/workflows/ci.yml, JOURNAL.md.
+
+
 ## 2026-10-25 — Keep personal image plugins outside the public marketplace
 
 - Removed Machine Pilgrim and Anime Identity Designer from the public catalogue, shipped plugin directories, README, parity inventory/ledger, root catalogue expectations and CI package invocations. Lux Visual Systems 1.3.0 remains listed and its package bytes are unchanged.
